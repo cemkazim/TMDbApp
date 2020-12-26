@@ -1,0 +1,6 @@
+framework module Pods_TMDbApp {
+  umbrella header "Pods-TMDbApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

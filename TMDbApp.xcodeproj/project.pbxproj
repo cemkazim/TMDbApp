@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,9 @@
 		004A989C259755F2008F878D /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A989B259755F2008F878D /* MovieListTableViewCell.swift */; };
 		004A98A32597587A008F878D /* BaseLabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98A22597587A008F878D /* BaseLabelComponent.swift */; };
 		004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98AD25975FA7008F878D /* ConstantValue.swift */; };
+		004A98B42597632D008F878D /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98B32597632D008F878D /* MovieModel.swift */; };
+		004A98B82597634B008F878D /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98B72597634B008F878D /* MovieViewModel.swift */; };
+		EBE935FA53AAD5159C5FB56A /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B272E7C7672D768248955 /* Pods_TMDbApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,11 @@
 		004A989B259755F2008F878D /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
 		004A98A22597587A008F878D /* BaseLabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
 		004A98AD25975FA7008F878D /* ConstantValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantValue.swift; sourceTree = "<group>"; };
+		004A98B32597632D008F878D /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		004A98B72597634B008F878D /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.release.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.release.xcconfig"; sourceTree = "<group>"; };
+		427B272E7C7672D768248955 /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.debug.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE935FA53AAD5159C5FB56A /* Pods_TMDbApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +57,8 @@
 			children = (
 				004A988325975206008F878D /* TMDbApp */,
 				004A988225975206008F878D /* Products */,
+				8661ED8386A8EEAD54AEC463 /* Pods */,
+				C51A890D21EDFE85709807CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +73,7 @@
 		004A988325975206008F878D /* TMDbApp */ = {
 			isa = PBXGroup;
 			children = (
+				004A98B22597631D008F878D /* Models */,
 				004A98AC25975F9C008F878D /* Constants */,
 				004A98A125975865008F878D /* ReusableComponents */,
 				004A989E259755F5008F878D /* Controllers */,
@@ -108,6 +120,32 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		004A98B22597631D008F878D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				004A98B32597632D008F878D /* MovieModel.swift */,
+				004A98B72597634B008F878D /* MovieViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8661ED8386A8EEAD54AEC463 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */,
+				3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C51A890D21EDFE85709807CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				427B272E7C7672D768248955 /* Pods_TMDbApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,9 +153,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 004A989525975211008F878D /* Build configuration list for PBXNativeTarget "TMDbApp" */;
 			buildPhases = (
+				49E89674B40CFBC3D84A1B9D /* [CP] Check Pods Manifest.lock */,
 				004A987D25975206008F878D /* Sources */,
 				004A987E25975206008F878D /* Frameworks */,
 				004A987F25975206008F878D /* Resources */,
+				DFFFBC2B1971048B5D6D5768 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,13 +213,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		49E89674B40CFBC3D84A1B9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TMDbApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFFFBC2B1971048B5D6D5768 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMDbApp/Pods-TMDbApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMDbApp/Pods-TMDbApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TMDbApp/Pods-TMDbApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		004A987D25975206008F878D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004A98B42597632D008F878D /* MovieModel.swift in Sources */,
 				004A988925975206008F878D /* MovieListViewController.swift in Sources */,
 				004A98A32597587A008F878D /* BaseLabelComponent.swift in Sources */,
+				004A98B82597634B008F878D /* MovieViewModel.swift in Sources */,
 				004A988525975206008F878D /* AppDelegate.swift in Sources */,
 				004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */,
 				004A989C259755F2008F878D /* MovieListTableViewCell.swift in Sources */,
@@ -327,6 +411,7 @@
 		};
 		004A989625975211008F878D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -346,6 +431,7 @@
 		};
 		004A989725975211008F878D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

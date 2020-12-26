@@ -12,4 +12,7 @@ class ConstantValue {
     static let placeholderImage = "placeholder"
     static let initCoderText = "init(coder:) has not been implemented"
     static let movieListTableViewCellId = "MovieListTableViewCell"
+    static let searchText = "Search"
+    static let cancelButtonText = "Cancel"
+    static let cancelButtonTextId = "cancelButtonText"
 }

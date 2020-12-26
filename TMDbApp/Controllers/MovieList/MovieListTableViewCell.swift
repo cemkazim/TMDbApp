@@ -18,7 +18,7 @@ class MovieListTableViewCell: UITableViewCell {
         return imageView
     }()
     lazy var labelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [movieNameLabel, movieGenreLabel])
+        let stackView = UIStackView(arrangedSubviews: [movieNameLabel, moviePopularityLabel])
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .fill
@@ -31,7 +31,7 @@ class MovieListTableViewCell: UITableViewCell {
         baseLabelComponent.font = UIFont.systemFont(ofSize: 24)
         return baseLabelComponent
     }()
-    lazy var movieGenreLabel: BaseLabelComponent = {
+    lazy var moviePopularityLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
         return baseLabelComponent
     }()
@@ -55,7 +55,11 @@ class MovieListTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            movieImageView.widthAnchor.constraint(equalToConstant: 100),
+            movieImageView.heightAnchor.constraint(equalToConstant: 100),
             movieImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            movieNameLabel.widthAnchor.constraint(equalToConstant: 200),
             
             labelStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 15),
             labelStackView.centerYAnchor.constraint(equalTo: movieImageView.centerYAnchor),
