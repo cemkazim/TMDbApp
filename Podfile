@@ -5,7 +5,7 @@ target 'TMDbApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Alamofire'
-  pod 'AlamofireImage'
+  pod 'SDWebImage'
   # Pods for TMDbApp
 
 end

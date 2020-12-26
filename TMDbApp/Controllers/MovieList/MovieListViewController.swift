@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import AlamofireImage
+import SDWebImage
 
 class MovieListViewController: UIViewController {
     
@@ -34,7 +34,7 @@ class MovieListViewController: UIViewController {
         searchController.searchBar.setValue(ConstantValue.cancelButtonText, forKey: ConstantValue.cancelButtonTextId)
         return searchController
     }()
-    lazy var loaderIndicatorView: UIActivityIndicatorView = {
+    lazy var loaderActivityIndicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView(style: .large)
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         return indicatorView
@@ -47,8 +47,6 @@ class MovieListViewController: UIViewController {
         return viewModel
     }()
     var movieResults = [Result]()
-    var movieImages = [UIImage]()
-    var imageTimer = Timer()
     
     // MARK: - Lifecycles -
 
@@ -66,14 +64,13 @@ class MovieListViewController: UIViewController {
     
     func setupView() {
         view.addSubview(movieTableView)
-        view.addSubview(loaderIndicatorView)
-        loaderIndicatorView.startAnimating()
-        loaderIndicatorView.startAnimating()
+        view.addSubview(loaderActivityIndicatorView)
+        loaderActivityIndicatorView.startAnimating()
         movieViewModel.getMovieList(completionHandler: { [weak self] (results) in
             guard let strongSelf = self else { return }
             strongSelf.movieResults = results
-            strongSelf.getImage()
             strongSelf.movieTableView.reloadData()
+            strongSelf.loaderActivityIndicatorView.stopAnimating()
         })
     }
     
@@ -84,24 +81,13 @@ class MovieListViewController: UIViewController {
             movieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             movieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             
-            loaderIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loaderIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
     func getMoviePopularity(_ movie: Result) -> String {
         return "Popularity: \(String(format: "%.3f", movie.popularity ?? 0.0))"
-    }
-    
-    func getImage() {
-        imageTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
-            guard let strongSelf = self else { return }
-            if strongSelf.movieViewModel.movieImageList.count == strongSelf.movieResults.count {
-                strongSelf.movieTableView.reloadData()
-                strongSelf.imageTimer.invalidate()
-                strongSelf.loaderIndicatorView.stopAnimating()
-            }
-        })
     }
 }
 
@@ -113,11 +99,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ConstantValue.movieListTableViewCellId) as? MovieListTableViewCell {
-            if movieViewModel.movieImageList.count == movieResults.count {
-                cell.movieImageView.image = movieViewModel.movieImageList[indexPath.row]
-            } else {
-                cell.movieImageView.image = UIImage(named: ConstantValue.placeholderImage)
-            }
+            let imageUrl = URL(string: movieViewModel.movieImageUrlList[indexPath.row])
+            cell.movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
             cell.movieNameLabel.text = movieResults[indexPath.row].title
             cell.moviePopularityLabel.text = getMoviePopularity(movieResults[indexPath.row])
             return cell

@@ -18,6 +18,7 @@
 		004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98AD25975FA7008F878D /* ConstantValue.swift */; };
 		004A98B42597632D008F878D /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98B32597632D008F878D /* MovieModel.swift */; };
 		004A98B82597634B008F878D /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98B72597634B008F878D /* MovieViewModel.swift */; };
+		004A98D12597DA6D008F878D /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98D02597DA6D008F878D /* MovieDetailViewController.swift */; };
 		EBE935FA53AAD5159C5FB56A /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B272E7C7672D768248955 /* Pods_TMDbApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		004A98AD25975FA7008F878D /* ConstantValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantValue.swift; sourceTree = "<group>"; };
 		004A98B32597632D008F878D /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		004A98B72597634B008F878D /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		004A98D02597DA6D008F878D /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.release.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.release.xcconfig"; sourceTree = "<group>"; };
 		427B272E7C7672D768248955 /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.debug.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				004A989F25975601008F878D /* MovieList */,
+				004A98CF2597DA51008F878D /* MovieDetail */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +130,14 @@
 				004A98B72597634B008F878D /* MovieViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		004A98CF2597DA51008F878D /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				004A98D02597DA6D008F878D /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetail;
 			sourceTree = "<group>";
 		};
 		8661ED8386A8EEAD54AEC463 /* Pods */ = {
@@ -267,6 +278,7 @@
 				004A988525975206008F878D /* AppDelegate.swift in Sources */,
 				004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */,
 				004A989C259755F2008F878D /* MovieListTableViewCell.swift in Sources */,
+				004A98D12597DA6D008F878D /* MovieDetailViewController.swift in Sources */,
 				004A988725975206008F878D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
