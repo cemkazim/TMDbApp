@@ -10,7 +10,7 @@ import UIKit
 class MovieListTableViewCell: UITableViewCell {
     
     lazy var movieImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let imageView = UIImageView()
         imageView.image = UIImage(named: ConstantValue.placeholderImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit

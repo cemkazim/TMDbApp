@@ -8,9 +8,10 @@
 import UIKit
 import SDWebImage
 
+@available(iOS 11.0, *)
 class MovieListViewController: UIViewController {
     
-    // MARK : - UI Objects -
+    // MARK: - UI Objects -
     
     lazy var movieTableView: UITableView = {
         let tableView = UITableView()
@@ -35,7 +36,7 @@ class MovieListViewController: UIViewController {
         return searchController
     }()
     lazy var loaderActivityIndicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView(style: .large)
+        let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         return indicatorView
     }()
@@ -91,6 +92,7 @@ class MovieListViewController: UIViewController {
     }
 }
 
+@available(iOS 11.0, *)
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,8 +111,19 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.movieId = movieResults[indexPath.row].id
+        pushTo(movieDetailViewController)
+    }
 }
 
+@available(iOS 11.0, *)
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

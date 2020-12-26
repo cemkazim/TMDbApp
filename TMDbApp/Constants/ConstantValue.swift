@@ -15,4 +15,5 @@ class ConstantValue {
     static let searchText = "Search"
     static let cancelButtonText = "Cancel"
     static let cancelButtonTextId = "cancelButtonText"
+    static let movieDetailCollectionViewCellId = "MovieDetailCollectionViewCell"
 }
