@@ -13,6 +13,9 @@
 		004A988C25975206008F878D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004A988A25975206008F878D /* Main.storyboard */; };
 		004A988E25975210008F878D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004A988D25975210008F878D /* Assets.xcassets */; };
 		004A989125975210008F878D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004A988F25975210008F878D /* LaunchScreen.storyboard */; };
+		004A989C259755F2008F878D /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A989B259755F2008F878D /* MovieListTableViewCell.swift */; };
+		004A98A32597587A008F878D /* BaseLabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98A22597587A008F878D /* BaseLabelComponent.swift */; };
+		004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98AD25975FA7008F878D /* ConstantValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		004A988D25975210008F878D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		004A989025975210008F878D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		004A989225975210008F878D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		004A989B259755F2008F878D /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
+		004A98A22597587A008F878D /* BaseLabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
+		004A98AD25975FA7008F878D /* ConstantValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,50 @@
 		004A988325975206008F878D /* TMDbApp */ = {
 			isa = PBXGroup;
 			children = (
+				004A98AC25975F9C008F878D /* Constants */,
+				004A98A125975865008F878D /* ReusableComponents */,
+				004A989E259755F5008F878D /* Controllers */,
 				004A988425975206008F878D /* AppDelegate.swift */,
 				004A988625975206008F878D /* SceneDelegate.swift */,
-				004A988825975206008F878D /* MovieListViewController.swift */,
 				004A988A25975206008F878D /* Main.storyboard */,
 				004A988D25975210008F878D /* Assets.xcassets */,
 				004A988F25975210008F878D /* LaunchScreen.storyboard */,
 				004A989225975210008F878D /* Info.plist */,
 			);
 			path = TMDbApp;
+			sourceTree = "<group>";
+		};
+		004A989E259755F5008F878D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				004A989F25975601008F878D /* MovieList */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		004A989F25975601008F878D /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				004A988825975206008F878D /* MovieListViewController.swift */,
+				004A989B259755F2008F878D /* MovieListTableViewCell.swift */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		004A98A125975865008F878D /* ReusableComponents */ = {
+			isa = PBXGroup;
+			children = (
+				004A98A22597587A008F878D /* BaseLabelComponent.swift */,
+			);
+			path = ReusableComponents;
+			sourceTree = "<group>";
+		};
+		004A98AC25975F9C008F878D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				004A98AD25975FA7008F878D /* ConstantValue.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +179,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				004A988925975206008F878D /* MovieListViewController.swift in Sources */,
+				004A98A32597587A008F878D /* BaseLabelComponent.swift in Sources */,
 				004A988525975206008F878D /* AppDelegate.swift in Sources */,
+				004A98AE25975FA7008F878D /* ConstantValue.swift in Sources */,
+				004A989C259755F2008F878D /* MovieListTableViewCell.swift in Sources */,
 				004A988725975206008F878D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
