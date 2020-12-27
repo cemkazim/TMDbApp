@@ -42,11 +42,11 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             castImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            castImageView.widthAnchor.constraint(equalToConstant: 50),
-            castImageView.heightAnchor.constraint(equalToConstant: 50),
+            castImageView.widthAnchor.constraint(equalToConstant: 100),
+            castImageView.heightAnchor.constraint(equalToConstant: 100),
             castImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            castLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+            castLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             castLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }

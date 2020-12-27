@@ -49,8 +49,8 @@ class MovieDetailViewController: UIViewController {
     }()
     lazy var castCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 100, height: 100)
-        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+        flowLayout.itemSize = CGSize(width: 150, height: 150)
+        flowLayout.estimatedItemSize = CGSize(width: 150, height: 150)
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
@@ -168,7 +168,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 150, height: 150)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
