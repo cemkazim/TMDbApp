@@ -19,10 +19,11 @@ class BaseLabelComponent: UILabel {
     }
     
     func setupLabel() {
+        text = ConstantValue.placeholderText
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 17)
         textAlignment = .left
         numberOfLines = .zero
-        textColor = .black
+        textColor = .white
     }
 }

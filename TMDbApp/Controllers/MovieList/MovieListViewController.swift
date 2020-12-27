@@ -19,6 +19,7 @@ class MovieListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: ConstantValue.movieListTableViewCellId)
+        tableView.backgroundColor = UIColor.clear
         return tableView
     }()
     lazy var recordSearchController: UISearchController = {
@@ -56,6 +57,7 @@ class MovieListViewController: UIViewController {
         setupView()
         setupConstraints()
         setupSearchController()
+        removeNavigationBar()
     }
     
     func setupSearchController() {
@@ -64,6 +66,7 @@ class MovieListViewController: UIViewController {
     }
     
     func setupView() {
+        updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
@@ -102,6 +105,8 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ConstantValue.movieListTableViewCellId) as? MovieListTableViewCell {
             let imageUrl = URL(string: movieViewModel.movieImageUrlList[indexPath.row])
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
             cell.movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
             cell.movieNameLabel.text = movieResults[indexPath.row].title
@@ -118,7 +123,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailViewController = MovieDetailViewController()
-        movieDetailViewController.movieId = movieResults[indexPath.row].id
+        if let movieId = movieResults[indexPath.row].id {
+            movieDetailViewController.movieId = movieId
+        }
         pushTo(movieDetailViewController)
     }
 }

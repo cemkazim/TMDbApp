@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ConstantValue {
     
@@ -16,4 +17,9 @@ class ConstantValue {
     static let cancelButtonText = "Cancel"
     static let cancelButtonTextId = "cancelButtonText"
     static let movieDetailCollectionViewCellId = "MovieDetailCollectionViewCell"
+    static let placeholderText = "'Learn and change future' - Cem Kazim"
+    static let colorsKeyPath = "colors"
+    static let colorChangeKey = "colorChange"
+    static let firstChangableColor = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
+    static let secondChangableColor = UIColor(red: 160/255, green: 70/255, blue: 140/255, alpha: 1).cgColor
 }

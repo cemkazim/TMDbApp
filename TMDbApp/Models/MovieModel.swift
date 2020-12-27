@@ -41,7 +41,7 @@ struct Result: Decodable {
 
 struct MovieDetail: Decodable {
     
-    let belongsToCollection: [MovieCollection]
+    let belongsToCollection: MovieCollection?
     let genres: [MovieGenre]
     
     enum CodingKeys: String, CodingKey {

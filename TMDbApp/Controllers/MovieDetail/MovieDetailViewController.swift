@@ -8,12 +8,14 @@
 import UIKit
 import SDWebImage
 
+@available(iOS 11.0, *)
 class MovieDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
     
     lazy var titleLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.textAlignment = .center
         baseLabelComponent.font = UIFont.systemFont(ofSize: 24)
         return baseLabelComponent
     }()
@@ -21,18 +23,18 @@ class MovieDetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ConstantValue.placeholderImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
     lazy var ratingLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
-        baseLabelComponent.font = UIFont.systemFont(ofSize: 20)
+        baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
-    lazy var releaseDateLabel: BaseLabelComponent = {
+    lazy var genreLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
-        baseLabelComponent.font = UIFont.systemFont(ofSize: 20)
+        baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
     lazy var summaryLabel: BaseLabelComponent = {
@@ -41,7 +43,8 @@ class MovieDetailViewController: UIViewController {
         return baseLabelComponent
     }()
     lazy var castCollectionView: UICollectionView = {
-        let collectionView = UICollectionView()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -56,7 +59,6 @@ class MovieDetailViewController: UIViewController {
         return viewModel
     }()
     var movieId = 0
-    var movieGenreList = [String]()
     
     // MARK: - Lifecycles -
     
@@ -64,35 +66,45 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        getData()
     }
     
     func setupView() {
+        updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         view.addSubview(titleLabel)
         view.addSubview(coverImageView)
         view.addSubview(ratingLabel)
-        view.addSubview(releaseDateLabel)
+        view.addSubview(genreLabel)
         view.addSubview(summaryLabel)
         view.addSubview(castCollectionView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            titleLabel.widthAnchor.constraint(equalToConstant: 250),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             coverImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            coverImageView.widthAnchor.constraint(equalToConstant: 300),
-            coverImageView.heightAnchor.constraint(equalToConstant: 400),
+            coverImageView.heightAnchor.constraint(equalToConstant: 200),
+            coverImageView.widthAnchor.constraint(equalToConstant: 100),
             coverImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             ratingLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 15),
             ratingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            releaseDateLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 10),
-            releaseDateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            genreLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 20),
+            genreLabel.widthAnchor.constraint(equalToConstant: 250),
+            genreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            summaryLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 15),
-            summaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            summaryLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 15),
+            summaryLabel.widthAnchor.constraint(equalToConstant: 250),
+            summaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            castCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            castCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            castCollectionView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            castCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
     
@@ -105,14 +117,18 @@ class MovieDetailViewController: UIViewController {
     }
     
     func setMovieGenreList(_ movieGenres: [MovieGenre]) {
+        var movieGenreList = [String]()
         for movieGenre in movieGenres {
             if let genre = movieGenre.name {
                 movieGenreList.append(genre)
             }
         }
+        let movieGenreText = movieGenreList.joined(separator: ", ")
+        genreLabel.text = "Movie Genre(s): \(movieGenreText)"
     }
 }
 
+@available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -122,7 +138,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
             cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-//            cell.castImageView.sd_setImage(with: <#T##URL?#>, completed: <#T##SDExternalCompletionBlock?##SDExternalCompletionBlock?##(UIImage?, Error?, SDImageCacheType, URL?) -> Void#>)
+            cell.castImageView.image = UIImage(named: ConstantValue.placeholderImage)
             return cell
         } else {
             return UICollectionViewCell()
