@@ -13,6 +13,11 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
     
+    lazy var mainScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     lazy var titleLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
         baseLabelComponent.textAlignment = .center
@@ -69,42 +74,61 @@ class MovieDetailViewController: UIViewController {
         getData()
     }
     
+    override func viewDidLayoutSubviews() {
+        mainScrollView.delegate = self
+        coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
+        titleLabel.text = movieDetailModel?.movieName
+        summaryLabel.text = movieDetailModel?.overview
+        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height + castCollectionView.frame.size.height
+        mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+    }
+    
     func setupView() {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
-        view.addSubview(titleLabel)
-        view.addSubview(coverImageView)
-        view.addSubview(ratingLabel)
-        view.addSubview(genreLabel)
-        view.addSubview(summaryLabel)
-        view.addSubview(castCollectionView)
+        view.addSubview(mainScrollView)
+        mainScrollView.addSubview(titleLabel)
+        mainScrollView.addSubview(coverImageView)
+        mainScrollView.addSubview(ratingLabel)
+        mainScrollView.addSubview(genreLabel)
+        mainScrollView.addSubview(summaryLabel)
+        mainScrollView.addSubview(castCollectionView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            titleLabel.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: 15),
             titleLabel.widthAnchor.constraint(equalToConstant: 250),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             coverImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             coverImageView.heightAnchor.constraint(equalToConstant: 200),
             coverImageView.widthAnchor.constraint(equalToConstant: 100),
-            coverImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            coverImageView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             ratingLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 15),
-            ratingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ratingLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             genreLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 20),
             genreLabel.widthAnchor.constraint(equalToConstant: 250),
-            genreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            genreLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             summaryLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 15),
             summaryLabel.widthAnchor.constraint(equalToConstant: 250),
-            summaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            summaryLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
-            castCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            castCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            castCollectionView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            castCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            castCollectionView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor, constant: 0),
+            castCollectionView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor, constant: 0),
+            castCollectionView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
+            castCollectionView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor, constant: 0),
+            
+            mainScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
     }
     
@@ -124,7 +148,6 @@ class MovieDetailViewController: UIViewController {
             }
         }
         let movieGenreText = movieGenreList.joined(separator: ", ")
-        titleLabel.text = movieDetailModel?.movieName
         genreLabel.text = "Movie Genre(s): \(movieGenreText)"
     }
 }
