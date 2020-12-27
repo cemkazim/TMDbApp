@@ -10,6 +10,8 @@ import Alamofire
 
 class MovieDetailViewModel {
     
+    var movieCastImageUrlList = [String]()
+    
     func getMovieGenre(movieId: Int, completionHandler: @escaping ([MovieGenre]) -> ()) {
         let parameters: Parameters = ["movie_genre": "123456"]
         let movieGenreApiUrl = "https://api.themoviedb.org/3/movie/\(movieId)?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
@@ -21,6 +23,30 @@ class MovieDetailViewModel {
                 completionHandler(movieGenreList)
             } catch let error {
                 print(error)
+            }
+        }
+    }
+    
+    func getMovieCredits(movieId: Int, completionHandler: @escaping ([MovieCast]) -> ()) {
+        let parameters: Parameters = ["movie_id": "123456"]
+        let movieCastApiUrl = "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
+        AF.request(movieCastApiUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in
+            guard let movieCastData = response.data, let strongSelf = self else { return }
+            do {
+                let movieCastModel = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
+                let movieCastList = movieCastModel.cast
+                strongSelf.setImageUrl(movieCastList)
+                completionHandler(movieCastList)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    func setImageUrl(_ movieCastList: [MovieCast]) {
+        for path in movieCastList {
+            if let profilepath = path.profilePath {
+                movieCastImageUrlList.append(APIUrl.baseMovieImageUrl + profilepath)
             }
         }
     }

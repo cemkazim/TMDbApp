@@ -71,6 +71,7 @@ class MovieDetailViewController: UIViewController {
         return viewModel
     }()
     var movieDetailModel: MovieDetailModel?
+    var movieCastList = [MovieCast]()
     
     // MARK: - Lifecycles -
     
@@ -144,6 +145,10 @@ class MovieDetailViewController: UIViewController {
         movieDetailViewModel.getMovieGenre(movieId: movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieGenres) in
             guard let strongSelf = self else { return }
             strongSelf.setMovieGenreList(movieGenres)
+        })
+        movieDetailViewModel.getMovieCredits(movieId: movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieCast) in
+            guard let strongSelf = self else { return }
+            strongSelf.movieCastList = movieCast
             strongSelf.castCollectionView.reloadData()
         })
     }
@@ -163,23 +168,24 @@ class MovieDetailViewController: UIViewController {
 @available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movieCastList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 150)
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 10
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
+            let imageUrl = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item])
             cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.castImageView.image = UIImage(named: ConstantValue.placeholderImage)
-            cell.castLabel.text = "Cemo"
+            cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+            cell.castLabel.text = movieCastList[indexPath.item].name
             return cell
         } else {
             return UICollectionViewCell()

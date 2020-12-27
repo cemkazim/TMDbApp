@@ -51,10 +51,12 @@ struct MovieCast: Decodable {
     let name: String?
     let character: String?
     let knownForDepartment: String?
+    let profilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case name
         case character
         case knownForDepartment = "known_for_department"
+        case profilePath = "profile_path"
     }
 }
