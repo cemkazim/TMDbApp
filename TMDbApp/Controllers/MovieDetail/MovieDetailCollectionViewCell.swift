@@ -19,6 +19,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     }()
     lazy var castLabel: BaseLabelComponent = {
         let label = BaseLabelComponent()
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -41,8 +42,8 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             castImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            castImageView.widthAnchor.constraint(equalToConstant: 150),
-            castImageView.heightAnchor.constraint(equalToConstant: 100),
+            castImageView.widthAnchor.constraint(equalToConstant: 50),
+            castImageView.heightAnchor.constraint(equalToConstant: 50),
             castImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             castLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),

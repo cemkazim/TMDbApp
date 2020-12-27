@@ -49,7 +49,9 @@ class MovieDetailViewController: UIViewController {
     }()
     lazy var castCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
+        flowLayout.itemSize = CGSize(width: 100, height: 100)
+        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+        flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,16 +59,9 @@ class MovieDetailViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+        collectionView.backgroundColor = .clear
+        collectionView.backgroundView = UIView.init(frame: .zero)
         return collectionView
-    }()
-    lazy var asdImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: ConstantValue.placeholderImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
-        return imageView
     }()
     
     // MARK: - Properties -
@@ -108,6 +103,7 @@ class MovieDetailViewController: UIViewController {
         mainScrollView.addSubview(summaryLabel)
         mainScrollView.addSubview(castCollectionView)
         view.addSubview(mainScrollView)
+        view.layoutIfNeeded()
     }
     
     func setupConstraints() {
@@ -134,8 +130,7 @@ class MovieDetailViewController: UIViewController {
             
             castCollectionView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 5),
             castCollectionView.heightAnchor.constraint(equalToConstant: 150),
-            castCollectionView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor, constant: 0),
-            castCollectionView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor, constant: 0),
+            castCollectionView.widthAnchor.constraint(equalToConstant: view.frame.width),
             castCollectionView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
@@ -168,23 +163,15 @@ class MovieDetailViewController: UIViewController {
 @available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 10
     }
     
@@ -192,6 +179,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
             cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.castImageView.image = UIImage(named: ConstantValue.placeholderImage)
+            cell.castLabel.text = "Cemo"
             return cell
         } else {
             return UICollectionViewCell()
