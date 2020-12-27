@@ -23,6 +23,7 @@ class ConstantValue {
     static let nameText = "Name: "
     static let characterText = "Character: "
     static let voteAverageText = "Vote Average: "
+    static let voteAverageDecimalText = "/10"
     static let releaseDateText = "Release Date: "
     static let knownForDepartmentText = "Known For Department: "
     static let genderText = "Gender: "
@@ -33,6 +34,8 @@ class ConstantValue {
     static let tmdbAppNameText = "TMDbApp"
     static let movieDetailText = "Movie Details"
     static let personDetailText = "Person Details"
+    static let onlyDateFormat = "yyyy-MM-dd"
+    static let withMonthDateFormat = "MMM dd yyyy"
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }

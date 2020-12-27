@@ -32,8 +32,8 @@ class MovieDetailViewModel {
     func getMovieCredits(movieId: Int, completionHandler: @escaping ([MovieCast]) -> ()) {
         let parameters: Parameters = ["movie_id": "123456"]
         let movieCastApiUrl = "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
-        AF.request(movieCastApiUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in
-            guard let movieCastData = response.data, let strongSelf = self else { return }
+        AF.request(movieCastApiUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+            guard let movieCastData = response.data else { return }
             do {
                 let movieCastModel = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
                 let movieCastList = movieCastModel.cast
@@ -42,5 +42,14 @@ class MovieDetailViewModel {
                 print(error)
             }
         }
+    }
+    
+    func dateFormatter(_ stringDate: String) -> String {
+        let getterFormatter = DateFormatter()
+        getterFormatter.dateFormat = ConstantValue.onlyDateFormat
+        let setterFormater = DateFormatter()
+        setterFormater.dateFormat = ConstantValue.withMonthDateFormat
+        let date = getterFormatter.date(from: stringDate)
+        return setterFormater.string(from: date ?? Date())
     }
 }

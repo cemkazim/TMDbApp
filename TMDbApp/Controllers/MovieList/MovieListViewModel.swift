@@ -1,5 +1,5 @@
 //
-//  MovieViewModel.swift
+//  MovieListViewModel.swift
 //  TMDbApp
 //
 //  Created by Cem Kazım on 26.12.2020.
@@ -8,8 +8,10 @@
 import Foundation
 import Alamofire
 
-class MovieViewModel {
+class MovieListViewModel {
     
+    var movieTitleList = [String]()
+    var movieActorList = [String]()
     var movieResults = [MovieResult]()
     var filteredMovieResults = [MovieResult]()
     var movieGenres = [MovieGenre]()
@@ -63,6 +65,21 @@ class MovieViewModel {
                 let movieGenreModel = try JSONDecoder().decode(MovieDetail.self, from: movieGenreData)
                 let movieGenreList = movieGenreModel.genres
                 completionHandler(movieGenreList)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    func getMovieCast(movieId: Int, completionHandler: @escaping ([MovieCast]) -> ()) {
+        let parameters: Parameters = ["movie_id": "123456"]
+        let movieCastApiUrl = "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
+        AF.request(movieCastApiUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+            guard let movieCastData = response.data else { return }
+            do {
+                let movieCastModel = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
+                let movieCastList = movieCastModel.cast
+                completionHandler(movieCastList)
             } catch let error {
                 print(error)
             }

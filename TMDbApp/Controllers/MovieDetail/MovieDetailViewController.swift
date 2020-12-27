@@ -70,7 +70,7 @@ class MovieDetailViewController: UIViewController {
         return collectionView
     }()
     
-    // MARK: - Properties -
+    // MARK: - View Model Property -
     
     lazy var movieDetailViewModel: MovieDetailViewModel = {
         let viewModel = MovieDetailViewModel()
@@ -187,8 +187,9 @@ class MovieDetailViewController: UIViewController {
         summaryLabel.text = movieDetailViewModel.movieDetailModel?.overview
         if let movieRating = movieDetailViewModel.movieDetailModel?.movieVoteAverage,
            let movieReleaseDate = movieDetailViewModel.movieDetailModel?.movieReleaseDate {
-            ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)"
-            releaseDateLabel.text = ConstantValue.releaseDateText + "\(movieReleaseDate)"
+            ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)" + ConstantValue.voteAverageDecimalText
+            let releaseDateString = "\(movieReleaseDate)"
+            releaseDateLabel.text = ConstantValue.releaseDateText + movieDetailViewModel.dateFormatter(releaseDateString)
         }
         let height = 20 + titleLabel.frame.size.width + 275 + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
@@ -251,5 +252,15 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
             personDetailViewController.personDetailModel = personDetailModel
         }
         pushTo(personDetailViewController)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+        cell.layer.transform = rotationTransform
+        cell.alpha = 0
+        UIView.animate(withDuration: 0.75) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+        }
     }
 }

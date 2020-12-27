@@ -20,8 +20,8 @@ extension UIViewController {
             firstColor,
             secondColor
         ]
-        gradient.startPoint = CGPoint(x:0, y:0)
-        gradient.endPoint = CGPoint(x:1, y:1)
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
         view.layer.insertSublayer(gradient, at: 0)
         let gradientChangeAnimation = CABasicAnimation(keyPath: ConstantValue.colorsKeyPath)
         gradientChangeAnimation.duration = 2.5
