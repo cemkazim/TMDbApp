@@ -108,7 +108,7 @@ class PersonDetailViewController: UIViewController {
             } else {
                 personGenderLabel.text = ConstantValue.genderText + ConstantValue.manText
             }
-            personPopularityLabel.text = "\(personPopularity)"
+            personPopularityLabel.text = ConstantValue.popularityText + "\(personPopularity)"
         }
     }
 }

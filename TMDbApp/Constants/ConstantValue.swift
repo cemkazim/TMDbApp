@@ -22,8 +22,11 @@ class ConstantValue {
     static let colorChangeKey = "colorChange"
     static let nameText = "Name: "
     static let characterText = "Character: "
+    static let voteAverageText = "Vote Average: "
+    static let releaseDateText = "Release Date: "
     static let knownForDepartmentText = "Known For Department: "
     static let genderText = "Gender: "
+    static let popularityText = "Popularity: "
     static let womanText = "Woman"
     static let manText = "Man"
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor

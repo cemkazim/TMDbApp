@@ -37,6 +37,11 @@ class MovieDetailViewController: UIViewController {
         baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
+    lazy var releaseDateLabel: BaseLabelComponent = {
+        let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.textAlignment = .center
+        return baseLabelComponent
+    }()
     lazy var genreLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
         baseLabelComponent.textAlignment = .center
@@ -83,12 +88,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        mainScrollView.delegate = self
-        coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
-        titleLabel.text = movieDetailModel?.movieName
-        summaryLabel.text = movieDetailModel?.overview
-        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
-        mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
+        setDataToUIObjects()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -102,11 +102,13 @@ class MovieDetailViewController: UIViewController {
         mainScrollView.addSubview(titleLabel)
         mainScrollView.addSubview(coverImageView)
         mainScrollView.addSubview(ratingLabel)
+        mainScrollView.addSubview(releaseDateLabel)
         mainScrollView.addSubview(genreLabel)
         mainScrollView.addSubview(summaryLabel)
         mainScrollView.addSubview(castCollectionView)
         view.addSubview(mainScrollView)
         view.layoutIfNeeded()
+        setDataToUIObjects()
     }
     
     func setupConstraints() {
@@ -120,7 +122,10 @@ class MovieDetailViewController: UIViewController {
             coverImageView.widthAnchor.constraint(equalToConstant: 100),
             coverImageView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
-            ratingLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 15),
+            releaseDateLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 15),
+            releaseDateLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
+            
+            ratingLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 15),
             ratingLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             genreLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 20),
@@ -164,6 +169,20 @@ class MovieDetailViewController: UIViewController {
         }
         let movieGenreText = movieGenreList.joined(separator: ", ")
         genreLabel.text = "Movie Genre(s): \(movieGenreText)"
+    }
+    
+    func setDataToUIObjects() {
+        mainScrollView.delegate = self
+        coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
+        titleLabel.text = movieDetailModel?.movieName
+        summaryLabel.text = movieDetailModel?.overview
+        if let movieRating = movieDetailModel?.movieVoteAverage,
+           let movieReleaseDate = movieDetailModel?.movieReleaseDate {
+            ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)"
+            releaseDateLabel.text = ConstantValue.releaseDateText + "\(movieReleaseDate)"
+        }
+        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
+        mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
 }
 

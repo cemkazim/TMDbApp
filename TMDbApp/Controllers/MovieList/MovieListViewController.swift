@@ -147,8 +147,10 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         if let movieId = movieResults[indexPath.row].id,
            let movieName = movieResults[indexPath.row].title,
            let movieImageUrl = URL(string: movieViewModel.movieImageUrlList[indexPath.row]),
+           let movieReleaseDate = movieResults[indexPath.row].releaseDate,
+           let movieVoteAverage = movieResults[indexPath.row].voteAverage,
            let overview = movieResults[indexPath.row].overview {
-            let movieDetailModel = MovieDetailModel(movieId: movieId, movieName: movieName, movieImageUrl: movieImageUrl, overview: overview)
+            let movieDetailModel = MovieDetailModel(movieId: movieId, movieName: movieName, movieImageUrl: movieImageUrl, movieReleaseDate: movieReleaseDate, movieVoteAverage: movieVoteAverage, overview: overview)
             movieDetailViewController.movieDetailModel = movieDetailModel
         }
         pushTo(movieDetailViewController)

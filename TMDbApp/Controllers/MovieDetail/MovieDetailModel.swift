@@ -12,12 +12,16 @@ class MovieDetailModel {
     var movieId: Int?
     var movieName: String?
     var movieImageUrl: URL?
+    var movieReleaseDate: String?
+    var movieVoteAverage: Double?
     var overview: String?
     
-    init(movieId: Int?, movieName: String?, movieImageUrl: URL?, overview: String?) {
+    init(movieId: Int?, movieName: String?, movieImageUrl: URL?, movieReleaseDate: String?, movieVoteAverage: Double?, overview: String?) {
         self.movieId = movieId
         self.movieName = movieName
         self.movieImageUrl = movieImageUrl
+        self.movieReleaseDate = movieReleaseDate
+        self.movieVoteAverage = movieVoteAverage
         self.overview = overview
     }
 }
