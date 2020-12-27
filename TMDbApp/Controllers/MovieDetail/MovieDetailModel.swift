@@ -7,6 +7,19 @@
 
 import Foundation
 
+class MovieDetailModel {
+    
+    var movieId: Int?
+    var movieName: String?
+    var movieImageUrl: URL?
+    
+    init(movieId: Int?, movieName: String, movieImageUrl: URL?) {
+        self.movieId = movieId
+        self.movieName = movieName
+        self.movieImageUrl = movieImageUrl
+    }
+}
+
 struct MovieCollection: Decodable {
     
     let id: Int?

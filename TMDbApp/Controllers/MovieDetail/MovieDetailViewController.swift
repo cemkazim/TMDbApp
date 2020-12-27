@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController {
         let viewModel = MovieDetailViewModel()
         return viewModel
     }()
-    var movieId = 0
+    var movieDetailModel: MovieDetailModel?
     
     // MARK: - Lifecycles -
     
@@ -109,7 +109,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     func getData() {
-        movieDetailViewModel.getMovieGenre(movieId: movieId, completionHandler: { [weak self] (movieGenres) in
+        movieDetailViewModel.getMovieGenre(movieId: movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieGenres) in
             guard let strongSelf = self else { return }
             strongSelf.setMovieGenreList(movieGenres)
             strongSelf.castCollectionView.reloadData()
@@ -124,6 +124,7 @@ class MovieDetailViewController: UIViewController {
             }
         }
         let movieGenreText = movieGenreList.joined(separator: ", ")
+        titleLabel.text = movieDetailModel?.movieName
         genreLabel.text = "Movie Genre(s): \(movieGenreText)"
     }
 }

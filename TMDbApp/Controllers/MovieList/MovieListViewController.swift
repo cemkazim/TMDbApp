@@ -140,8 +140,11 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailViewController = MovieDetailViewController()
-        if let movieId = movieResults[indexPath.row].id {
-            movieDetailViewController.movieId = movieId
+        if let movieId = movieResults[indexPath.row].id,
+           let movieName = movieResults[indexPath.row].title,
+           let movieImageUrl = URL(string: movieViewModel.movieImageUrlList[indexPath.row]) {
+            let movieDetailModel = MovieDetailModel(movieId: movieId, movieName: movieName, movieImageUrl: movieImageUrl)
+            movieDetailViewController.movieDetailModel = movieDetailModel
         }
         pushTo(movieDetailViewController)
     }

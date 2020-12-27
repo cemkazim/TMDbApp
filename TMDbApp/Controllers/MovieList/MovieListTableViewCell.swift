@@ -33,6 +33,7 @@ class MovieListTableViewCell: UITableViewCell {
     }()
     lazy var movieGenreLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.font = UIFont.systemFont(ofSize: 15)
         return baseLabelComponent
     }()
     
