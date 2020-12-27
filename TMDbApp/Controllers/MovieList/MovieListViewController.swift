@@ -49,6 +49,8 @@ class MovieListViewController: UIViewController {
         return viewModel
     }()
     var movieResults = [Result]()
+    var movieGenres = [MovieGenre]()
+    var movieGenreList = [String]()
     
     // MARK: - Lifecycles -
 
@@ -56,6 +58,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        getData()
         setupSearchController()
         removeNavigationBar()
     }
@@ -70,12 +73,6 @@ class MovieListViewController: UIViewController {
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
-        movieViewModel.getMovieList(completionHandler: { [weak self] (results) in
-            guard let strongSelf = self else { return }
-            strongSelf.movieResults = results
-            strongSelf.movieTableView.reloadData()
-            strongSelf.loaderActivityIndicatorView.stopAnimating()
-        })
     }
     
     func setupConstraints() {
@@ -90,8 +87,28 @@ class MovieListViewController: UIViewController {
         ])
     }
     
-    func getMoviePopularity(_ movie: Result) -> String {
-        return "Popularity: \(String(format: "%.3f", movie.popularity ?? 0.0))"
+    func getData() {
+        movieViewModel.getMovieList(completionHandler: { [weak self] (results) in
+            guard let strongSelf = self else { return }
+            strongSelf.movieResults = results
+            strongSelf.loaderActivityIndicatorView.stopAnimating()
+            strongSelf.movieTableView.reloadData()
+        })
+    }
+    
+    func getMovieGenre(_ movieId: Int, _ cell: MovieListTableViewCell) {
+        movieViewModel.getMovieGenre(movieId: movieId, completionHandler: { [weak self] (movieGenres) in
+            guard let strongSelf = self else { return }
+            strongSelf.setMovieGenreList(movieGenres)
+            cell.movieGenreLabel.text = strongSelf.movieGenreList.joined(separator: ", ")
+            strongSelf.movieGenreList.removeAll()
+        })
+    }
+    
+    func setMovieGenreList(_ movieGenres: [MovieGenre]) {
+        for movieGenre in movieGenres {
+            movieGenreList.append(movieGenre.name ?? "")
+        }
     }
 }
 
@@ -110,7 +127,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
             cell.movieNameLabel.text = movieResults[indexPath.row].title
-            cell.moviePopularityLabel.text = getMoviePopularity(movieResults[indexPath.row])
+            getMovieGenre(movieResults[indexPath.row].id ?? 0, cell)
             return cell
         } else {
             return UITableViewCell()

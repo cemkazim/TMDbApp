@@ -16,7 +16,7 @@ class MovieViewModel {
         AF.request(APIUrl.movieList, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in
             guard let movieListData = response.data, let strongSelf = self else { return }
             do {
-                let movieListModel = try JSONDecoder().decode(MovieModel.self, from: movieListData)
+                let movieListModel = try JSONDecoder().decode(MovieListModel.self, from: movieListData)
                 let movieResults = movieListModel.results
                 strongSelf.setImageUrl(movieResults)
                 completionHandler(movieResults)
