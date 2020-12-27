@@ -17,13 +17,13 @@ class PersonDetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ConstantValue.placeholderImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         return imageView
     }()
     lazy var labelStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [personNameLabel, personCharacterLabel, personKnownForDepartmentLabel, personGenderLabel, personPopularityLabel])
-        stackView.spacing = 50
+        stackView.spacing = 30
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill

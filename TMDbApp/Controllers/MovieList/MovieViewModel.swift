@@ -11,6 +11,7 @@ import Alamofire
 class MovieViewModel {
     
     var movieImageUrlList = [String]()
+    var filteredMovieImageUrlList = [String]()
     
     func getMovieList(completionHandler: @escaping ([MovieResult]) -> ()) {
         AF.request(APIUrl.movieList, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in

@@ -22,7 +22,7 @@ class MovieListViewController: UIViewController {
         tableView.backgroundColor = UIColor.clear
         return tableView
     }()
-    lazy var recordSearchController: UISearchController = {
+    lazy var movieSearchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -49,6 +49,7 @@ class MovieListViewController: UIViewController {
         return viewModel
     }()
     var movieResults = [MovieResult]()
+    var filteredMovieResults = [MovieResult]()
     var movieGenres = [MovieGenre]()
     var movieGenreList = [String]()
     
@@ -67,7 +68,7 @@ class MovieListViewController: UIViewController {
     
     func setupSearchController() {
         navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = recordSearchController
+        navigationItem.searchController = movieSearchController
     }
     
     func setupView() {
@@ -120,7 +121,11 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieResults.count
+        if movieSearchController.isActive {
+            return filteredMovieResults.count
+        } else {
+            return movieResults.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,9 +135,15 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
-            cell.movieNameLabel.text = movieResults[indexPath.row].title
-            getMovieGenre(movieResults[indexPath.row].id ?? 0, cell)
-            return cell
+            if movieSearchController.isActive {
+                cell.movieNameLabel.text = filteredMovieResults[indexPath.row].title
+                getMovieGenre(filteredMovieResults[indexPath.row].id ?? 0, cell)
+                return cell
+            } else {
+                cell.movieNameLabel.text = movieResults[indexPath.row].title
+                getMovieGenre(movieResults[indexPath.row].id ?? 0, cell)
+                return cell
+            }
         } else {
             return UITableViewCell()
         }
@@ -150,7 +161,12 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
            let movieReleaseDate = movieResults[indexPath.row].releaseDate,
            let movieVoteAverage = movieResults[indexPath.row].voteAverage,
            let overview = movieResults[indexPath.row].overview {
-            let movieDetailModel = MovieDetailModel(movieId: movieId, movieName: movieName, movieImageUrl: movieImageUrl, movieReleaseDate: movieReleaseDate, movieVoteAverage: movieVoteAverage, overview: overview)
+            let movieDetailModel = MovieDetailModel(movieId: movieId,
+                                                    movieName: movieName,
+                                                    movieImageUrl: movieImageUrl,
+                                                    movieReleaseDate: movieReleaseDate,
+                                                    movieVoteAverage: movieVoteAverage,
+                                                    overview: overview)
             movieDetailViewController.movieDetailModel = movieDetailModel
         }
         pushTo(movieDetailViewController)
@@ -163,38 +179,38 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-//        myRecordsViewModel.filteredMyRecordsList.removeAll(keepingCapacity: false)
-//        if let searchTerm = searchController.searchBar.text {
-//            let filteredArray = myRecordsViewModel.myRecordsList.filter { result in
-//                return result.recordName.lowercased().contains(searchTerm.lowercased())
-//            }
-//            myRecordsViewModel.filteredMyRecordsList = filteredArray
-//            if !searchController.isBeingDismissed {
-//                myRecordsTableView.reloadData()
-//            }
-//        }
+        filteredMovieResults.removeAll(keepingCapacity: false)
+        if let searchTerm = searchController.searchBar.text {
+            let filteredArray = movieResults.filter { result in
+                return (result.title?.lowercased().contains(searchTerm.lowercased()) ?? false)
+            }
+            filteredMovieResults = filteredArray
+            if !searchController.isBeingDismissed {
+                movieTableView.reloadData()
+            }
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        recordSearchController.searchBar.endEditing(true)
+        movieSearchController.searchBar.endEditing(true)
         movieTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        recordSearchController.isActive = false
-        recordSearchController.searchBar.endEditing(true)
-        recordSearchController.searchBar.showsCancelButton = false
+        movieSearchController.isActive = false
+        movieSearchController.searchBar.endEditing(true)
+        movieSearchController.searchBar.showsCancelButton = false
         movieTableView.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        recordSearchController.isActive = false
-        recordSearchController.searchBar.showsCancelButton = true
+        movieSearchController.isActive = false
+        movieSearchController.searchBar.showsCancelButton = true
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        recordSearchController.isActive = true
-        recordSearchController.searchBar.showsCancelButton = true
+        movieSearchController.isActive = true
+        movieSearchController.searchBar.showsCancelButton = true
         movieTableView.reloadData()
     }
 }
