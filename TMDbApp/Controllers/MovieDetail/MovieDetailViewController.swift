@@ -51,13 +51,22 @@ class MovieDetailViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.setCollectionViewLayout(flowLayout, animated: true)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .black
+        collectionView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
         return collectionView
+    }()
+    lazy var asdImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: ConstantValue.placeholderImage)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
     // MARK: - Properties -
@@ -82,7 +91,7 @@ class MovieDetailViewController: UIViewController {
         coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
         titleLabel.text = movieDetailModel?.movieName
         summaryLabel.text = movieDetailModel?.overview
-        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height + 150
+        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
@@ -92,13 +101,13 @@ class MovieDetailViewController: UIViewController {
     
     func setupView() {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
-        view.addSubview(mainScrollView)
         mainScrollView.addSubview(titleLabel)
         mainScrollView.addSubview(coverImageView)
         mainScrollView.addSubview(ratingLabel)
         mainScrollView.addSubview(genreLabel)
         mainScrollView.addSubview(summaryLabel)
         mainScrollView.addSubview(castCollectionView)
+        view.addSubview(mainScrollView)
     }
     
     func setupConstraints() {
@@ -123,15 +132,16 @@ class MovieDetailViewController: UIViewController {
             summaryLabel.widthAnchor.constraint(equalToConstant: 250),
             summaryLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
-            castCollectionView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
-            castCollectionView.widthAnchor.constraint(equalToConstant: mainScrollView.frame.width),
+            castCollectionView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 5),
             castCollectionView.heightAnchor.constraint(equalToConstant: 150),
-            castCollectionView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor, constant: 0),
+            castCollectionView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor, constant: 0),
+            castCollectionView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor, constant: 0),
+            castCollectionView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
     
