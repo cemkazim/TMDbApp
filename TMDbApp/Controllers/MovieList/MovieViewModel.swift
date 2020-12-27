@@ -10,6 +10,10 @@ import Alamofire
 
 class MovieViewModel {
     
+    var movieResults = [MovieResult]()
+    var filteredMovieResults = [MovieResult]()
+    var movieGenres = [MovieGenre]()
+    var movieGenreList = [String]()
     var movieImageUrlList = [String]()
     var filteredMovieImageUrlList = [String]()
     

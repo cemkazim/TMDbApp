@@ -76,8 +76,6 @@ class MovieDetailViewController: UIViewController {
         let viewModel = MovieDetailViewModel()
         return viewModel
     }()
-    var movieDetailModel: MovieDetailModel?
-    var movieCastList = [MovieCast]()
     
     // MARK: - Lifecycles -
     
@@ -151,15 +149,24 @@ class MovieDetailViewController: UIViewController {
     }
     
     func getData() {
-        movieDetailViewModel.getMovieGenre(movieId: movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieGenres) in
+        movieDetailViewModel.getMovieGenre(movieId: movieDetailViewModel.movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieGenres) in
             guard let strongSelf = self else { return }
             strongSelf.setMovieGenreList(movieGenres)
         })
-        movieDetailViewModel.getMovieCredits(movieId: movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieCast) in
+        movieDetailViewModel.getMovieCredits(movieId: movieDetailViewModel.movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieCast) in
             guard let strongSelf = self else { return }
-            strongSelf.movieCastList = movieCast
+            strongSelf.movieDetailViewModel.movieCastList = movieCast
+            strongSelf.setImageUrl(strongSelf.movieDetailViewModel.movieCastList)
             strongSelf.castCollectionView.reloadData()
         })
+    }
+    
+    func setImageUrl(_ movieCastList: [MovieCast]) {
+        for path in movieCastList {
+            if let profilepath = path.profilePath {
+                movieDetailViewModel.movieCastImageUrlList.append(APIUrl.baseMovieImageUrl + profilepath)
+            }
+        }
     }
     
     func setMovieGenreList(_ movieGenres: [MovieGenre]) {
@@ -175,11 +182,11 @@ class MovieDetailViewController: UIViewController {
     
     func setDataToUIObjects() {
         mainScrollView.delegate = self
-        coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
-        titleLabel.text = movieDetailModel?.movieName
-        summaryLabel.text = movieDetailModel?.overview
-        if let movieRating = movieDetailModel?.movieVoteAverage,
-           let movieReleaseDate = movieDetailModel?.movieReleaseDate {
+        coverImageView.sd_setImage(with: movieDetailViewModel.movieDetailModel?.movieImageUrl, completed: nil)
+        titleLabel.text = movieDetailViewModel.movieDetailModel?.movieName
+        summaryLabel.text = movieDetailViewModel.movieDetailModel?.overview
+        if let movieRating = movieDetailViewModel.movieDetailModel?.movieVoteAverage,
+           let movieReleaseDate = movieDetailViewModel.movieDetailModel?.movieReleaseDate {
             ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)"
             releaseDateLabel.text = ConstantValue.releaseDateText + "\(movieReleaseDate)"
         }
@@ -206,7 +213,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieCastList.count
+        return movieDetailViewModel.movieCastList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -215,10 +222,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
-            let imageUrl = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item])
-            cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
-            cell.castLabel.text = movieCastList[indexPath.item].name
+            if movieDetailViewModel.movieCastImageUrlList.count > indexPath.item {
+                let imageUrl = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item])
+                cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+            }
+            cell.castLabel.text = movieDetailViewModel.movieCastList[indexPath.item].name
             return cell
         } else {
             return UICollectionViewCell()
@@ -227,12 +236,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let personDetailViewController = PersonDetailViewController()
-        if let personName = movieCastList[indexPath.item].name,
-           let personCharacter = movieCastList[indexPath.item].character,
-           let personKnownForDepartment = movieCastList[indexPath.item].knownForDepartment,
+        if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
+           let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
+           let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
            let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
-           let personGender = movieCastList[indexPath.item].gender,
-           let personPopularity = movieCastList[indexPath.item].popularity {
+           let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
+           let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
             let personDetailModel = PersonDetailModel(personName: personName,
                                                       personCharacter: personCharacter,
                                                       personKnownForDepartment: personKnownForDepartment,

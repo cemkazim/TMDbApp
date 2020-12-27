@@ -10,6 +10,8 @@ import Alamofire
 
 class MovieDetailViewModel {
     
+    var movieDetailModel: MovieDetailModel?
+    var movieCastList = [MovieCast]()
     var movieCastImageUrlList = [String]()
     
     func getMovieGenre(movieId: Int, completionHandler: @escaping ([MovieGenre]) -> ()) {
@@ -35,18 +37,9 @@ class MovieDetailViewModel {
             do {
                 let movieCastModel = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
                 let movieCastList = movieCastModel.cast
-                strongSelf.setImageUrl(movieCastList)
                 completionHandler(movieCastList)
             } catch let error {
                 print(error)
-            }
-        }
-    }
-    
-    func setImageUrl(_ movieCastList: [MovieCast]) {
-        for path in movieCastList {
-            if let profilepath = path.profilePath {
-                movieCastImageUrlList.append(APIUrl.baseMovieImageUrl + profilepath)
             }
         }
     }

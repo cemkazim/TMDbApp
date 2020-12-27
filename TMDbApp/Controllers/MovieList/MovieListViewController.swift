@@ -48,10 +48,6 @@ class MovieListViewController: UIViewController {
         let viewModel = MovieViewModel()
         return viewModel
     }()
-    var movieResults = [MovieResult]()
-    var filteredMovieResults = [MovieResult]()
-    var movieGenres = [MovieGenre]()
-    var movieGenreList = [String]()
     
     // MARK: - Lifecycles -
 
@@ -96,7 +92,7 @@ class MovieListViewController: UIViewController {
     func getData() {
         movieViewModel.getMovieList(completionHandler: { [weak self] (results) in
             guard let strongSelf = self else { return }
-            strongSelf.movieResults = results
+            strongSelf.movieViewModel.movieResults = results
             strongSelf.loaderActivityIndicatorView.stopAnimating()
             strongSelf.movieTableView.reloadData()
         })
@@ -106,14 +102,14 @@ class MovieListViewController: UIViewController {
         movieViewModel.getMovieGenre(movieId: movieId, completionHandler: { [weak self] (movieGenres) in
             guard let strongSelf = self else { return }
             strongSelf.setMovieGenreList(movieGenres)
-            cell.movieGenreLabel.text = ConstantValue.genreText + strongSelf.movieGenreList.joined(separator: ", ")
-            strongSelf.movieGenreList.removeAll()
+            cell.movieGenreLabel.text = ConstantValue.genreText + strongSelf.movieViewModel.movieGenreList.joined(separator: ", ")
+            strongSelf.movieViewModel.movieGenreList.removeAll()
         })
     }
     
     func setMovieGenreList(_ movieGenres: [MovieGenre]) {
         for movieGenre in movieGenres {
-            movieGenreList.append(movieGenre.name ?? "")
+            movieViewModel.movieGenreList.append(movieGenre.name ?? "")
         }
     }
 }
@@ -125,9 +121,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movieSearchController.isActive {
-            return filteredMovieResults.count
+            return movieViewModel.filteredMovieResults.count
         } else {
-            return movieResults.count
+            return movieViewModel.movieResults.count
         }
     }
     
@@ -139,12 +135,12 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
             if movieSearchController.isActive {
-                cell.movieNameLabel.text = filteredMovieResults[indexPath.row].title
-                getMovieGenre(filteredMovieResults[indexPath.row].id ?? 0, cell)
+                cell.movieNameLabel.text = movieViewModel.filteredMovieResults[indexPath.row].title
+                getMovieGenre(movieViewModel.filteredMovieResults[indexPath.row].id ?? 0, cell)
                 return cell
             } else {
-                cell.movieNameLabel.text = movieResults[indexPath.row].title
-                getMovieGenre(movieResults[indexPath.row].id ?? 0, cell)
+                cell.movieNameLabel.text = movieViewModel.movieResults[indexPath.row].title
+                getMovieGenre(movieViewModel.movieResults[indexPath.row].id ?? 0, cell)
                 return cell
             }
         } else {
@@ -158,19 +154,19 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailViewController = MovieDetailViewController()
-        if let movieId = movieResults[indexPath.row].id,
-           let movieName = movieResults[indexPath.row].title,
+        if let movieId = movieViewModel.movieResults[indexPath.row].id,
+           let movieName = movieViewModel.movieResults[indexPath.row].title,
            let movieImageUrl = URL(string: movieViewModel.movieImageUrlList[indexPath.row]),
-           let movieReleaseDate = movieResults[indexPath.row].releaseDate,
-           let movieVoteAverage = movieResults[indexPath.row].voteAverage,
-           let overview = movieResults[indexPath.row].overview {
+           let movieReleaseDate = movieViewModel.movieResults[indexPath.row].releaseDate,
+           let movieVoteAverage = movieViewModel.movieResults[indexPath.row].voteAverage,
+           let overview = movieViewModel.movieResults[indexPath.row].overview {
             let movieDetailModel = MovieDetailModel(movieId: movieId,
                                                     movieName: movieName,
                                                     movieImageUrl: movieImageUrl,
                                                     movieReleaseDate: movieReleaseDate,
                                                     movieVoteAverage: movieVoteAverage,
                                                     overview: overview)
-            movieDetailViewController.movieDetailModel = movieDetailModel
+            movieDetailViewController.movieDetailViewModel.movieDetailModel = movieDetailModel
         }
         pushTo(movieDetailViewController)
     }
@@ -182,12 +178,12 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filteredMovieResults.removeAll(keepingCapacity: false)
+        movieViewModel.filteredMovieResults.removeAll(keepingCapacity: false)
         if let searchTerm = searchController.searchBar.text {
-            let filteredArray = movieResults.filter { result in
+            let filteredArray = movieViewModel.movieResults.filter { result in
                 return (result.title?.lowercased().contains(searchTerm.lowercased()) ?? false)
             }
-            filteredMovieResults = filteredArray
+            movieViewModel.filteredMovieResults = filteredArray
             if !searchController.isBeingDismissed {
                 movieTableView.reloadData()
             }

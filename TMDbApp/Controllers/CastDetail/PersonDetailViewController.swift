@@ -44,16 +44,19 @@ class PersonDetailViewController: UIViewController {
     }()
     lazy var personKnownForDepartmentLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.font = UIFont.systemFont(ofSize: 20)
         baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
     lazy var personGenderLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.font = UIFont.systemFont(ofSize: 20)
         baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
     lazy var personPopularityLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
+        baseLabelComponent.font = UIFont.systemFont(ofSize: 20)
         baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
@@ -87,7 +90,7 @@ class PersonDetailViewController: UIViewController {
             personImageView.heightAnchor.constraint(equalToConstant: 200),
             personImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
-            personNameLabel.widthAnchor.constraint(equalToConstant: 200),
+            personNameLabel.widthAnchor.constraint(equalToConstant: 300),
             
             labelStackView.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 20),
             labelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
