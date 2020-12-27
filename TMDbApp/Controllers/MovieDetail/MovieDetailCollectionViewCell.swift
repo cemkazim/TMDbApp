@@ -26,7 +26,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +35,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     
     func setupView() {
         addSubview(castImageView)
+        addSubview(castLabel)
     }
     
     func setupConstraints() {

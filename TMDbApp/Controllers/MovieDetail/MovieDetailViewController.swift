@@ -48,12 +48,15 @@ class MovieDetailViewController: UIViewController {
         return baseLabelComponent
     }()
     lazy var castCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .black
         return collectionView
     }()
     
@@ -79,7 +82,7 @@ class MovieDetailViewController: UIViewController {
         coverImageView.sd_setImage(with: movieDetailModel?.movieImageUrl, completed: nil)
         titleLabel.text = movieDetailModel?.movieName
         summaryLabel.text = movieDetailModel?.overview
-        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height + castCollectionView.frame.size.height
+        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height + 150
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
@@ -120,9 +123,9 @@ class MovieDetailViewController: UIViewController {
             summaryLabel.widthAnchor.constraint(equalToConstant: 250),
             summaryLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
-            castCollectionView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor, constant: 0),
-            castCollectionView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor, constant: 0),
             castCollectionView.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
+            castCollectionView.widthAnchor.constraint(equalToConstant: mainScrollView.frame.width),
+            castCollectionView.heightAnchor.constraint(equalToConstant: 150),
             castCollectionView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor, constant: 0),
             
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
@@ -153,7 +156,23 @@ class MovieDetailViewController: UIViewController {
 }
 
 @available(iOS 11.0, *)
-extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
