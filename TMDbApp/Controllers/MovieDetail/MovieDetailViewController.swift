@@ -54,8 +54,8 @@ class MovieDetailViewController: UIViewController {
     }()
     lazy var castCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 150, height: 150)
-        flowLayout.estimatedItemSize = CGSize(width: 150, height: 150)
+        flowLayout.itemSize = CGSize(width: 100, height: 150)
+        flowLayout.estimatedItemSize = CGSize(width: 100, height: 150)
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
@@ -182,7 +182,7 @@ class MovieDetailViewController: UIViewController {
             ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)"
             releaseDateLabel.text = ConstantValue.releaseDateText + "\(movieReleaseDate)"
         }
-        let height = 15 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
+        let height = 20 + titleLabel.frame.size.width + 200 + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
 }
@@ -191,6 +191,14 @@ class MovieDetailViewController: UIViewController {
 
 @available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -201,7 +209,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 100, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
