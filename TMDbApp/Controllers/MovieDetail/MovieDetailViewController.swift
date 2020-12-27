@@ -98,6 +98,7 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Methods -
     
     func setupView() {
+        navigationItem.title = ConstantValue.movieDetailText
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         mainScrollView.addSubview(titleLabel)
         mainScrollView.addSubview(coverImageView)

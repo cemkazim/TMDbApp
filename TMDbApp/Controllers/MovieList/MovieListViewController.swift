@@ -73,6 +73,9 @@ class MovieListViewController: UIViewController {
     
     func setupView() {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
+        navigationItem.title = ConstantValue.tmdbAppNameText
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
@@ -103,7 +106,7 @@ class MovieListViewController: UIViewController {
         movieViewModel.getMovieGenre(movieId: movieId, completionHandler: { [weak self] (movieGenres) in
             guard let strongSelf = self else { return }
             strongSelf.setMovieGenreList(movieGenres)
-            cell.movieGenreLabel.text = strongSelf.movieGenreList.joined(separator: ", ")
+            cell.movieGenreLabel.text = ConstantValue.genreText + strongSelf.movieGenreList.joined(separator: ", ")
             strongSelf.movieGenreList.removeAll()
         })
     }

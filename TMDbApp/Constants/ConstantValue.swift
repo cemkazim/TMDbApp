@@ -27,8 +27,12 @@ class ConstantValue {
     static let knownForDepartmentText = "Known For Department: "
     static let genderText = "Gender: "
     static let popularityText = "Popularity: "
+    static let genreText = "Genre: "
     static let womanText = "Woman"
     static let manText = "Man"
+    static let tmdbAppNameText = "TMDbApp"
+    static let movieDetailText = "Movie Details"
+    static let personDetailText = "Person Details"
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }

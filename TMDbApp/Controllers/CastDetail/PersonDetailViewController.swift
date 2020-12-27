@@ -73,6 +73,7 @@ class PersonDetailViewController: UIViewController {
     // MARK: - Methods -
     
     func setupView() {
+        navigationItem.title = ConstantValue.personDetailText
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         view.addSubview(personImageView)
         view.addSubview(labelStackView)
