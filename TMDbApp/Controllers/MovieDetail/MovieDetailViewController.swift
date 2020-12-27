@@ -95,6 +95,8 @@ class MovieDetailViewController: UIViewController {
         super.viewDidDisappear(true)
     }
     
+    // MARK: - Methods -
+    
     func setupView() {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         mainScrollView.addSubview(titleLabel)
@@ -165,6 +167,8 @@ class MovieDetailViewController: UIViewController {
     }
 }
 
+// MARK: - MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout -
+
 @available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -190,5 +194,24 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
         } else {
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let personDetailViewController = PersonDetailViewController()
+        if let personName = movieCastList[indexPath.item].name,
+           let personCharacter = movieCastList[indexPath.item].character,
+           let personKnownForDepartment = movieCastList[indexPath.item].knownForDepartment,
+           let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
+           let personGender = movieCastList[indexPath.item].gender,
+           let personPopularity = movieCastList[indexPath.item].popularity {
+            let personDetailModel = PersonDetailModel(personName: personName,
+                                                      personCharacter: personCharacter,
+                                                      personKnownForDepartment: personKnownForDepartment,
+                                                      personProfilePath: personProfilePath,
+                                                      personGender: personGender,
+                                                      personPopularity: personPopularity)
+            personDetailViewController.personDetailModel = personDetailModel
+        }
+        pushTo(personDetailViewController)
     }
 }

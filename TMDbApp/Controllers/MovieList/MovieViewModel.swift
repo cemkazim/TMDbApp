@@ -12,7 +12,7 @@ class MovieViewModel {
     
     var movieImageUrlList = [String]()
     
-    func getMovieList(completionHandler: @escaping ([Result]) -> ()) {
+    func getMovieList(completionHandler: @escaping ([MovieResult]) -> ()) {
         AF.request(APIUrl.movieList, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in
             guard let movieListData = response.data, let strongSelf = self else { return }
             do {
@@ -26,7 +26,7 @@ class MovieViewModel {
         }
     }
     
-    func setImageUrl(_ movieResults: [Result]) {
+    func setImageUrl(_ movieResults: [MovieResult]) {
         for path in movieResults {
             if let posterPath = path.posterPath {
                 movieImageUrlList.append(APIUrl.baseMovieImageUrl + posterPath)

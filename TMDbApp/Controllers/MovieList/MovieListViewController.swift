@@ -48,7 +48,7 @@ class MovieListViewController: UIViewController {
         let viewModel = MovieViewModel()
         return viewModel
     }()
-    var movieResults = [Result]()
+    var movieResults = [MovieResult]()
     var movieGenres = [MovieGenre]()
     var movieGenreList = [String]()
     
@@ -62,6 +62,8 @@ class MovieListViewController: UIViewController {
         setupSearchController()
         removeNavigationBar()
     }
+    
+    // MARK: - Methods -
     
     func setupSearchController() {
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -112,6 +114,8 @@ class MovieListViewController: UIViewController {
     }
 }
 
+// MARK: - MovieListViewController: UITableViewDelegate, UITableViewDataSource -
+
 @available(iOS 11.0, *)
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -150,6 +154,8 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         pushTo(movieDetailViewController)
     }
 }
+
+// MARK: - MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating -
 
 @available(iOS 11.0, *)
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {

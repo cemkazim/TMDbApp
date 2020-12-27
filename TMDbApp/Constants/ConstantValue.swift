@@ -20,6 +20,12 @@ class ConstantValue {
     static let placeholderText = "'Learn and change future' - Cem Kazim"
     static let colorsKeyPath = "colors"
     static let colorChangeKey = "colorChange"
+    static let nameText = "Name: "
+    static let characterText = "Character: "
+    static let knownForDepartmentText = "Known For Department: "
+    static let genderText = "Gender: "
+    static let womanText = "Woman"
+    static let manText = "Man"
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }

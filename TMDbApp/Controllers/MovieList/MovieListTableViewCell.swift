@@ -9,6 +9,8 @@ import UIKit
 
 class MovieListTableViewCell: UITableViewCell {
     
+    // MARK: - UI Objects -
+    
     lazy var movieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: ConstantValue.placeholderImage)
@@ -37,6 +39,8 @@ class MovieListTableViewCell: UITableViewCell {
         return baseLabelComponent
     }()
     
+    // MARK: - Lifecycles -
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -46,6 +50,8 @@ class MovieListTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError(ConstantValue.initCoderText)
     }
+    
+    // MARK: - Methods -
     
     func setupView() {
         contentView.addSubview(movieImageView)

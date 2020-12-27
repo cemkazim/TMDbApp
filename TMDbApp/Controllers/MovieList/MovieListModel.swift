@@ -10,7 +10,7 @@ import Foundation
 struct MovieListModel: Decodable {
     
     let page: Int
-    let results: [Result]
+    let results: [MovieResult]
     
     enum CodingKeys: String, CodingKey {
         case page
@@ -18,7 +18,7 @@ struct MovieListModel: Decodable {
     }
 }
 
-struct Result: Decodable {
+struct MovieResult: Decodable {
     
     let id: Int?
     let title: String?
