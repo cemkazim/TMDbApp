@@ -36,6 +36,10 @@ class ConstantValue {
     static let personDetailText = "Person Details"
     static let onlyDateFormat = "yyyy-MM-dd"
     static let withMonthDateFormat = "MMM dd yyyy"
+    static let searchBarAllScopeText = "All"
+    static let searchBarTitleScopeText = "Title"
+    static let searchBarGenreScopeText = "Genre"
+    static let searchBarActorScopeText = "Actor"
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }

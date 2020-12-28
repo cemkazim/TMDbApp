@@ -34,6 +34,7 @@ class MovieListViewController: UIViewController {
         searchController.searchBar.placeholder = ConstantValue.searchText
         searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchController.searchBar.setValue(ConstantValue.cancelButtonText, forKey: ConstantValue.cancelButtonTextId)
+        searchController.searchBar.scopeButtonTitles = [ConstantValue.searchBarAllScopeText, ConstantValue.searchBarTitleScopeText, ConstantValue.searchBarGenreScopeText, ConstantValue.searchBarActorScopeText]
         return searchController
     }()
     lazy var loaderActivityIndicatorView: UIActivityIndicatorView = {
@@ -115,26 +116,17 @@ class MovieListViewController: UIViewController {
         }
     }
     
-    func setupFilteredList(_ movieId: Int, _ indexPath: IndexPath) {
+    func getMovieCast(_ movieId: Int) {
         movieListViewModel.getMovieCast(movieId: movieId, completionHandler: { [weak self] (movieCast) in
             guard let strongSelf = self else { return }
             strongSelf.orderedCastName(movieCast)
         })
-        orderedMovieName()
-    }
-    
-    func orderedMovieName() {
-        for movieResult in movieListViewModel.movieResults {
-            if let title = movieResult.title {
-                movieListViewModel.movieTitleList.append(title)
-            }
-        }
     }
     
     func orderedCastName(_ movieCast: [MovieCast]) {
         for cast in movieCast {
-            if let castName = cast.name {
-                movieListViewModel.movieActorList.append(castName)
+            if let name = cast.name {
+                movieListViewModel.movieActorList.append(name)
             }
         }
     }
@@ -171,7 +163,6 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.movieNameLabel.text = movieListViewModel.movieResults[indexPath.row].title
                 getMovieGenre(movieListViewModel.movieResults[indexPath.row].id ?? 0, cell)
-                setupFilteredList(movieListViewModel.movieResults[indexPath.row].id ?? 0, indexPath)
                 return cell
             }
         } else {
@@ -217,6 +208,10 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 
 @available(iOS 11.0, *)
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
         movieListViewModel.filteredMovieResults.removeAll(keepingCapacity: false)
