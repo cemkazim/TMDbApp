@@ -23,13 +23,10 @@ class MovieDetailViewController: UIViewController {
         baseLabelComponent.font = UIFont.systemFont(ofSize: 24)
         return baseLabelComponent
     }()
-    lazy var coverImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
-        imageView.image = UIImage(named: ConstantValue.placeholderImage)
+    lazy var coverImageView: BaseImageViewComponent = {
+        let imageView = BaseImageViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
         imageView.layer.cornerRadius = imageView.frame.size.width / 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
         return imageView
     }()
     lazy var ratingLabel: BaseLabelComponent = {

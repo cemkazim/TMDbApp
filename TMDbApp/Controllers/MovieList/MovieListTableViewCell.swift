@@ -11,12 +11,8 @@ class MovieListTableViewCell: UITableViewCell {
     
     // MARK: - UI Objects -
     
-    lazy var movieImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.image = UIImage(named: ConstantValue.placeholderImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.masksToBounds = true
+    lazy var movieImageView: BaseImageViewComponent = {
+        let imageView = BaseImageViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         return imageView
     }()
     lazy var labelStackView: UIStackView = {

@@ -26,6 +26,7 @@
 		004A98D82597F485008F878D /* MovieDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98D72597F485008F878D /* MovieDetailCollectionViewCell.swift */; };
 		004A98E42597FCDB008F878D /* BaseViewTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98E32597FCDB008F878D /* BaseViewTool.swift */; };
 		004A98E72597FF52008F878D /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A98E62597FF52008F878D /* MovieDetailViewModel.swift */; };
+		00D5786E2599CA2B00A16CF5 /* BaseImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */; };
 		EBE935FA53AAD5159C5FB56A /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B272E7C7672D768248955 /* Pods_TMDbApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		004A98D72597F485008F878D /* MovieDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		004A98E32597FCDB008F878D /* BaseViewTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewTool.swift; sourceTree = "<group>"; };
 		004A98E62597FF52008F878D /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageViewComponent.swift; sourceTree = "<group>"; };
 		3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.release.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.release.xcconfig"; sourceTree = "<group>"; };
 		427B272E7C7672D768248955 /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.debug.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				004A98A22597587A008F878D /* BaseLabelComponent.swift */,
+				00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */,
 			);
 			path = ReusableComponents;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				004A98D12597DA6D008F878D /* MovieDetailViewController.swift in Sources */,
 				004A988725975206008F878D /* SceneDelegate.swift in Sources */,
 				003EDC1D2598126100BB1560 /* MovieDetailModel.swift in Sources */,
+				00D5786E2599CA2B00A16CF5 /* BaseImageViewComponent.swift in Sources */,
 				003EDC2E2598D16F00BB1560 /* PersonDetailModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,13 +11,10 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Objects -
     
-    lazy var castImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 125, height: 125))
-        imageView.image = UIImage(named: ConstantValue.placeholderImage)
+    lazy var castImageView: BaseImageViewComponent = {
+        let imageView = BaseImageViewComponent(frame: CGRect(x: 0, y: 0, width: 125, height: 125))
         imageView.layer.cornerRadius = imageView.frame.size.width / 8
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
         return imageView
     }()
     lazy var castLabel: BaseLabelComponent = {

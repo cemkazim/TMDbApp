@@ -12,12 +12,8 @@ class PersonDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
     
-    lazy var personImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: ConstantValue.placeholderImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.masksToBounds = true
+    lazy var personImageView: BaseImageViewComponent = {
+        let imageView = BaseImageViewComponent(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         return imageView
     }()
     lazy var labelStackView: UIStackView = {
