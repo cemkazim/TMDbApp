@@ -67,7 +67,8 @@ class MovieListViewController: UIViewController {
             navigationItem.hidesSearchBarWhenScrolling = false
             navigationItem.searchController = movieSearchController
         } else {
-            // Fallback on earlier versions
+            movieSearchController.hidesNavigationBarDuringPresentation = false
+            navigationItem.titleView = movieSearchController.searchBar
         }
     }
     
@@ -93,6 +94,15 @@ class MovieListViewController: UIViewController {
                 loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
         } else {
+            NSLayoutConstraint.activate([
+                movieTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                movieTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                movieTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                movieTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+                
+                loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
             // Fallback on earlier versions
         }
     }
@@ -181,26 +191,22 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if #available(iOS 11.0, *) {
-            let movieDetailViewController = MovieDetailViewController()
-            if let movieId = movieListViewModel.movieResults[indexPath.row].id,
-               let movieName = movieListViewModel.movieResults[indexPath.row].title,
-               let movieImageUrl = URL(string: movieListViewModel.movieImageUrlList[indexPath.row]),
-               let movieReleaseDate = movieListViewModel.movieResults[indexPath.row].releaseDate,
-               let movieVoteAverage = movieListViewModel.movieResults[indexPath.row].voteAverage,
-               let overview = movieListViewModel.movieResults[indexPath.row].overview {
-                let movieDetailModel = MovieDetailModel(movieId: movieId,
-                                                        movieName: movieName,
-                                                        movieImageUrl: movieImageUrl,
-                                                        movieReleaseDate: movieReleaseDate,
-                                                        movieVoteAverage: movieVoteAverage,
-                                                        overview: overview)
-                movieDetailViewController.movieDetailViewModel.movieDetailModel = movieDetailModel
-            }
-            pushTo(movieDetailViewController)
-        } else {
-            // Fallback on earlier versions
+        let movieDetailViewController = MovieDetailViewController()
+        if let movieId = movieListViewModel.movieResults[indexPath.row].id,
+           let movieName = movieListViewModel.movieResults[indexPath.row].title,
+           let movieImageUrl = URL(string: movieListViewModel.movieImageUrlList[indexPath.row]),
+           let movieReleaseDate = movieListViewModel.movieResults[indexPath.row].releaseDate,
+           let movieVoteAverage = movieListViewModel.movieResults[indexPath.row].voteAverage,
+           let overview = movieListViewModel.movieResults[indexPath.row].overview {
+            let movieDetailModel = MovieDetailModel(movieId: movieId,
+                                                    movieName: movieName,
+                                                    movieImageUrl: movieImageUrl,
+                                                    movieReleaseDate: movieReleaseDate,
+                                                    movieVoteAverage: movieVoteAverage,
+                                                    overview: overview)
+            movieDetailViewController.movieDetailViewModel.movieDetailModel = movieDetailModel
         }
+        pushTo(movieDetailViewController)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
