@@ -103,7 +103,6 @@ class MovieListViewController: UIViewController {
                 loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
-            // Fallback on earlier versions
         }
     }
     
