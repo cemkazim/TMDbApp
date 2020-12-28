@@ -10,6 +10,8 @@ import Alamofire
 
 class MovieListViewModel {
     
+    // MARK: - Properties -
+    
     var movieTitleList = [String]()
     var movieActorList = [String]()
     var movieResults = [MovieResult]()
@@ -18,6 +20,8 @@ class MovieListViewModel {
     var movieGenreList = [String]()
     var movieImageUrlList = [String]()
     var filteredMovieImageUrlList = [String]()
+    
+    // MARK: - API Call Methods -
     
     func getMovieList(completionHandler: @escaping ([MovieResult]) -> ()) {
         AF.request(APIUrl.movieList, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in

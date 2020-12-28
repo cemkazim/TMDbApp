@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Person Detail Model -
+
 struct PersonDetailModel: Decodable {
     
     var personName: String?

@@ -8,7 +8,6 @@
 import UIKit
 import SDWebImage
 
-@available(iOS 11.0, *)
 class MovieListViewController: UIViewController {
     
     // MARK: - UI Objects -
@@ -64,8 +63,12 @@ class MovieListViewController: UIViewController {
     // MARK: - Methods -
     
     func setupSearchController() {
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = movieSearchController
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.searchController = movieSearchController
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func setupView() {
@@ -79,15 +82,19 @@ class MovieListViewController: UIViewController {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            movieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            movieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            movieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            movieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            
-            loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                movieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+                movieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+                movieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+                movieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+                
+                loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func getData() {
@@ -134,7 +141,6 @@ class MovieListViewController: UIViewController {
 
 // MARK: - MovieListViewController: UITableViewDelegate, UITableViewDataSource -
 
-@available(iOS 11.0, *)
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -175,22 +181,26 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieDetailViewController = MovieDetailViewController()
-        if let movieId = movieListViewModel.movieResults[indexPath.row].id,
-           let movieName = movieListViewModel.movieResults[indexPath.row].title,
-           let movieImageUrl = URL(string: movieListViewModel.movieImageUrlList[indexPath.row]),
-           let movieReleaseDate = movieListViewModel.movieResults[indexPath.row].releaseDate,
-           let movieVoteAverage = movieListViewModel.movieResults[indexPath.row].voteAverage,
-           let overview = movieListViewModel.movieResults[indexPath.row].overview {
-            let movieDetailModel = MovieDetailModel(movieId: movieId,
-                                                    movieName: movieName,
-                                                    movieImageUrl: movieImageUrl,
-                                                    movieReleaseDate: movieReleaseDate,
-                                                    movieVoteAverage: movieVoteAverage,
-                                                    overview: overview)
-            movieDetailViewController.movieDetailViewModel.movieDetailModel = movieDetailModel
+        if #available(iOS 11.0, *) {
+            let movieDetailViewController = MovieDetailViewController()
+            if let movieId = movieListViewModel.movieResults[indexPath.row].id,
+               let movieName = movieListViewModel.movieResults[indexPath.row].title,
+               let movieImageUrl = URL(string: movieListViewModel.movieImageUrlList[indexPath.row]),
+               let movieReleaseDate = movieListViewModel.movieResults[indexPath.row].releaseDate,
+               let movieVoteAverage = movieListViewModel.movieResults[indexPath.row].voteAverage,
+               let overview = movieListViewModel.movieResults[indexPath.row].overview {
+                let movieDetailModel = MovieDetailModel(movieId: movieId,
+                                                        movieName: movieName,
+                                                        movieImageUrl: movieImageUrl,
+                                                        movieReleaseDate: movieReleaseDate,
+                                                        movieVoteAverage: movieVoteAverage,
+                                                        overview: overview)
+                movieDetailViewController.movieDetailViewModel.movieDetailModel = movieDetailModel
+            }
+            pushTo(movieDetailViewController)
+        } else {
+            // Fallback on earlier versions
         }
-        pushTo(movieDetailViewController)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -206,11 +216,10 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating -
 
-@available(iOS 11.0, *)
 extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
+        // code was here...
     }
     
     func updateSearchResults(for searchController: UISearchController) {

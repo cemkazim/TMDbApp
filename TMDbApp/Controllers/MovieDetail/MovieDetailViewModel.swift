@@ -10,9 +10,13 @@ import Alamofire
 
 class MovieDetailViewModel {
     
+    // MARK: - Properties -
+    
     var movieDetailModel: MovieDetailModel?
     var movieCastList = [MovieCast]()
     var movieCastImageUrlList = [String]()
+    
+    // MARK: - API Call Methods -
     
     func getMovieGenre(movieId: Int, completionHandler: @escaping ([MovieGenre]) -> ()) {
         let parameters: Parameters = ["movie_genre": "123456"]

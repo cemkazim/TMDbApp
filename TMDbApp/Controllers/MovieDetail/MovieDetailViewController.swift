@@ -8,7 +8,6 @@
 import UIKit
 import SDWebImage
 
-@available(iOS 11.0, *)
 class MovieDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
@@ -198,7 +197,6 @@ class MovieDetailViewController: UIViewController {
 
 // MARK: - MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout -
 
-@available(iOS 11.0, *)
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -236,22 +234,26 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let personDetailViewController = PersonDetailViewController()
-        if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
-           let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
-           let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
-           let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
-           let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
-           let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
-            let personDetailModel = PersonDetailModel(personName: personName,
-                                                      personCharacter: personCharacter,
-                                                      personKnownForDepartment: personKnownForDepartment,
-                                                      personProfilePath: personProfilePath,
-                                                      personGender: personGender,
-                                                      personPopularity: personPopularity)
-            personDetailViewController.personDetailModel = personDetailModel
+        if #available(iOS 11.0, *) {
+            let personDetailViewController = PersonDetailViewController()
+            if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
+               let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
+               let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
+               let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
+               let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
+               let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
+                let personDetailModel = PersonDetailModel(personName: personName,
+                                                          personCharacter: personCharacter,
+                                                          personKnownForDepartment: personKnownForDepartment,
+                                                          personProfilePath: personProfilePath,
+                                                          personGender: personGender,
+                                                          personPopularity: personPopularity)
+                personDetailViewController.personDetailModel = personDetailModel
+            }
+            pushTo(personDetailViewController)
+        } else {
+            // Fallback on earlier versions
         }
-        pushTo(personDetailViewController)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

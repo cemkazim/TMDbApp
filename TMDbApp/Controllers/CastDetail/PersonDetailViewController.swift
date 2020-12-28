@@ -8,7 +8,6 @@
 import UIKit
 import SDWebImage
 
-@available(iOS 11.0, *)
 class PersonDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
@@ -84,17 +83,21 @@ class PersonDetailViewController: UIViewController {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            personImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-            personImageView.widthAnchor.constraint(equalToConstant: 200),
-            personImageView.heightAnchor.constraint(equalToConstant: 200),
-            personImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            personNameLabel.widthAnchor.constraint(equalToConstant: 300),
-            
-            labelStackView.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 20),
-            labelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                personImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+                personImageView.widthAnchor.constraint(equalToConstant: 200),
+                personImageView.heightAnchor.constraint(equalToConstant: 200),
+                personImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+                
+                personNameLabel.widthAnchor.constraint(equalToConstant: 300),
+                
+                labelStackView.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 20),
+                labelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            ])
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func getData() {

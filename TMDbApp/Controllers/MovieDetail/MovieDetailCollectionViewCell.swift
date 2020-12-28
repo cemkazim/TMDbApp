@@ -9,6 +9,8 @@ import UIKit
 
 class MovieDetailCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Objects -
+    
     lazy var castImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 125, height: 125))
         imageView.image = UIImage(named: ConstantValue.placeholderImage)
@@ -26,6 +28,8 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Lifecycles -
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -35,6 +39,8 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError(ConstantValue.initCoderText)
     }
+    
+    // MARK: - Methods -
     
     func setupView() {
         addSubview(castImageView)

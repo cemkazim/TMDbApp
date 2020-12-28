@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Movie List Model -
+
 struct MovieListModel: Decodable {
     
     let page: Int
@@ -17,6 +19,8 @@ struct MovieListModel: Decodable {
         case results
     }
 }
+
+// MARK: - Movie Result Model -
 
 struct MovieResult: Decodable {
     
@@ -39,6 +43,8 @@ struct MovieResult: Decodable {
     }
 }
 
+// MARK: - Movie Detail Model -
+
 struct MovieDetail: Decodable {
     
     let belongsToCollection: MovieCollection?
@@ -49,6 +55,8 @@ struct MovieDetail: Decodable {
         case genres
     }
 }
+
+// MARK: - Movie Genre Model -
 
 struct MovieGenre: Decodable {
     

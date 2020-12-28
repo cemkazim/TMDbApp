@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Movie Detail Model -
+
 class MovieDetailModel {
     
     var movieId: Int?
@@ -26,6 +28,8 @@ class MovieDetailModel {
     }
 }
 
+// MARK: - Movie Collection Model -
+
 struct MovieCollection: Decodable {
     
     let id: Int?
@@ -39,6 +43,8 @@ struct MovieCollection: Decodable {
     }
 }
 
+// MARK: - Movie Credits Model -
+
 struct MovieCredits: Decodable {
     
     let id: Int?
@@ -49,6 +55,8 @@ struct MovieCredits: Decodable {
         case cast
     }
 }
+
+// MARK: - Movie Cast Model -
 
 struct MovieCast: Decodable {
     
