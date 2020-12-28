@@ -92,7 +92,17 @@ class PersonDetailViewController: UIViewController {
                 labelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
             ])
         } else {
-            // Fallback on earlier versions
+            NSLayoutConstraint.activate([
+                personImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+                personImageView.widthAnchor.constraint(equalToConstant: 200),
+                personImageView.heightAnchor.constraint(equalToConstant: 200),
+                personImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                
+                personNameLabel.widthAnchor.constraint(equalToConstant: 300),
+                
+                labelStackView.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 20),
+                labelStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ])
         }
     }
     
