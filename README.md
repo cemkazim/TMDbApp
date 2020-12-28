@@ -13,7 +13,7 @@ It contains information about the actors in the movie.
 
 ## Principles
 
-- Developed without the use of storyboard. Programmatic components were used instead. In this way, it has reached a structure that can be readable, reusable and codable.
+- Developed without the use of Storyboard. Programmatic components were used instead. In this way, it has reached a structure that can be readable, reusable and codable.
 - Alamofire integrated for API queries.
 - SDWebImage integrated for asynchronous images.
 - It is written MVVM architecture.
