@@ -70,13 +70,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		003EDC292598D04000BB1560 /* CastDetail */ = {
+		003EDC292598D04000BB1560 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
 				003EDC2A2598D06900BB1560 /* PersonDetailViewController.swift */,
 				003EDC2D2598D16F00BB1560 /* PersonDetailModel.swift */,
 			);
-			path = CastDetail;
+			path = PersonDetail;
 			sourceTree = "<group>";
 		};
 		004A987825975206008F878D = {
@@ -118,7 +118,7 @@
 			children = (
 				004A989F25975601008F878D /* MovieList */,
 				004A98CF2597DA51008F878D /* MovieDetail */,
-				003EDC292598D04000BB1560 /* CastDetail */,
+				003EDC292598D04000BB1560 /* PersonDetail */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
