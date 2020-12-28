@@ -231,22 +231,24 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let personDetailViewController = PersonDetailViewController()
-        if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
-           let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
-           let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
-           let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
-           let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
-           let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
-            let personDetailModel = PersonDetailModel(personName: personName,
-                                                      personCharacter: personCharacter,
-                                                      personKnownForDepartment: personKnownForDepartment,
-                                                      personProfilePath: personProfilePath,
-                                                      personGender: personGender,
-                                                      personPopularity: personPopularity)
-            personDetailViewController.personDetailModel = personDetailModel
+        if movieDetailViewModel.movieCastImageUrlList.count > indexPath.item {
+            let personDetailViewController = PersonDetailViewController()
+            if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
+               let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
+               let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
+               let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
+               let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
+               let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
+                let personDetailModel = PersonDetailModel(personName: personName,
+                                                          personCharacter: personCharacter,
+                                                          personKnownForDepartment: personKnownForDepartment,
+                                                          personProfilePath: personProfilePath,
+                                                          personGender: personGender,
+                                                          personPopularity: personPopularity)
+                personDetailViewController.personDetailModel = personDetailModel
+            }
+            pushTo(personDetailViewController)
         }
-        pushTo(personDetailViewController)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
