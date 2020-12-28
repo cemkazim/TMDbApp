@@ -100,7 +100,6 @@
 		004A988325975206008F878D /* TMDbApp */ = {
 			isa = PBXGroup;
 			children = (
-				004A98B22597631D008F878D /* Models */,
 				004A98AC25975F9C008F878D /* Constants */,
 				004A98A125975865008F878D /* ReusableComponents */,
 				004A989E259755F5008F878D /* Controllers */,
@@ -152,13 +151,6 @@
 				004A98E32597FCDB008F878D /* BaseViewTool.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		004A98B22597631D008F878D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		004A98CF2597DA51008F878D /* MovieDetail */ = {
