@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieListTableViewCell: UITableViewCell {
     
@@ -16,7 +17,7 @@ class MovieListTableViewCell: UITableViewCell {
         return imageView
     }()
     lazy var labelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [movieNameLabel, movieGenreLabel])
+        let stackView = UIStackView(arrangedSubviews: [movieNameLabel, movieReleaseDateLabel])
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .fill
@@ -29,7 +30,7 @@ class MovieListTableViewCell: UITableViewCell {
         baseLabelComponent.font = UIFont.systemFont(ofSize: 24)
         return baseLabelComponent
     }()
-    lazy var movieGenreLabel: BaseLabelComponent = {
+    lazy var movieReleaseDateLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
         baseLabelComponent.font = UIFont.systemFont(ofSize: 15)
         return baseLabelComponent
@@ -41,6 +42,7 @@ class MovieListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         setupConstraints()
+        initialCell()
     }
     
     required init?(coder: NSCoder) {
@@ -67,5 +69,11 @@ class MovieListTableViewCell: UITableViewCell {
             labelStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 15),
             labelStackView.centerYAnchor.constraint(equalTo: movieImageView.centerYAnchor),
         ])
+    }
+    
+    func initialCell() {
+        backgroundColor = .clear
+        selectionStyle = .none
+        movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
     }
 }

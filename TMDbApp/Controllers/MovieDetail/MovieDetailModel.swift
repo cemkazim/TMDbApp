@@ -7,27 +7,6 @@
 
 import Foundation
 
-// MARK: - Movie Detail Model -
-
-class MovieDetailModel {
-    
-    var movieId: Int?
-    var movieName: String?
-    var movieImageUrl: URL?
-    var movieReleaseDate: String?
-    var movieVoteAverage: Double?
-    var overview: String?
-    
-    init(movieId: Int?, movieName: String?, movieImageUrl: URL?, movieReleaseDate: String?, movieVoteAverage: Double?, overview: String?) {
-        self.movieId = movieId
-        self.movieName = movieName
-        self.movieImageUrl = movieImageUrl
-        self.movieReleaseDate = movieReleaseDate
-        self.movieVoteAverage = movieVoteAverage
-        self.overview = overview
-    }
-}
-
 // MARK: - Movie Collection Model -
 
 struct MovieCollection: Decodable {
@@ -74,5 +53,16 @@ struct MovieCast: Decodable {
         case popularity
         case knownForDepartment = "known_for_department"
         case profilePath = "profile_path"
+    }
+}
+
+class CastList {
+    
+    var name: String?
+    var imagePath: String?
+    
+    init(name: String?, imagePath: String?) {
+        self.name = name
+        self.imagePath = imagePath
     }
 }

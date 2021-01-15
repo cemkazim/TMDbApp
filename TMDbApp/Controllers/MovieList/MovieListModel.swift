@@ -12,7 +12,7 @@ import Foundation
 struct MovieListModel: Decodable {
     
     let page: Int
-    let results: [MovieResult]
+    let results: [MovieResultModel]
     
     enum CodingKeys: String, CodingKey {
         case page
@@ -22,7 +22,7 @@ struct MovieListModel: Decodable {
 
 // MARK: - Movie Result Model -
 
-struct MovieResult: Decodable {
+struct MovieResultModel: Decodable {
     
     let id: Int?
     let title: String?
@@ -43,28 +43,17 @@ struct MovieResult: Decodable {
     }
 }
 
-// MARK: - Movie Detail Model -
+// MARK: - Movie Result List Model -
 
-struct MovieDetail: Decodable {
+class MovieResultListModel {
     
-    let belongsToCollection: MovieCollection?
-    let genres: [MovieGenre]
+    var title: String?
+    var imageUrl: String?
+    var releaseDate: String?
     
-    enum CodingKeys: String, CodingKey {
-        case belongsToCollection = "belongs_to_collection"
-        case genres
-    }
-}
-
-// MARK: - Movie Genre Model -
-
-struct MovieGenre: Decodable {
-    
-    let id: Int?
-    let name: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
+    init(title: String?, imageUrl: String?, releaseDate: String?) {
+        self.title = title
+        self.imageUrl = imageUrl
+        self.releaseDate = releaseDate
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate {
     
     // MARK: - UI Objects -
     
@@ -39,11 +39,6 @@ class MovieDetailViewController: UIViewController {
         baseLabelComponent.textAlignment = .center
         return baseLabelComponent
     }()
-    lazy var genreLabel: BaseLabelComponent = {
-        let baseLabelComponent = BaseLabelComponent()
-        baseLabelComponent.textAlignment = .center
-        return baseLabelComponent
-    }()
     lazy var summaryLabel: BaseLabelComponent = {
         let baseLabelComponent = BaseLabelComponent()
         baseLabelComponent.font = UIFont.systemFont(ofSize: 14)
@@ -66,24 +61,20 @@ class MovieDetailViewController: UIViewController {
         return collectionView
     }()
     
-    // MARK: - View Model Property -
+    // MARK: - Properties -
     
-    lazy var movieDetailViewModel: MovieDetailViewModel = {
-        let viewModel = MovieDetailViewModel()
-        return viewModel
-    }()
+    var movieDetailViewModel: MovieDetailViewModel?
     
     // MARK: - Lifecycles -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupConstraints()
         getData()
     }
     
     override func viewDidLayoutSubviews() {
-        setDataToUIObjects()
+        resizeScrollView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -94,17 +85,16 @@ class MovieDetailViewController: UIViewController {
     
     func setupView() {
         navigationItem.title = ConstantValue.movieDetailText
+        movieDetailViewModel?.delegate = self
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         mainScrollView.addSubview(titleLabel)
         mainScrollView.addSubview(coverImageView)
         mainScrollView.addSubview(ratingLabel)
         mainScrollView.addSubview(releaseDateLabel)
-        mainScrollView.addSubview(genreLabel)
         mainScrollView.addSubview(summaryLabel)
         mainScrollView.addSubview(castCollectionView)
         view.addSubview(mainScrollView)
-        view.layoutIfNeeded()
-        setDataToUIObjects()
+        setupConstraints()
     }
     
     func setupConstraints() {
@@ -124,11 +114,7 @@ class MovieDetailViewController: UIViewController {
             ratingLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 15),
             ratingLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
-            genreLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 20),
-            genreLabel.widthAnchor.constraint(equalToConstant: 300),
-            genreLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
-            
-            summaryLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 15),
+            summaryLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 15),
             summaryLabel.widthAnchor.constraint(equalToConstant: 300),
             summaryLabel.centerXAnchor.constraint(equalTo: mainScrollView.centerXAnchor),
             
@@ -145,50 +131,32 @@ class MovieDetailViewController: UIViewController {
     }
     
     func getData() {
-        movieDetailViewModel.getMovieGenre(movieId: movieDetailViewModel.movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieGenres) in
-            guard let strongSelf = self else { return }
-            strongSelf.setMovieGenreList(movieGenres)
-        })
-        movieDetailViewModel.getMovieCredits(movieId: movieDetailViewModel.movieDetailModel?.movieId ?? 0, completionHandler: { [weak self] (movieCast) in
-            guard let strongSelf = self else { return }
-            strongSelf.movieDetailViewModel.movieCastList = movieCast
-            strongSelf.setImageUrl(strongSelf.movieDetailViewModel.movieCastList)
-            strongSelf.castCollectionView.reloadData()
-        })
+        titleLabel.text = movieDetailViewModel?.movieResultModel?.title
+        ratingLabel.text = ConstantValue.voteAverageText + "\(movieDetailViewModel?.movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
+        if let releaseDate = movieDetailViewModel?.movieResultModel?.releaseDate {
+            releaseDateLabel.text = ConstantValue.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
+        }
+        summaryLabel.text = movieDetailViewModel?.movieResultModel?.overview
+    }
+    
+    func resizeScrollView() {
+        let height = titleLabel.frame.size.width + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + summaryLabel.frame.size.height + 280
+        mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
+    }
+    
+    func getMovieCast(movieCast: [MovieCast]) {
+        movieDetailViewModel?.movieCast = movieCast
+        setImageUrl(movieCast)
+        castCollectionView.reloadData()
     }
     
     func setImageUrl(_ movieCastList: [MovieCast]) {
         for path in movieCastList {
-            if let profilepath = path.profilePath {
-                movieDetailViewModel.movieCastImageUrlList.append(APIUrl.baseMovieImageUrl + profilepath)
+            if let profilePath = path.profilePath, let name = path.name {
+                let castModel = CastList(name: name, imagePath: APIParams.baseMovieImageUrl + profilePath)
+                movieDetailViewModel?.castList.append(castModel)
             }
         }
-    }
-    
-    func setMovieGenreList(_ movieGenres: [MovieGenre]) {
-        var movieGenreList = [String]()
-        for movieGenre in movieGenres {
-            if let genre = movieGenre.name {
-                movieGenreList.append(genre)
-            }
-        }
-        let movieGenreText = movieGenreList.joined(separator: ", ")
-        genreLabel.text = "Movie Genre(s): \(movieGenreText)"
-    }
-    
-    func setDataToUIObjects() {
-        mainScrollView.delegate = self
-        coverImageView.sd_setImage(with: movieDetailViewModel.movieDetailModel?.movieImageUrl, completed: nil)
-        titleLabel.text = movieDetailViewModel.movieDetailModel?.movieName
-        summaryLabel.text = movieDetailViewModel.movieDetailModel?.overview
-        if let movieRating = movieDetailViewModel.movieDetailModel?.movieVoteAverage,
-           let movieReleaseDate = movieDetailViewModel.movieDetailModel?.movieReleaseDate {
-            ratingLabel.text = ConstantValue.voteAverageText + "\(movieRating)" + ConstantValue.voteAverageDecimalText
-            let releaseDateString = "\(movieReleaseDate)"
-            releaseDateLabel.text = ConstantValue.releaseDateText + movieDetailViewModel.dateFormatter(releaseDateString)
-        }
-        let height = 20 + titleLabel.frame.size.width + 275 + ratingLabel.frame.size.height + releaseDateLabel.frame.size.height + genreLabel.frame.size.height + summaryLabel.frame.size.height
-        mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
 }
 
@@ -209,7 +177,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieDetailViewModel.movieCastList.count
+        return movieDetailViewModel?.castList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -218,12 +186,10 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
-            if movieDetailViewModel.movieCastImageUrlList.count > indexPath.item {
-                let imageUrl = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item])
-                cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
-            }
-            cell.castLabel.text = movieDetailViewModel.movieCastList[indexPath.item].name
+            let imageUrl = URL(string: movieDetailViewModel?.castList[indexPath.item].imagePath ?? "")
+            cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+            cell.castLabel.text = movieDetailViewModel?.castList[indexPath.item].name
             return cell
         } else {
             return UICollectionViewCell()
@@ -231,24 +197,8 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if movieDetailViewModel.movieCastImageUrlList.count > indexPath.item {
-            let personDetailViewController = PersonDetailViewController()
-            if let personName = movieDetailViewModel.movieCastList[indexPath.item].name,
-               let personCharacter = movieDetailViewModel.movieCastList[indexPath.item].character,
-               let personKnownForDepartment = movieDetailViewModel.movieCastList[indexPath.item].knownForDepartment,
-               let personProfilePath = URL(string: movieDetailViewModel.movieCastImageUrlList[indexPath.item]),
-               let personGender = movieDetailViewModel.movieCastList[indexPath.item].gender,
-               let personPopularity = movieDetailViewModel.movieCastList[indexPath.item].popularity {
-                let personDetailModel = PersonDetailModel(personName: personName,
-                                                          personCharacter: personCharacter,
-                                                          personKnownForDepartment: personKnownForDepartment,
-                                                          personProfilePath: personProfilePath,
-                                                          personGender: personGender,
-                                                          personPopularity: personPopularity)
-                personDetailViewController.personDetailModel = personDetailModel
-            }
-            pushTo(personDetailViewController)
-        }
+        let personDetailViewController = PersonDetailViewController()
+        pushTo(personDetailViewController)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
