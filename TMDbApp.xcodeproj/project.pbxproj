@@ -204,6 +204,38 @@
 			path = MovieDetail;
 			sourceTree = "<group>";
 		};
+		006E55F525B262AE00CA9D55 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				009E155D25B23F6100515D69 /* NetworkServiceTests.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		006E55F625B262B900CA9D55 /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				00CC2C7125B24BCA00D23F71 /* MovieListTests.swift */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		006E55F725B262C100CA9D55 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				006E55E525B253E600CA9D55 /* MovieDetailTests.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		006E55F825B262C500CA9D55 /* PersonDetail */ = {
+			isa = PBXGroup;
+			children = (
+				006E55EF25B25CC200CA9D55 /* PersonDetailTests.swift */,
+			);
+			path = PersonDetail;
+			sourceTree = "<group>";
+		};
 		007F27C225B1DA760040EFC7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,10 +247,10 @@
 		009E155225B23E5000515D69 /* TMDbAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				009E155D25B23F6100515D69 /* NetworkServiceTests.swift */,
-				00CC2C7125B24BCA00D23F71 /* MovieListTests.swift */,
-				006E55E525B253E600CA9D55 /* MovieDetailTests.swift */,
-				006E55EF25B25CC200CA9D55 /* PersonDetailTests.swift */,
+				006E55F525B262AE00CA9D55 /* NetworkService */,
+				006E55F625B262B900CA9D55 /* MovieList */,
+				006E55F725B262C100CA9D55 /* MovieDetail */,
+				006E55F825B262C500CA9D55 /* PersonDetail */,
 				009E155325B23E5000515D69 /* TMDbAppTests.swift */,
 				009E155525B23E5000515D69 /* Info.plist */,
 			);
