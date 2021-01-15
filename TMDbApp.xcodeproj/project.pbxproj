@@ -107,7 +107,7 @@
 		004A988325975206008F878D /* TMDbApp */ = {
 			isa = PBXGroup;
 			children = (
-				007F27C225B1DA760040EFC7 /* Networking */,
+				007F27C225B1DA760040EFC7 /* Network */,
 				004A98AC25975F9C008F878D /* Constants */,
 				004A98A125975865008F878D /* Components */,
 				004A989E259755F5008F878D /* Controllers */,
@@ -173,12 +173,12 @@
 			path = MovieDetail;
 			sourceTree = "<group>";
 		};
-		007F27C225B1DA760040EFC7 /* Networking */ = {
+		007F27C225B1DA760040EFC7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				007F27C325B1DA870040EFC7 /* NetworkService.swift */,
 			);
-			path = Networking;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		8661ED8386A8EEAD54AEC463 /* Pods */ = {

@@ -10,11 +10,7 @@ import Alamofire
 
 public class NetworkService {
     
-    var movieListUrl: String = "" {
-        didSet {
-            movieListUrl = APIParams.movieBaseUrl + APIParams.popularMovieExtension + APIParams.keyToken + APIParams.apiKey + APIParams.otherParam
-        }
-    }
+    var movieListUrl: String = ""
     
     public var movieId: Int = 0
     
@@ -29,6 +25,7 @@ public class NetworkService {
     // MARK: - Movie List -
     
     public func getMovieResult(completionHandler: @escaping (MovieList) -> ()) {
+        movieListUrl = APIParams.movieBaseUrl + APIParams.popularMovieExtension + APIParams.keyToken + APIParams.apiKey + APIParams.otherParam
         AF.request(movieListUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
             guard let movieListData = response.data else { return }
             do {
