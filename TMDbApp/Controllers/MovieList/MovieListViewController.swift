@@ -33,7 +33,6 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         searchController.searchBar.placeholder = ConstantValue.searchText
         searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchController.searchBar.setValue(ConstantValue.cancelButtonText, forKey: ConstantValue.cancelButtonTextId)
-        searchController.searchBar.scopeButtonTitles = [ConstantValue.searchBarAllScopeText, ConstantValue.searchBarTitleScopeText, ConstantValue.searchBarGenreScopeText, ConstantValue.searchBarActorScopeText]
         return searchController
     }()
     lazy var loaderActivityIndicatorView: UIActivityIndicatorView = {
@@ -74,6 +73,8 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         navigationItem.title = ConstantValue.tmdbAppNameText
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
