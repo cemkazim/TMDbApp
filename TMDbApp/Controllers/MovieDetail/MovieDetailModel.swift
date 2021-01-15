@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieCollection: Decodable {
+public struct MovieCollection: Decodable {
     
     let id: Int?
     let name: String?
@@ -20,7 +20,7 @@ struct MovieCollection: Decodable {
     }
 }
 
-struct MovieCredits: Decodable {
+public struct MovieCredits: Decodable {
     
     let id: Int?
     let cast: [MovieCastModel]
@@ -31,7 +31,7 @@ struct MovieCredits: Decodable {
     }
 }
 
-class CastList {
+public class CastList {
     
     var name: String?
     var imagePath: String?

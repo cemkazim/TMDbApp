@@ -20,25 +20,20 @@ class MovieListViewModel {
     private var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
     public var filteredMovieModelList: [MovieModel] = []
+    public var networkService = NetworkService()
     
     public weak var delegate: MovieListViewModelDelegate?
     
     init() {
-        getMovieResult()
+        getData()
     }
     
-    private func getMovieResult() {
-        let movieListUrl = APIParams.movieBaseUrl + APIParams.popularMovieExtension + APIParams.keyToken + APIParams.apiKey + APIParams.otherParam
-        AF.request(movieListUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { [weak self] (response) in
-            guard let movieListData = response.data, let self = self else { return }
-            do {
-                let movieList = try JSONDecoder().decode(MovieList.self, from: movieListData)
-                self.movieResults = movieList.results
-                self.setMovieList()
-            } catch let error {
-                print(error)
-            }
-        }
+    private func getData() {
+        networkService.getMovieResult(completionHandler: { [weak self] (data) in
+            guard let self = self else { return }
+            self.movieResults = data.results
+            self.setMovieList()
+        })
     }
     
     private func setMovieList() {
