@@ -9,13 +9,13 @@ import UIKit
 import Alamofire
 
 protocol MovieDetailViewModelDelegate: class {
-    func getMovieCast(movieCast: [MovieCast])
+    func getMovieCast(movieCast: [MovieCastModel])
 }
 
 class MovieDetailViewModel {
     
     public var movieResultModel: MovieResultModel?
-    public var movieCast = [MovieCast]()
+    public var movieCast = [MovieCastModel]()
     public var castList = [CastList]()
     
     public weak var delegate: MovieDetailViewModelDelegate?

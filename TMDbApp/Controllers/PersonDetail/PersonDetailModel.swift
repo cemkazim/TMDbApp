@@ -1,29 +1,27 @@
 //
-//  CastDetailModel.swift
+//  PersonDetailModel.swift
 //  TMDbApp
 //
-//  Created by Cem Kazım on 27.12.2020.
+//  Created by Cem Kazım on 15.01.2021.
 //
 
 import Foundation
 
-// MARK: - Person Detail Model -
-
-struct PersonDetailModel: Decodable {
+struct MovieCastModel: Decodable {
     
-    var personName: String?
-    var personCharacter: String?
-    var personKnownForDepartment: String?
-    var personProfilePath: URL?
-    var personGender: Int?
-    var personPopularity: Double?
+    let name: String?
+    let character: String?
+    let knownForDepartment: String?
+    let profilePath: String?
+    let gender: Int?
+    let popularity: Double?
     
-    init(personName: String?, personCharacter: String?, personKnownForDepartment: String?, personProfilePath: URL?, personGender: Int?, personPopularity: Double?) {
-        self.personName = personName
-        self.personCharacter = personCharacter
-        self.personKnownForDepartment = personKnownForDepartment
-        self.personProfilePath = personProfilePath
-        self.personGender = personGender
-        self.personPopularity = personPopularity
+    enum CodingKeys: String, CodingKey {
+        case name
+        case character
+        case gender
+        case popularity
+        case knownForDepartment = "known_for_department"
+        case profilePath = "profile_path"
     }
 }

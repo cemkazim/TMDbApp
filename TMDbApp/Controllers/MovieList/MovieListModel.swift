@@ -7,8 +7,6 @@
 
 import Foundation
 
-// MARK: - Movie List Model -
-
 struct MovieListModel: Decodable {
     
     let page: Int
@@ -19,8 +17,6 @@ struct MovieListModel: Decodable {
         case results
     }
 }
-
-// MARK: - Movie Result Model -
 
 struct MovieResultModel: Decodable {
     
@@ -42,8 +38,6 @@ struct MovieResultModel: Decodable {
         case voteAverage = "vote_average"
     }
 }
-
-// MARK: - Movie Result List Model -
 
 class MovieResultListModel {
     

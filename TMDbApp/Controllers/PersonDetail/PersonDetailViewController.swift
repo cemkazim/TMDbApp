@@ -58,7 +58,7 @@ class PersonDetailViewController: UIViewController {
     
     // MARK: - Properties -
     
-    var personDetailModel: PersonDetailModel?
+    var personDetailViewModel: PersonDetailViewModel?
     
     // MARK: - Lifecycles -
     
@@ -107,21 +107,23 @@ class PersonDetailViewController: UIViewController {
     }
     
     func getData() {
-        personImageView.sd_setImage(with: personDetailModel?.personProfilePath, completed: nil)
-        if let personName = personDetailModel?.personName,
-           let personCharacter = personDetailModel?.personCharacter,
-           let personKnownForDepartment = personDetailModel?.personKnownForDepartment,
-           let personGender = personDetailModel?.personGender,
-           let personPopularity = personDetailModel?.personPopularity {
-            personNameLabel.text = ConstantValue.nameText + personName
-            personCharacterLabel.text = ConstantValue.characterText + personCharacter
-            personKnownForDepartmentLabel.text = ConstantValue.knownForDepartmentText + personKnownForDepartment
-            if personGender == 1 {
+        personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (personDetailViewModel?.movieCastModel?.profilePath ?? ""))
+        personImageView.sd_setImage(with: imageUrl, completed: nil)
+        personNameLabel.text = personDetailViewModel?.movieCastModel?.name
+        personCharacterLabel.text = personDetailViewModel?.movieCastModel?.character
+        personKnownForDepartmentLabel.text = personDetailViewModel?.movieCastModel?.knownForDepartment
+        if let personGender = personDetailViewModel?.movieCastModel?.gender {
+            switch personGender {
+            case 1:
                 personGenderLabel.text = ConstantValue.genderText + ConstantValue.womanText
-            } else {
+            case 2:
                 personGenderLabel.text = ConstantValue.genderText + ConstantValue.manText
+            default:
+                break
             }
-            personPopularityLabel.text = ConstantValue.popularityText + "\(personPopularity)"
         }
+        personCharacterLabel.text = personDetailViewModel?.movieCastModel?.character
+        personPopularityLabel.text = "\(ConstantValue.popularityText)\(personDetailViewModel?.movieCastModel?.popularity ?? 0.0)"
     }
 }

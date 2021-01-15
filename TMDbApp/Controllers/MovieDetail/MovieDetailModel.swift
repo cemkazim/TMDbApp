@@ -7,8 +7,6 @@
 
 import Foundation
 
-// MARK: - Movie Collection Model -
-
 struct MovieCollection: Decodable {
     
     let id: Int?
@@ -22,37 +20,14 @@ struct MovieCollection: Decodable {
     }
 }
 
-// MARK: - Movie Credits Model -
-
 struct MovieCredits: Decodable {
     
     let id: Int?
-    let cast: [MovieCast]
+    let cast: [MovieCastModel]
     
     enum CodingKeys: String, CodingKey {
         case id
         case cast
-    }
-}
-
-// MARK: - Movie Cast Model -
-
-struct MovieCast: Decodable {
-    
-    let name: String?
-    let character: String?
-    let knownForDepartment: String?
-    let profilePath: String?
-    let gender: Int?
-    let popularity: Double?
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case character
-        case gender
-        case popularity
-        case knownForDepartment = "known_for_department"
-        case profilePath = "profile_path"
     }
 }
 

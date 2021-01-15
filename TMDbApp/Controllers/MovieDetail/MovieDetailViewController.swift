@@ -132,6 +132,9 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     
     func getData() {
         titleLabel.text = movieDetailViewModel?.movieResultModel?.title
+        coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieDetailViewModel?.movieResultModel?.posterPath ?? ""))
+        coverImageView.sd_setImage(with: imageUrl, completed: nil)
         ratingLabel.text = ConstantValue.voteAverageText + "\(movieDetailViewModel?.movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
         if let releaseDate = movieDetailViewModel?.movieResultModel?.releaseDate {
             releaseDateLabel.text = ConstantValue.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
@@ -144,13 +147,13 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
-    func getMovieCast(movieCast: [MovieCast]) {
+    func getMovieCast(movieCast: [MovieCastModel]) {
         movieDetailViewModel?.movieCast = movieCast
         setImageUrl(movieCast)
         castCollectionView.reloadData()
     }
     
-    func setImageUrl(_ movieCastList: [MovieCast]) {
+    func setImageUrl(_ movieCastList: [MovieCastModel]) {
         for path in movieCastList {
             if let profilePath = path.profilePath, let name = path.name {
                 let castModel = CastList(name: name, imagePath: APIParams.baseMovieImageUrl + profilePath)
@@ -197,8 +200,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let personDetailViewController = PersonDetailViewController()
-        pushTo(personDetailViewController)
+        let viewController = PersonDetailViewController()
+        if let model = movieDetailViewModel?.movieCast[indexPath.row] {
+            let viewModel = PersonDetailViewModel(movieCastModel: model)
+            viewController.personDetailViewModel = viewModel
+        }
+        pushTo(viewController)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
