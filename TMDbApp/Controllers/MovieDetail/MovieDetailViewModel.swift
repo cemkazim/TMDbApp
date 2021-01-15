@@ -26,14 +26,14 @@ class MovieDetailViewModel {
         getData()
     }
     
-    func getData() {
+    public func getData() {
         networkService.getMovieCredits(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.delegate?.getMovieCast(movieCast: data.cast)
         })
     }
     
-    func dateFormatter(_ stringDate: String) -> String {
+    public func dateFormatter(_ stringDate: String) -> String {
         let getterFormatter = DateFormatter()
         getterFormatter.dateFormat = ConstantValue.onlyDateFormat
         let setterFormater = DateFormatter()

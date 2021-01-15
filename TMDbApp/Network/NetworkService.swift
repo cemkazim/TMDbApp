@@ -10,23 +10,13 @@ import Alamofire
 
 public class NetworkService {
     
-    var movieListUrl: String = ""
-    
-    public var movieId: Int = 0
-    
-    var movieCastUrl: String = ""
-    
-    var parameters: Parameters = [String: Any]() {
-        didSet {
-            parameters = [MockParams.movieId.rawValue: MockParams.id.rawValue]
-        }
-    }
+    var parameters = [MockParams.movieId.rawValue: MockParams.id.rawValue]
+    var apiUrl = APIUrl()
     
     // MARK: - Movie List -
     
     public func getMovieResult(completionHandler: @escaping (MovieList) -> ()) {
-        movieListUrl = APIParams.movieBaseUrl + APIParams.popularMovieExtension + APIParams.keyToken + APIParams.apiKey + APIParams.otherParam
-        AF.request(movieListUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+        AF.request(apiUrl.popularMovieUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
             guard let movieListData = response.data else { return }
             do {
                 let movieList = try JSONDecoder().decode(MovieList.self, from: movieListData)
@@ -40,9 +30,8 @@ public class NetworkService {
     // MARK: - Movie Detail -
     
     public func getMovieCredits(movieId: Int, completionHandler: @escaping (MovieCredits) -> ()) {
-        self.movieId = movieId
-        movieCastUrl = "\(APIParams.movieBaseUrl)\(movieId)\(APIParams.creditsExtension)\(APIParams.keyToken)\(APIParams.apiKey)\(APIParams.otherParam)"
-        AF.request(movieCastUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+        let creditsUrl = "\(APIParams.movieBaseUrl)\(movieId)\(apiUrl.creditsUrl)"
+        AF.request(creditsUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
             guard let movieCastData = response.data else { return }
             do {
                 let movieCredits = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)

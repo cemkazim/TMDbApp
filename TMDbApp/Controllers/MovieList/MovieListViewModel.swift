@@ -17,7 +17,7 @@ class MovieListViewModel {
     // MARK: - Properties -
     
     public var movieResults: [MovieResultModel] = []
-    private var movieModel: MovieModel?
+    public var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
     public var filteredMovieModelList: [MovieModel] = []
     public var networkService = NetworkService()
@@ -28,17 +28,17 @@ class MovieListViewModel {
         getData()
     }
     
-    private func getData() {
+    public func getData() {
         networkService.getMovieResult(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
-            self.setMovieList()
+            self.setMovieList(data.results)
         })
     }
     
-    private func setMovieList() {
-        for result in movieResults {
-            if let imagePath = result.posterPath, let title = result.title, let releaseDate = result.releaseDate {
+    public func setMovieList(_ results: [MovieResultModel]) {
+        for movie in results {
+            if let imagePath = movie.posterPath, let title = movie.title, let releaseDate = movie.releaseDate {
                 movieModel = MovieModel(title: title, imageUrl: APIParams.baseMovieImageUrl + imagePath, releaseDate: releaseDate)
                 if let model = movieModel {
                     movieModelList.append(model)

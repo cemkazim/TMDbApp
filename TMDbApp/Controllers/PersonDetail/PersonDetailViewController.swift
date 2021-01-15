@@ -75,7 +75,7 @@ class PersonDetailViewController: UIViewController {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         view.addSubview(personImageView)
         view.addSubview(labelStackView)
-        getData()
+        getDataFrom(personDetailViewModel?.movieCastModel)
     }
     
     func setupConstraints() {
@@ -106,14 +106,14 @@ class PersonDetailViewController: UIViewController {
         }
     }
     
-    func getData() {
+    func getDataFrom(_ movieCastModel: MovieCastModel?) {
         personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (personDetailViewModel?.movieCastModel?.profilePath ?? ""))
+        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
         personImageView.sd_setImage(with: imageUrl, completed: nil)
-        personNameLabel.text = personDetailViewModel?.movieCastModel?.name
-        personCharacterLabel.text = personDetailViewModel?.movieCastModel?.character
-        personKnownForDepartmentLabel.text = personDetailViewModel?.movieCastModel?.knownForDepartment
-        if let personGender = personDetailViewModel?.movieCastModel?.gender {
+        personNameLabel.text = movieCastModel?.name
+        personCharacterLabel.text = movieCastModel?.character
+        personKnownForDepartmentLabel.text = movieCastModel?.knownForDepartment
+        if let personGender = movieCastModel?.gender {
             switch personGender {
             case 1:
                 personGenderLabel.text = ConstantValue.genderText + ConstantValue.womanText
@@ -123,7 +123,7 @@ class PersonDetailViewController: UIViewController {
                 break
             }
         }
-        personCharacterLabel.text = personDetailViewModel?.movieCastModel?.character
-        personPopularityLabel.text = "\(ConstantValue.popularityText)\(personDetailViewModel?.movieCastModel?.popularity ?? 0.0)"
+        personCharacterLabel.text = movieCastModel?.character
+        personPopularityLabel.text = "\(ConstantValue.popularityText)\(movieCastModel?.popularity ?? 0.0)"
     }
 }

@@ -70,7 +70,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        getData()
+        getDataFrom(movieDetailViewModel?.movieResultModel)
     }
     
     override func viewDidLayoutSubviews() {
@@ -130,16 +130,16 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         ])
     }
     
-    func getData() {
-        titleLabel.text = movieDetailViewModel?.movieResultModel?.title
+    func getDataFrom(_ movieResultModel: MovieResultModel?) {
+        titleLabel.text = movieResultModel?.title
         coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieDetailViewModel?.movieResultModel?.posterPath ?? ""))
+        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieResultModel?.posterPath ?? ""))
         coverImageView.sd_setImage(with: imageUrl, completed: nil)
-        ratingLabel.text = ConstantValue.voteAverageText + "\(movieDetailViewModel?.movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
-        if let releaseDate = movieDetailViewModel?.movieResultModel?.releaseDate {
+        ratingLabel.text = ConstantValue.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
+        if let releaseDate = movieResultModel?.releaseDate {
             releaseDateLabel.text = ConstantValue.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
         }
-        summaryLabel.text = movieDetailViewModel?.movieResultModel?.overview
+        summaryLabel.text = movieResultModel?.overview
     }
     
     func resizeScrollView() {
