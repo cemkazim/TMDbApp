@@ -17,3 +17,4 @@ It contains information about the actors in the movie.
 - Alamofire integrated for API queries.
 - SDWebImage integrated for asynchronous images.
 - It is written MVVM architecture.
+- Unit test cases are written for the project classes.
