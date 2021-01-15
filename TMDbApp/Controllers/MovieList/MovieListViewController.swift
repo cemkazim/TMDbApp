@@ -107,8 +107,8 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         }
     }
     
-    func getMovieResultList(movieResultList: [MovieResultListModel]) {
-        movieListViewModel.movieResultList = movieResultList
+    func getMovieModelList(_ movieModelList: [MovieModel]) {
+        movieListViewModel.movieModelList = movieModelList
         movieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()
     }
@@ -124,22 +124,22 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movieSearchController.isActive {
-            return movieListViewModel.filteredMovieResultList.count
+            return movieListViewModel.filteredMovieModelList.count
         } else {
-            return movieListViewModel.movieResultList.count
+            return movieListViewModel.movieModelList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ConstantValue.movieListTableViewCellId) as? MovieListTableViewCell {
-            let imageUrl = URL(string: movieListViewModel.movieResultList[indexPath.row].imageUrl ?? "")
-            let releaseDate = "\(ConstantValue.releaseDateText)\(movieListViewModel.movieResultList[indexPath.row].releaseDate ?? "")"
+            let imageUrl = URL(string: movieListViewModel.movieModelList[indexPath.row].imageUrl ?? "")
+            let releaseDate = "\(ConstantValue.releaseDateText)\(movieListViewModel.movieModelList[indexPath.row].releaseDate ?? "")"
             cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
             cell.movieReleaseDateLabel.text = releaseDate
             if movieSearchController.isActive {
-                cell.movieNameLabel.text = movieListViewModel.filteredMovieResultList[indexPath.row].title
+                cell.movieNameLabel.text = movieListViewModel.filteredMovieModelList[indexPath.row].title
             } else {
-                cell.movieNameLabel.text = movieListViewModel.movieResultList[indexPath.row].title
+                cell.movieNameLabel.text = movieListViewModel.movieModelList[indexPath.row].title
             }
             return cell
         } else {
@@ -178,12 +178,12 @@ extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating 
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        movieListViewModel.filteredMovieResultList.removeAll(keepingCapacity: false)
+        movieListViewModel.filteredMovieModelList.removeAll(keepingCapacity: false)
         if let searchTerm = searchController.searchBar.text {
-            let filteredArray = movieListViewModel.movieResultList.filter { result in
+            let filteredArray = movieListViewModel.movieModelList.filter { result in
                 return (result.title?.lowercased().contains(searchTerm.lowercased()) ?? false)
             }
-            movieListViewModel.filteredMovieResultList = filteredArray
+            movieListViewModel.filteredMovieModelList = filteredArray
             if !searchController.isBeingDismissed {
                 movieTableView.reloadData()
             }

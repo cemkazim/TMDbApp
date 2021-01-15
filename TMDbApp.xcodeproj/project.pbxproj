@@ -106,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				004A98AC25975F9C008F878D /* Constants */,
-				004A98A125975865008F878D /* ReusableComponents */,
+				004A98A125975865008F878D /* Components */,
 				004A989E259755F5008F878D /* Controllers */,
 				004A988425975206008F878D /* AppDelegate.swift */,
 				004A988625975206008F878D /* SceneDelegate.swift */,
@@ -139,13 +139,13 @@
 			path = MovieList;
 			sourceTree = "<group>";
 		};
-		004A98A125975865008F878D /* ReusableComponents */ = {
+		004A98A125975865008F878D /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				004A98A22597587A008F878D /* BaseLabelComponent.swift */,
 				00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */,
 			);
-			path = ReusableComponents;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		004A98AC25975F9C008F878D /* Constants */ = {

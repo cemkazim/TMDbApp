@@ -25,7 +25,7 @@ class MovieDetailViewModel {
         getMovieCredits()
     }
     
-    func getMovieCredits() {
+    private func getMovieCredits() {
         let parameters: Parameters = [CreditsParams.movieId.rawValue: CreditsParams.id.rawValue]
         let movieCastUrl = "\(APIParams.movieBaseUrl)\(movieResultModel?.id ?? 0)\(APIParams.creditsExtension)\(APIParams.keyToken)\(APIParams.apiKey)\(APIParams.otherParam)"
         AF.request(movieCastUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
