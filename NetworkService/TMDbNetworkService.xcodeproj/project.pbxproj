@@ -33,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		006E566725B2F38700CA9D55 /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDbNetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		006E566A25B2F38700CA9D55 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
 		006E566B25B2F38700CA9D55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006E568125B2F45000CA9D55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		006E566825B2F38700CA9D55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				006E566725B2F38700CA9D55 /* NetworkService.framework */,
+				006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,9 +138,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		006E566625B2F38700CA9D55 /* NetworkService */ = {
+		006E566625B2F38700CA9D55 /* TMDbNetworkService */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "NetworkService" */;
+			buildConfigurationList = 006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "TMDbNetworkService" */;
 			buildPhases = (
 				F5F444D581B1E228D32B641A /* [CP] Check Pods Manifest.lock */,
 				006E566225B2F38700CA9D55 /* Headers */,
@@ -153,9 +153,9 @@
 			);
 			dependencies = (
 			);
-			name = NetworkService;
+			name = TMDbNetworkService;
 			productName = NetworkService;
-			productReference = 006E566725B2F38700CA9D55 /* NetworkService.framework */;
+			productReference = 006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "NetworkService" */;
+			buildConfigurationList = 006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "TMDbNetworkService" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				006E566625B2F38700CA9D55 /* NetworkService */,
+				006E566625B2F38700CA9D55 /* TMDbNetworkService */,
 			);
 		};
 /* End PBXProject section */
@@ -414,7 +414,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "NetworkService" */ = {
+		006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "TMDbNetworkService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				006E566D25B2F38700CA9D55 /* Debug */,
@@ -423,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "NetworkService" */ = {
+		006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "TMDbNetworkService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				006E567025B2F38700CA9D55 /* Debug */,

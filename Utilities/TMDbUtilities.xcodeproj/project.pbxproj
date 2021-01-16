@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00F74DF525B32624005FF0BE /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F74DF525B32624005FF0BE /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F74DF825B32624005FF0BE /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		00F74DF925B32624005FF0BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F74E0225B32768005FF0BE /* APIParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParam.swift; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		00F74DF625B32624005FF0BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00F74DF525B32624005FF0BE /* Utilities.framework */,
+				00F74DF525B32624005FF0BE /* TMDbUtilities.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,9 +116,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		00F74DF425B32624005FF0BE /* Utilities */ = {
+		00F74DF425B32624005FF0BE /* TMDbUtilities */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00F74DFD25B32624005FF0BE /* Build configuration list for PBXNativeTarget "Utilities" */;
+			buildConfigurationList = 00F74DFD25B32624005FF0BE /* Build configuration list for PBXNativeTarget "TMDbUtilities" */;
 			buildPhases = (
 				8358DCF6E6B006904022AAD7 /* [CP] Check Pods Manifest.lock */,
 				00F74DF025B32624005FF0BE /* Headers */,
@@ -130,9 +130,9 @@
 			);
 			dependencies = (
 			);
-			name = Utilities;
+			name = TMDbUtilities;
 			productName = Utilities;
-			productReference = 00F74DF525B32624005FF0BE /* Utilities.framework */;
+			productReference = 00F74DF525B32624005FF0BE /* TMDbUtilities.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00F74DEF25B32623005FF0BE /* Build configuration list for PBXProject "Utilities" */;
+			buildConfigurationList = 00F74DEF25B32623005FF0BE /* Build configuration list for PBXProject "TMDbUtilities" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -162,7 +162,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00F74DF425B32624005FF0BE /* Utilities */,
+				00F74DF425B32624005FF0BE /* TMDbUtilities */,
 			);
 		};
 /* End PBXProject section */
@@ -392,7 +392,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00F74DEF25B32623005FF0BE /* Build configuration list for PBXProject "Utilities" */ = {
+		00F74DEF25B32623005FF0BE /* Build configuration list for PBXProject "TMDbUtilities" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F74DFB25B32624005FF0BE /* Debug */,
@@ -401,7 +401,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00F74DFD25B32624005FF0BE /* Build configuration list for PBXNativeTarget "Utilities" */ = {
+		00F74DFD25B32624005FF0BE /* Build configuration list for PBXNativeTarget "TMDbUtilities" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F74DFE25B32624005FF0BE /* Debug */,

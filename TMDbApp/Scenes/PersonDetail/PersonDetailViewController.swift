@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import NetworkService
 import Utilities
+import TMDbComponents
 
 class PersonDetailViewController: UIViewController {
     
