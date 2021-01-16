@@ -7,6 +7,7 @@
 
 @testable import TMDbApp
 import XCTest
+import TMDbComponents
 
 class PersonDetailTests: XCTestCase {
     

@@ -7,6 +7,8 @@
 
 @testable import TMDbApp
 import XCTest
+import TMDbNetworkService
+import TMDbComponents
 
 class MovieListViewControllerTest: XCTestCase {
     
@@ -31,7 +33,7 @@ class MovieListViewControllerTest: XCTestCase {
     }
     
     func testing_movie_results() {
-        movieListViewModel?.networkService.getMovieResult(completionHandler: { [weak self] (data) in
+        movieListViewModel?.networkManager.getMovieResult(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
             XCTAssertNotNil(self.movieResults)
