@@ -7,8 +7,8 @@
 
 import UIKit
 import SDWebImage
-import NetworkService
-import Utilities
+import TMDbNetworkService
+import TMDbUtilities
 import TMDbComponents
 
 class PersonDetailViewController: UIViewController {

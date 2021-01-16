@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import NetworkService
-import Utilities
+import TMDbNetworkService
+import TMDbUtilities
 
 protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])
