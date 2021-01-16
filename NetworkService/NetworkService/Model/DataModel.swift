@@ -11,8 +11,8 @@ import Foundation
 
 public struct MovieList: Decodable {
     
-    let page: Int
-    let results: [MovieResultModel]
+    public let page: Int
+    public let results: [MovieResultModel]
     
     enum CodingKeys: String, CodingKey {
         case page
@@ -22,13 +22,13 @@ public struct MovieList: Decodable {
 
 public struct MovieResultModel: Decodable {
     
-    let id: Int?
-    let title: String?
-    let posterPath: String?
-    let overview: String?
-    let releaseDate: String?
-    let voteAverage: Double?
-    let popularity: Double?
+    public let id: Int?
+    public let title: String?
+    public let posterPath: String?
+    public let overview: String?
+    public let releaseDate: String?
+    public let voteAverage: Double?
+    public let popularity: Double?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -43,11 +43,11 @@ public struct MovieResultModel: Decodable {
 
 public class MovieModel {
     
-    var title: String?
-    var imageUrl: String?
-    var releaseDate: String?
+    public var title: String?
+    public var imageUrl: String?
+    public var releaseDate: String?
     
-    init(title: String?, imageUrl: String?, releaseDate: String?) {
+    public init(title: String?, imageUrl: String?, releaseDate: String?) {
         self.title = title
         self.imageUrl = imageUrl
         self.releaseDate = releaseDate
@@ -58,9 +58,9 @@ public class MovieModel {
 
 public struct MovieCollection: Decodable {
     
-    let id: Int?
-    let name: String?
-    let posterPath: String?
+    public let id: Int?
+    public let name: String?
+    public let posterPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -71,8 +71,8 @@ public struct MovieCollection: Decodable {
 
 public struct MovieCredits: Decodable {
     
-    let id: Int?
-    let cast: [MovieCastModel]
+    public let id: Int?
+    public let cast: [MovieCastModel]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -82,10 +82,10 @@ public struct MovieCredits: Decodable {
 
 public class CastList {
     
-    var name: String?
-    var imagePath: String?
+    public var name: String?
+    public var imagePath: String?
     
-    init(name: String?, imagePath: String?) {
+    public init(name: String?, imagePath: String?) {
         self.name = name
         self.imagePath = imagePath
     }
@@ -93,14 +93,14 @@ public class CastList {
 
 // MARK: - Person Detail Models -
 
-struct MovieCastModel: Decodable {
+public struct MovieCastModel: Decodable {
     
-    let name: String?
-    let character: String?
-    let knownForDepartment: String?
-    let profilePath: String?
-    let gender: Int?
-    let popularity: Double?
+    public let name: String?
+    public let character: String?
+    public let knownForDepartment: String?
+    public let profilePath: String?
+    public let gender: Int?
+    public let popularity: Double?
     
     enum CodingKeys: String, CodingKey {
         case name

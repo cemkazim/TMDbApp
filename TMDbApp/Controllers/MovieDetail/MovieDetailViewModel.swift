@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Alamofire
+import NetworkService
 
 protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])
@@ -17,6 +17,7 @@ class MovieDetailViewModel {
     public var movieResultModel: MovieResultModel?
     public var movieCast = [MovieCastModel]()
     public var castList = [CastList]()
+    public var networkManager = NetworkManager()
     
     public weak var delegate: MovieDetailViewModelDelegate?
     
@@ -26,7 +27,7 @@ class MovieDetailViewModel {
     }
     
     public func getData() {
-        networkService.getMovieCredits(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (data) in
+        networkManager.getMovieCredits(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.delegate?.getMovieCast(movieCast: data.cast)
         })

@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import NetworkService
 
 class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     

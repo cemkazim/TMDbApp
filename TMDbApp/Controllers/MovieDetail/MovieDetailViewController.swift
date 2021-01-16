@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import NetworkService
 
 class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate {
     
@@ -133,7 +134,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     func getDataFrom(_ movieResultModel: MovieResultModel?) {
         titleLabel.text = movieResultModel?.title
         coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieResultModel?.posterPath ?? ""))
+        let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieResultModel?.posterPath ?? ""))
         coverImageView.sd_setImage(with: imageUrl, completed: nil)
         ratingLabel.text = ConstantValue.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
         if let releaseDate = movieResultModel?.releaseDate {
@@ -156,7 +157,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     func setImageUrl(_ movieCastList: [MovieCastModel]) {
         for path in movieCastList {
             if let profilePath = path.profilePath, let name = path.name {
-                let castModel = CastList(name: name, imagePath: APIParams.baseMovieImageUrl + profilePath)
+                let castModel = CastList(name: name, imagePath: APIParam.baseMovieImageUrl + profilePath)
                 movieDetailViewModel?.castList.append(castModel)
             }
         }

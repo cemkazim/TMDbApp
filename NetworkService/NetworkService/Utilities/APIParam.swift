@@ -8,17 +8,17 @@
 import Foundation
 
 
-class APIParam {
+public class APIParam {
     
-    static let apiKey = "fc4147091caa304654154fb4dee3bf04"
-    static let keyToken = "?api_key="
-    static let movieBaseUrl = "https://api.themoviedb.org/3/movie/"
-    static let popularMovie = "popular"
-    static let credits = "/credits"
-    static let otherParam = "&language=en-US"
-    static let baseMovieImageUrl = "https://image.tmdb.org/t/p/original"
+    public static let apiKey = "fc4147091caa304654154fb4dee3bf04"
+    public static let keyToken = "?api_key="
+    public static let movieBaseUrl = "https://api.themoviedb.org/3/movie/"
+    public static let popularMovie = "popular"
+    public static let credits = "/credits"
+    public static let otherParam = "&language=en-US"
+    public static let baseMovieImageUrl = "https://image.tmdb.org/t/p/original"
         
-    static let popularMovieUrl = movieBaseUrl + popularMovie + keyToken + apiKey + otherParam
-    static let creditsUrl = credits + keyToken + apiKey + otherParam
-    static let parameters = [MockParam.movieId.rawValue: MockParam.id.rawValue]
+    public static let popularMovieUrl = movieBaseUrl + popularMovie + keyToken + apiKey + otherParam
+    public static let creditsUrl = credits + keyToken + apiKey + otherParam
+    public static let parameters = [MockParam.movieId.rawValue: MockParam.id.rawValue]
 }

@@ -10,6 +10,10 @@ import Alamofire
 
 public class NetworkManager {
     
+    public init() {
+        // networking...
+    }
+    
     // MARK: - Movie List Query -
     
     public func getMovieResult(completionHandler: @escaping (MovieList) -> ()) {

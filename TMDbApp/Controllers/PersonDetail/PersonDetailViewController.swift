@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import NetworkService
 
 class PersonDetailViewController: UIViewController {
     
@@ -108,7 +109,7 @@ class PersonDetailViewController: UIViewController {
     
     func getDataFrom(_ movieCastModel: MovieCastModel?) {
         personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParams.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
+        let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
         personImageView.sd_setImage(with: imageUrl, completed: nil)
         personNameLabel.text = movieCastModel?.name
         personCharacterLabel.text = movieCastModel?.character

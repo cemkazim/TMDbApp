@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 class PersonDetailViewModel {
     

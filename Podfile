@@ -2,10 +2,18 @@
 # platform :ios, '9.0'
 
 target 'TMDbApp' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'Alamofire'
   pod 'SDWebImage'
-  # Pods for TMDbApp
+end
+  
+def network_service
+  pod 'Alamofire'
+end
 
+target 'NetworkService' do
+  workspace 'TMDbApp'
+  project 'NetworkService/NetworkService.xcodeproj'
+  use_frameworks!
+  
+  network_service
 end

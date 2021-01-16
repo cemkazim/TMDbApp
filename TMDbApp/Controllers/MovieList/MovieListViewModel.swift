@@ -39,7 +39,7 @@ class MovieListViewModel {
     public func setMovieList(_ results: [MovieResultModel]) {
         for movie in results {
             if let imagePath = movie.posterPath, let title = movie.title, let releaseDate = movie.releaseDate {
-                movieModel = MovieModel(title: title, imageUrl: APIParams.baseMovieImageUrl + imagePath, releaseDate: releaseDate)
+                movieModel = MovieModel(title: title, imageUrl: APIParam.baseMovieImageUrl + imagePath, releaseDate: releaseDate)
                 if let model = movieModel {
                     movieModelList.append(model)
                 }
