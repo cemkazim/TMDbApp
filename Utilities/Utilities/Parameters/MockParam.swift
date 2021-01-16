@@ -1,6 +1,6 @@
 //
 //  MockParam.swift
-//  NetworkService
+//  Utilities
 //
 //  Created by Cem Kazım on 16.01.2021.
 //

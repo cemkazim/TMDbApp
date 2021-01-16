@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Utilities
 
 class MovieListTableViewCell: UITableViewCell {
     

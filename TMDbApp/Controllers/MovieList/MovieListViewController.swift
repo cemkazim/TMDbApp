@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import NetworkService
+import Utilities
 
 class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     

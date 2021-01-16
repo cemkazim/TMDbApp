@@ -7,6 +7,7 @@
 
 import UIKit
 import NetworkService
+import Utilities
 
 protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])

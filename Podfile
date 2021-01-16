@@ -17,3 +17,10 @@ target 'NetworkService' do
   
   network_service
 end
+
+target 'Utilities' do
+  workspace 'TMDbApp'
+  project 'Utilities/Utilities.xcodeproj'
+  use_frameworks!
+  
+end

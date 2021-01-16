@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Utilities
 
 class BaseLabelComponent: UILabel {
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import NetworkService
+import Utilities
 
 protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])
