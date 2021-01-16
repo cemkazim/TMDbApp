@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,8 +12,24 @@
 		006E568525B2F47B00CA9D55 /* APIParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E568425B2F47B00CA9D55 /* APIParam.swift */; };
 		006E568825B2F4D400CA9D55 /* MockParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E568725B2F4D400CA9D55 /* MockParam.swift */; };
 		006E568B25B2F4F300CA9D55 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E568A25B2F4F300CA9D55 /* DataModel.swift */; };
-		8F2C432211AB019215F6C23D /* Pods_NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1498BE4A2847439B89A21946 /* Pods_NetworkService.framework */; };
+		00F74DE325B324C3005FF0BE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74DE225B324C3005FF0BE /* Alamofire.framework */; platformFilter = ios; };
+		00F74DE425B324C3005FF0BE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74DE225B324C3005FF0BE /* Alamofire.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3CFFBF147421F144F495A069 /* Pods_NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724D03348B3D3C73AE68682C /* Pods_NetworkService.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00F74DCF25B323CD005FF0BE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00F74DE425B324C3005FF0BE /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		006E566725B2F38700CA9D55 /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,7 +39,8 @@
 		006E568425B2F47B00CA9D55 /* APIParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParam.swift; sourceTree = "<group>"; };
 		006E568725B2F4D400CA9D55 /* MockParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParam.swift; sourceTree = "<group>"; };
 		006E568A25B2F4F300CA9D55 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		1498BE4A2847439B89A21946 /* Pods_NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F74DE225B324C3005FF0BE /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMDbApp-ghzgtpqtkuclknggponnebarukwl/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		724D03348B3D3C73AE68682C /* Pods_NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8C1B8E8A36F5ACF5C449EC /* Pods-NetworkService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkService.release.xcconfig"; path = "Target Support Files/Pods-NetworkService/Pods-NetworkService.release.xcconfig"; sourceTree = "<group>"; };
 		AB121ED435DA953C8B3E86D1 /* Pods-NetworkService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkService.debug.xcconfig"; path = "Target Support Files/Pods-NetworkService/Pods-NetworkService.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,7 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F2C432211AB019215F6C23D /* Pods_NetworkService.framework in Frameworks */,
+				00F74DE325B324C3005FF0BE /* Alamofire.framework in Frameworks */,
+				3CFFBF147421F144F495A069 /* Pods_NetworkService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +116,8 @@
 		07662C120946DC41C7CBD3F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1498BE4A2847439B89A21946 /* Pods_NetworkService.framework */,
+				00F74DE225B324C3005FF0BE /* Alamofire.framework */,
+				724D03348B3D3C73AE68682C /* Pods_NetworkService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +155,7 @@
 				006E566325B2F38700CA9D55 /* Sources */,
 				006E566425B2F38700CA9D55 /* Frameworks */,
 				006E566525B2F38700CA9D55 /* Resources */,
+				00F74DCF25B323CD005FF0BE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

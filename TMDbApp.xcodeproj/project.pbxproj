@@ -31,7 +31,7 @@
 		00D5786E2599CA2B00A16CF5 /* BaseImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */; };
 		00F74D6725B31A5C005FF0BE /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74D6625B31A5C005FF0BE /* NetworkService.framework */; };
 		00F74D6825B31A6A005FF0BE /* NetworkService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74D6625B31A5C005FF0BE /* NetworkService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7E4A213B4D23B9B779C1ED79 /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6B08980CB88EA95F74122A /* Pods_TMDbApp.framework */; };
+		2C2B450FB5CC219612A8BF26 /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAC5A574717F98C54807B6E /* Pods_TMDbApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +86,8 @@
 		00CC2C7125B24BCA00D23F71 /* MovieListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTests.swift; sourceTree = "<group>"; };
 		00D5786D2599CA2B00A16CF5 /* BaseImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageViewComponent.swift; sourceTree = "<group>"; };
 		00F74D6625B31A5C005FF0BE /* NetworkService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkService.framework; path = "../../../../Library/Developer/Xcode/DerivedData/TMDbApp-ghzgtpqtkuclknggponnebarukwl/Build/Products/Debug-iphonesimulator/NetworkService.framework"; sourceTree = "<group>"; };
-		3C6B08980CB88EA95F74122A /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E5D5892BB0331BBFE295953 /* Pods-TMDbApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.release.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.release.xcconfig"; sourceTree = "<group>"; };
+		5EAC5A574717F98C54807B6E /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C197292F99BE7CDBB4BF2F /* Pods-TMDbApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.debug.xcconfig"; path = "Target Support Files/Pods-TMDbApp/Pods-TMDbApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,7 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00F74D6725B31A5C005FF0BE /* NetworkService.framework in Frameworks */,
-				7E4A213B4D23B9B779C1ED79 /* Pods_TMDbApp.framework in Frameworks */,
+				2C2B450FB5CC219612A8BF26 /* Pods_TMDbApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				00F74D6625B31A5C005FF0BE /* NetworkService.framework */,
-				3C6B08980CB88EA95F74122A /* Pods_TMDbApp.framework */,
+				5EAC5A574717F98C54807B6E /* Pods_TMDbApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
