@@ -14,7 +14,7 @@ public struct MovieList: Decodable {
     public let page: Int
     public let results: [MovieResultModel]
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case page
         case results
     }
@@ -30,7 +30,7 @@ public struct MovieResultModel: Decodable {
     public let voteAverage: Double?
     public let popularity: Double?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case title
         case overview
@@ -62,7 +62,7 @@ public struct MovieCollection: Decodable {
     public let name: String?
     public let posterPath: String?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case name
         case posterPath = "poster_path"
@@ -74,7 +74,7 @@ public struct MovieCredits: Decodable {
     public let id: Int?
     public let cast: [MovieCastModel]
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case cast
     }
@@ -102,7 +102,7 @@ public struct MovieCastModel: Decodable {
     public let gender: Int?
     public let popularity: Double?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case name
         case character
         case gender

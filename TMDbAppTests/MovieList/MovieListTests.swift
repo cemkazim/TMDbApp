@@ -26,23 +26,20 @@ class MovieListViewControllerTest: XCTestCase {
         super.tearDown()
     }
     
-    func testing_movie_model() {
+    func testingMovieModel() {
         let movieModel = MovieModel(title: "Monsters of Man", imageUrl: "/1f3qspv64L5FXrRy0MF8X92ieuw.jpg", releaseDate: "2020-11-19")
         movieListViewController?.movieListViewModel.movieModelList = [movieModel]
         XCTAssertNotNil(movieListViewController?.movieListViewModel.movieModelList)
     }
     
-    func testing_movie_results() {
+    func testingMovieResults() {
+        let expect = expectation(description: "Data fetching")
         movieListViewModel?.networkManager.getMovieResult(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
             XCTAssertNotNil(self.movieResults)
+            expect.fulfill()
         })
-    }
-    
-    func testing_set_movie_list() {
-        let movieResultModel = MovieResultModel(id: 508442, title: "Soul", posterPath: "/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg", overview: "Joe Gardner is a middle school teacher with a love for jazz music. After a successful gig at the Half Note Club, he suddenly gets into an accident that separates his soul from his body and is transported to the You Seminar, a center in which souls develop and gain passions before being transported to a newborn child. Joe must enlist help from the other souls-in-training, like 22, a soul who has spent eons in the You Seminar, in order to get back to Earth.", releaseDate: "2020-12-25", voteAverage: 8.4, popularity: 2849.972)
-        movieListViewModel?.setMovieList([movieResultModel])
-        XCTAssertNotNil(movieListViewModel?.movieModelList)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 }
