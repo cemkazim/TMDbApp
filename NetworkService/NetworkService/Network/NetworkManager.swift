@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkManager {
+public class NetworkManager {
     
     // MARK: - Movie List Query -
     

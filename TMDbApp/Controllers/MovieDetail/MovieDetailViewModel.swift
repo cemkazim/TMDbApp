@@ -17,7 +17,6 @@ class MovieDetailViewModel {
     public var movieResultModel: MovieResultModel?
     public var movieCast = [MovieCastModel]()
     public var castList = [CastList]()
-    public var networkService = NetworkService()
     
     public weak var delegate: MovieDetailViewModelDelegate?
     

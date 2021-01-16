@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+import NetworkService
 
 protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])
@@ -20,7 +20,7 @@ class MovieListViewModel {
     public var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
     public var filteredMovieModelList: [MovieModel] = []
-    public var networkService = NetworkService()
+    public var networkManager = NetworkManager()
     
     public weak var delegate: MovieListViewModelDelegate?
     
@@ -29,7 +29,7 @@ class MovieListViewModel {
     }
     
     public func getData() {
-        networkService.getMovieResult(completionHandler: { [weak self] (data) in
+        networkManager.getMovieResult(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
             self.setMovieList(data.results)
