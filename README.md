@@ -7,17 +7,17 @@ TMDbApp is a mobile app (iOS) that uses the themoviedb.org API. It is written wi
 #### Movie List Screen
 Popular movies are listed on the home screen. A movie can be searched by text input on this screen.
 
-![Alt text](https://ibb.co/ScFF1BR "Movie List Screen")
+<img src="https://i.ibb.co/7KgYb1q/first.jpg" width="200" height="433">
 
 #### Movie Detail Screen
 This screen is contained movie and cast details.
 
-![Alt text](https://ibb.co/whcZ1kF "Movie Detail Screen")
+<img src="https://i.ibb.co/fqczFJn/second.jpg" width="200" height="433">
 
 #### Person Detail Screen
 It contains information about the actors in the movie.
 
-![Alt text](https://ibb.co/tszPTsy "Person Detail Screen")
+<img src="https://i.ibb.co/MCcg0Qr/third.jpg" width="200" height="433">
 
 ## Principles
 
