@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		009C325525B34D1900C0B76D /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C325425B34D1900C0B76D /* ViewHelper.swift */; };
 		00F74DFA25B32624005FF0BE /* TMDbUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F74DF825B32624005FF0BE /* TMDbUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F74E0325B32768005FF0BE /* APIParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F74E0225B32768005FF0BE /* APIParam.swift */; };
 		00F74E0625B32772005FF0BE /* MockParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F74E0525B32772005FF0BE /* MockParam.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009C325425B34D1900C0B76D /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		00F74DF525B32624005FF0BE /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F74DF825B32624005FF0BE /* TMDbUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDbUtilities.h; sourceTree = "<group>"; };
 		00F74DF925B32624005FF0BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		009C325725B34D2B00C0B76D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				009C325425B34D1900C0B76D /* ViewHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		00F74DEB25B32623005FF0BE = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				00F74E0925B32789005FF0BE /* Constants */,
+				009C325725B34D2B00C0B76D /* Helper */,
 				00F74E0825B32778005FF0BE /* Parameters */,
 				00F74DF825B32624005FF0BE /* TMDbUtilities.h */,
 				00F74DF925B32624005FF0BE /* Info.plist */,
@@ -212,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00F74E0325B32768005FF0BE /* APIParam.swift in Sources */,
+				009C325525B34D1900C0B76D /* ViewHelper.swift in Sources */,
 				00F74E0625B32772005FF0BE /* MockParam.swift in Sources */,
 				00F74E0D25B327B6005FF0BE /* ConstantValue.swift in Sources */,
 			);

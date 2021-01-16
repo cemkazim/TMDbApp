@@ -1,20 +1,19 @@
 //
 //  BaseViewTool.swift
-//  TMDbApp
+//  TMDbUtilities
 //
-//  Created by Cem Kazım on 27.12.2020.
+//  Created by Cem Kazım on 16.01.2021.
 //
 
 import UIKit
-import TMDbUtilities
 
 extension UIViewController {
     
-    func pushTo(_ viewController: UIViewController) {
+    public func pushTo(_ viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func updateBackgroundColor(_ view: UIView, _ firstColor: CGColor, _ secondColor: CGColor) {
+    public func updateBackgroundColor(_ view: UIView, _ firstColor: CGColor, _ secondColor: CGColor) {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [
@@ -35,7 +34,7 @@ extension UIViewController {
         gradient.add(gradientChangeAnimation, forKey: ConstantValue.colorChangeKey)
     }
     
-    func removeNavigationBar() {
+    public func removeNavigationBar() {
         navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
