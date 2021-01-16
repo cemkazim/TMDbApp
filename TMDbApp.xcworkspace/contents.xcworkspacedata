@@ -8,9 +8,12 @@
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:NetworkService/NetworkService.xcodeproj">
+      location = "group:/Users/genel/Desktop/projeler/my-projects/TMDbApp/NetworkService/NetworkService.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Utilities/Utilities.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TMDbComponents/TMDbComponents.xcodeproj">
    </FileRef>
 </Workspace>
