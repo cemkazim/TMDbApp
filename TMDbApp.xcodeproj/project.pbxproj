@@ -72,6 +72,7 @@
 		004C9B3D25AF388B008B344D /* MockParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockParams.swift; sourceTree = "<group>"; };
 		006E55E525B253E600CA9D55 /* MovieDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTests.swift; sourceTree = "<group>"; };
 		006E55EF25B25CC200CA9D55 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
+		006E568D25B2F6D700CA9D55 /* NetworkService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkService.framework; path = "../../../../Library/Developer/Xcode/DerivedData/NetworkService-bftsyjjrjcwfenfwwyixgtsmqhnw/Build/Products/Debug-iphonesimulator/NetworkService.framework"; sourceTree = "<group>"; };
 		007F27C325B1DA870040EFC7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		009E155125B23E5000515D69 /* TMDbAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDbAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		009E155325B23E5000515D69 /* TMDbAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbAppTests.swift; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 		C51A890D21EDFE85709807CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				006E568D25B2F6D700CA9D55 /* NetworkService.framework */,
 				427B272E7C7672D768248955 /* Pods_TMDbApp.framework */,
 			);
 			name = Frameworks;
