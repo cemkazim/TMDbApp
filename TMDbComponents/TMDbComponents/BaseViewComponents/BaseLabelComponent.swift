@@ -10,12 +10,12 @@ import TMDbUtilities
 
 public class BaseLabelComponent: UILabel {
     
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupLabel()
     }
     
-    public required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     

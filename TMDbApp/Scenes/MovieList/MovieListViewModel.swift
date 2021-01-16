@@ -16,8 +16,6 @@ protocol MovieListViewModelDelegate: class {
 
 class MovieListViewModel {
     
-    // MARK: - Properties -
-    
     public var movieResults: [MovieResultModel] = []
     public var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
