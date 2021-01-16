@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Utilities
+import TMDbUtilities
 
 extension UIViewController {
     

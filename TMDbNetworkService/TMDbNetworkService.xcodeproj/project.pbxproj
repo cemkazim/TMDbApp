@@ -3,27 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		009C31EB25B32A2400C0B76D /* TMDbComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 009C31E925B32A2400C0B76D /* TMDbComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		009C31F425B32A5B00C0B76D /* BaseLabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */; };
-		009C31F725B32A6300C0B76D /* BaseImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */; };
-		009C321A25B32D7F00C0B76D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C321925B32D7F00C0B76D /* DataModel.swift */; };
-		009C322525B32DE800C0B76D /* TMDbUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; };
-		009C322625B32DE800C0B76D /* TMDbUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E8E29BAC798B8FE82EC7965 /* Pods_TMDbComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */; };
+		006E566C25B2F38700CA9D55 /* NetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = 006E566A25B2F38700CA9D55 /* NetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		006E568225B2F45000CA9D55 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E568125B2F45000CA9D55 /* NetworkManager.swift */; };
+		009C324A25B3300100C0B76D /* TMDbUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C324925B3300100C0B76D /* TMDbUtilities.framework */; };
+		009C324B25B3300100C0B76D /* TMDbUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 009C324925B3300100C0B76D /* TMDbUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		00F74DE325B324C3005FF0BE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74DE225B324C3005FF0BE /* Alamofire.framework */; platformFilter = ios; };
+		00F74DE425B324C3005FF0BE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00F74DE225B324C3005FF0BE /* Alamofire.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C82866FA8087EB60EE37815C /* Pods_TMDbNetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F42F2ADBDB376A9E663A4E /* Pods_TMDbNetworkService.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		009C322725B32DE900C0B76D /* Embed Frameworks */ = {
+		00F74DCF25B323CD005FF0BE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				009C322625B32DE800C0B76D /* TMDbUtilities.framework in Embed Frameworks */,
+				009C324B25B3300100C0B76D /* TMDbUtilities.framework in Embed Frameworks */,
+				00F74DE425B324C3005FF0BE /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,93 +32,88 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		009C31E625B32A2400C0B76D /* TMDbComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDbComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		009C31E925B32A2400C0B76D /* TMDbComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDbComponents.h; sourceTree = "<group>"; };
-		009C31EA25B32A2400C0B76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
-		009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageViewComponent.swift; sourceTree = "<group>"; };
-		009C31FB25B32AC100C0B76D /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		009C321925B32D7F00C0B76D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		009C322425B32DE800C0B76D /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C9BBE90B2ED5C39AD9B1433 /* Pods-TMDbComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.debug.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.debug.xcconfig"; sourceTree = "<group>"; };
-		D482F7EEC6DF8518EBC0EE48 /* Pods-TMDbComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.release.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.release.xcconfig"; sourceTree = "<group>"; };
-		DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDbNetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		006E566A25B2F38700CA9D55 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		006E566B25B2F38700CA9D55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		006E568125B2F45000CA9D55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		009C324925B3300100C0B76D /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F74DE225B324C3005FF0BE /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMDbApp-ghzgtpqtkuclknggponnebarukwl/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		00F74E1325B3285F005FF0BE /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B52D36132E9B80B7C031A2A /* Pods-TMDbNetworkService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbNetworkService.debug.xcconfig"; path = "Target Support Files/Pods-TMDbNetworkService/Pods-TMDbNetworkService.debug.xcconfig"; sourceTree = "<group>"; };
+		7D8C1B8E8A36F5ACF5C449EC /* Pods-NetworkService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkService.release.xcconfig"; path = "Target Support Files/Pods-NetworkService/Pods-NetworkService.release.xcconfig"; sourceTree = "<group>"; };
+		833A39392990F7FBD8A9948D /* Pods-TMDbNetworkService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbNetworkService.release.xcconfig"; path = "Target Support Files/Pods-TMDbNetworkService/Pods-TMDbNetworkService.release.xcconfig"; sourceTree = "<group>"; };
+		97F42F2ADBDB376A9E663A4E /* Pods_TMDbNetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbNetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB121ED435DA953C8B3E86D1 /* Pods-NetworkService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkService.debug.xcconfig"; path = "Target Support Files/Pods-NetworkService/Pods-NetworkService.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		009C31E325B32A2400C0B76D /* Frameworks */ = {
+		006E566425B2F38700CA9D55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C322525B32DE800C0B76D /* TMDbUtilities.framework in Frameworks */,
-				8E8E29BAC798B8FE82EC7965 /* Pods_TMDbComponents.framework in Frameworks */,
+				00F74DE325B324C3005FF0BE /* Alamofire.framework in Frameworks */,
+				C82866FA8087EB60EE37815C /* Pods_TMDbNetworkService.framework in Frameworks */,
+				009C324A25B3300100C0B76D /* TMDbUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		009C31DC25B32A2400C0B76D = {
+		006E565D25B2F38700CA9D55 = {
 			isa = PBXGroup;
 			children = (
-				009C31E825B32A2400C0B76D /* TMDbComponents */,
-				009C31E725B32A2400C0B76D /* Products */,
-				009C31FA25B32AC100C0B76D /* Frameworks */,
-				51603FBE05F019AE45F2DB6D /* Pods */,
+				006E566925B2F38700CA9D55 /* TMDbNetworkService */,
+				006E566825B2F38700CA9D55 /* Products */,
+				07662C120946DC41C7CBD3F3 /* Frameworks */,
+				2426B8842EBAD5394455BACD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
-		009C31E725B32A2400C0B76D /* Products */ = {
+		006E566825B2F38700CA9D55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				009C31E625B32A2400C0B76D /* TMDbComponents.framework */,
+				006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		009C31E825B32A2400C0B76D /* TMDbComponents */ = {
+		006E566925B2F38700CA9D55 /* TMDbNetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				009C31F225B32A4C00C0B76D /* BaseViewComponents */,
-				009C321825B32D6500C0B76D /* Models */,
-				009C31E925B32A2400C0B76D /* TMDbComponents.h */,
-				009C31EA25B32A2400C0B76D /* Info.plist */,
+				006E567F25B2F42C00CA9D55 /* Network */,
+				006E566A25B2F38700CA9D55 /* NetworkService.h */,
+				006E566B25B2F38700CA9D55 /* Info.plist */,
 			);
-			path = TMDbComponents;
+			path = TMDbNetworkService;
 			sourceTree = "<group>";
 		};
-		009C31F225B32A4C00C0B76D /* BaseViewComponents */ = {
+		006E567F25B2F42C00CA9D55 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */,
-				009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */,
+				006E568125B2F45000CA9D55 /* NetworkManager.swift */,
 			);
-			path = BaseViewComponents;
+			path = Network;
 			sourceTree = "<group>";
 		};
-		009C31FA25B32AC100C0B76D /* Frameworks */ = {
+		07662C120946DC41C7CBD3F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				009C322425B32DE800C0B76D /* TMDbUtilities.framework */,
-				009C31FB25B32AC100C0B76D /* Utilities.framework */,
-				DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */,
+				009C324925B3300100C0B76D /* TMDbUtilities.framework */,
+				00F74E1325B3285F005FF0BE /* Utilities.framework */,
+				00F74DE225B324C3005FF0BE /* Alamofire.framework */,
+				97F42F2ADBDB376A9E663A4E /* Pods_TMDbNetworkService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		009C321825B32D6500C0B76D /* Models */ = {
+		2426B8842EBAD5394455BACD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				009C321925B32D7F00C0B76D /* DataModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		51603FBE05F019AE45F2DB6D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8C9BBE90B2ED5C39AD9B1433 /* Pods-TMDbComponents.debug.xcconfig */,
-				D482F7EEC6DF8518EBC0EE48 /* Pods-TMDbComponents.release.xcconfig */,
+				AB121ED435DA953C8B3E86D1 /* Pods-NetworkService.debug.xcconfig */,
+				7D8C1B8E8A36F5ACF5C449EC /* Pods-NetworkService.release.xcconfig */,
+				6B52D36132E9B80B7C031A2A /* Pods-TMDbNetworkService.debug.xcconfig */,
+				833A39392990F7FBD8A9948D /* Pods-TMDbNetworkService.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -126,52 +122,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		009C31E125B32A2400C0B76D /* Headers */ = {
+		006E566225B2F38700CA9D55 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C31EB25B32A2400C0B76D /* TMDbComponents.h in Headers */,
+				006E566C25B2F38700CA9D55 /* NetworkService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		009C31E525B32A2400C0B76D /* TMDbComponents */ = {
+		006E566625B2F38700CA9D55 /* TMDbNetworkService */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 009C31EE25B32A2400C0B76D /* Build configuration list for PBXNativeTarget "TMDbComponents" */;
+			buildConfigurationList = 006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "TMDbNetworkService" */;
 			buildPhases = (
-				FFC15DD65EC07DD20309A688 /* [CP] Check Pods Manifest.lock */,
-				009C31E125B32A2400C0B76D /* Headers */,
-				009C31E225B32A2400C0B76D /* Sources */,
-				009C31E325B32A2400C0B76D /* Frameworks */,
-				009C31E425B32A2400C0B76D /* Resources */,
-				009C322725B32DE900C0B76D /* Embed Frameworks */,
+				F5F444D581B1E228D32B641A /* [CP] Check Pods Manifest.lock */,
+				006E566225B2F38700CA9D55 /* Headers */,
+				006E566325B2F38700CA9D55 /* Sources */,
+				006E566425B2F38700CA9D55 /* Frameworks */,
+				006E566525B2F38700CA9D55 /* Resources */,
+				00F74DCF25B323CD005FF0BE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TMDbComponents;
-			productName = TMDbComponents;
-			productReference = 009C31E625B32A2400C0B76D /* TMDbComponents.framework */;
+			name = TMDbNetworkService;
+			productName = NetworkService;
+			productReference = 006E566725B2F38700CA9D55 /* TMDbNetworkService.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		009C31DD25B32A2400C0B76D /* Project object */ = {
+		006E565E25B2F38700CA9D55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
-					009C31E525B32A2400C0B76D = {
+					006E566625B2F38700CA9D55 = {
 						CreatedOnToolsVersion = 12.1;
 						LastSwiftMigration = 1210;
 					};
 				};
 			};
-			buildConfigurationList = 009C31E025B32A2400C0B76D /* Build configuration list for PBXProject "TMDbComponents" */;
+			buildConfigurationList = 006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "TMDbNetworkService" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -179,18 +175,18 @@
 				en,
 				Base,
 			);
-			mainGroup = 009C31DC25B32A2400C0B76D;
-			productRefGroup = 009C31E725B32A2400C0B76D /* Products */;
+			mainGroup = 006E565D25B2F38700CA9D55;
+			productRefGroup = 006E566825B2F38700CA9D55 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				009C31E525B32A2400C0B76D /* TMDbComponents */,
+				006E566625B2F38700CA9D55 /* TMDbNetworkService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		009C31E425B32A2400C0B76D /* Resources */ = {
+		006E566525B2F38700CA9D55 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,7 +196,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FFC15DD65EC07DD20309A688 /* [CP] Check Pods Manifest.lock */ = {
+		F5F444D581B1E228D32B641A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,7 +211,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TMDbComponents-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TMDbNetworkService-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -225,20 +221,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		009C31E225B32A2400C0B76D /* Sources */ = {
+		006E566325B2F38700CA9D55 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C31F425B32A5B00C0B76D /* BaseLabelComponent.swift in Sources */,
-				009C31F725B32A6300C0B76D /* BaseImageViewComponent.swift in Sources */,
-				009C321A25B32D7F00C0B76D /* DataModel.swift in Sources */,
+				006E568225B2F45000CA9D55 /* NetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		009C31EC25B32A2400C0B76D /* Debug */ = {
+		006E566D25B2F38700CA9D55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -302,7 +296,7 @@
 			};
 			name = Debug;
 		};
-		009C31ED25B32A2400C0B76D /* Release */ = {
+		006E566E25B2F38700CA9D55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -360,9 +354,9 @@
 			};
 			name = Release;
 		};
-		009C31EF25B32A2400C0B76D /* Debug */ = {
+		006E567025B2F38700CA9D55 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C9BBE90B2ED5C39AD9B1433 /* Pods-TMDbComponents.debug.xcconfig */;
+			baseConfigurationReference = 6B52D36132E9B80B7C031A2A /* Pods-TMDbNetworkService.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -370,14 +364,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TMDbComponents/Info.plist;
+				INFOPLIST_FILE = TMDbNetworkService/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crab.TMDbComponents;
+				PRODUCT_BUNDLE_IDENTIFIER = crab.NetworkService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -386,9 +380,9 @@
 			};
 			name = Debug;
 		};
-		009C31F025B32A2400C0B76D /* Release */ = {
+		006E567125B2F38700CA9D55 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D482F7EEC6DF8518EBC0EE48 /* Pods-TMDbComponents.release.xcconfig */;
+			baseConfigurationReference = 833A39392990F7FBD8A9948D /* Pods-TMDbNetworkService.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,14 +390,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TMDbComponents/Info.plist;
+				INFOPLIST_FILE = TMDbNetworkService/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crab.TMDbComponents;
+				PRODUCT_BUNDLE_IDENTIFIER = crab.NetworkService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -414,25 +408,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		009C31E025B32A2400C0B76D /* Build configuration list for PBXProject "TMDbComponents" */ = {
+		006E566125B2F38700CA9D55 /* Build configuration list for PBXProject "TMDbNetworkService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				009C31EC25B32A2400C0B76D /* Debug */,
-				009C31ED25B32A2400C0B76D /* Release */,
+				006E566D25B2F38700CA9D55 /* Debug */,
+				006E566E25B2F38700CA9D55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		009C31EE25B32A2400C0B76D /* Build configuration list for PBXNativeTarget "TMDbComponents" */ = {
+		006E566F25B2F38700CA9D55 /* Build configuration list for PBXNativeTarget "TMDbNetworkService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				009C31EF25B32A2400C0B76D /* Debug */,
-				009C31F025B32A2400C0B76D /* Release */,
+				006E567025B2F38700CA9D55 /* Debug */,
+				006E567125B2F38700CA9D55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 009C31DD25B32A2400C0B76D /* Project object */;
+	rootObject = 006E565E25B2F38700CA9D55 /* Project object */;
 }

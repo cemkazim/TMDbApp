@@ -8,6 +8,7 @@
 import Foundation
 import TMDbNetworkService
 import TMDbUtilities
+import TMDbComponents
 
 protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])

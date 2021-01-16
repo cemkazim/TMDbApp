@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import TMDbNetworkService
 import TMDbUtilities
+import TMDbComponents
 
 class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     

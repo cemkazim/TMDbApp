@@ -7,6 +7,7 @@
 
 import Foundation
 import TMDbNetworkService
+import TMDbComponents
 
 class PersonDetailViewModel {
     

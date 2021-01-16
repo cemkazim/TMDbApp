@@ -10,17 +10,24 @@ def network_service
   pod 'Alamofire'
 end
 
-target 'NetworkService' do
+target 'TMDbNetworkService' do
   workspace 'TMDbApp'
-  project 'NetworkService/NetworkService.xcodeproj'
+  project 'TMDbNetworkService/TMDbNetworkService.xcodeproj'
   use_frameworks!
   
   network_service
 end
 
-target 'Utilities' do
+target 'TMDbComponents' do
   workspace 'TMDbApp'
-  project 'Utilities/Utilities.xcodeproj'
+  project 'TMDbComponents/TMDbComponents.xcodeproj'
+  use_frameworks!
+  
+end
+
+target 'TMDbUtilities' do
+  workspace 'TMDbApp'
+  project 'TMDbUtilities/TMDbUtilities.xcodeproj'
   use_frameworks!
   
 end

@@ -8,6 +8,7 @@
 import UIKit
 import TMDbNetworkService
 import TMDbUtilities
+import TMDbComponents
 
 protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])
