@@ -10,6 +10,7 @@ import UIKit
 public class ConstantValue {
     
     public static let placeholderImage = "placeholder"
+    public static let placeholderProfileImage = "placeholder_profile"
     public static let initCoderText = "init(coder:) has not been implemented"
     public static let movieListTableViewCellId = "MovieListTableViewCell"
     public static let searchText = "Search"
@@ -27,7 +28,7 @@ public class ConstantValue {
     public static let knownForDepartmentText = "Known For Department: "
     public static let genderText = "Gender: "
     public static let popularityText = "Popularity: "
-    public static let genreText = "Genre: "
+    public static let unknownText = "Unkwown"
     public static let womanText = "Woman"
     public static let manText = "Man"
     public static let tmdbAppNameText = "TMDbApp"

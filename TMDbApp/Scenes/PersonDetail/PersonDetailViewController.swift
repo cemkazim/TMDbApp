@@ -110,12 +110,17 @@ class PersonDetailViewController: UIViewController {
     }
     
     func getDataFrom(_ movieCastModel: MovieCastModel?) {
-        personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
-        personImageView.sd_setImage(with: imageUrl, completed: nil)
-        personNameLabel.text = movieCastModel?.name
-        personCharacterLabel.text = movieCastModel?.character
-        personKnownForDepartmentLabel.text = movieCastModel?.knownForDepartment
+        if movieCastModel?.profilePath != nil {
+            let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
+            personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            personImageView.sd_setImage(with: imageUrl, completed: nil)
+        } else {
+            personImageView.image = UIImage(named: ConstantValue.placeholderProfileImage)
+        }
+        personNameLabel.text = ConstantValue.nameText + (movieCastModel?.name ?? ConstantValue.unknownText)
+        personKnownForDepartmentLabel.text = ConstantValue.knownForDepartmentText + (movieCastModel?.knownForDepartment ?? ConstantValue.unknownText)
+        personCharacterLabel.text = ConstantValue.characterText + (movieCastModel?.character ?? ConstantValue.unknownText)
+        personPopularityLabel.text = "\(ConstantValue.popularityText)\(movieCastModel?.popularity ?? 0.0)"
         if let personGender = movieCastModel?.gender {
             switch personGender {
             case 1:
@@ -123,10 +128,8 @@ class PersonDetailViewController: UIViewController {
             case 2:
                 personGenderLabel.text = ConstantValue.genderText + ConstantValue.manText
             default:
-                break
+                personGenderLabel.text = ConstantValue.genderText + ConstantValue.unknownText
             }
         }
-        personCharacterLabel.text = movieCastModel?.character
-        personPopularityLabel.text = "\(ConstantValue.popularityText)\(movieCastModel?.popularity ?? 0.0)"
     }
 }

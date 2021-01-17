@@ -29,7 +29,7 @@ class MovieListViewModel {
     }
     
     public func getData() {
-        networkManager.getMovieResult(completionHandler: { [weak self] (data) in
+        networkManager.getMovieList(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
             self.setMovieList(data.results)

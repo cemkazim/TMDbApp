@@ -44,7 +44,7 @@ class MovieListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         setupConstraints()
-        initialCell()
+        configureCell()
     }
     
     required init?(coder: NSCoder) {
@@ -73,7 +73,7 @@ class MovieListTableViewCell: UITableViewCell {
         ])
     }
     
-    func initialCell() {
+    func configureCell() {
         backgroundColor = .clear
         selectionStyle = .none
         movieImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge

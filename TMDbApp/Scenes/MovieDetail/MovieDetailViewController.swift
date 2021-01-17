@@ -136,8 +136,11 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     func getDataFrom(_ movieResultModel: MovieResultModel?) {
         titleLabel.text = movieResultModel?.title
         coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieResultModel?.posterPath ?? ""))
-        coverImageView.sd_setImage(with: imageUrl, completed: nil)
+        if let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieResultModel?.posterPath ?? "")) {
+            coverImageView.sd_setImage(with: imageUrl, completed: nil)
+        } else {
+            coverImageView.image = UIImage(named: ConstantValue.placeholderImage)
+        }
         ratingLabel.text = ConstantValue.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
         if let releaseDate = movieResultModel?.releaseDate {
             releaseDateLabel.text = ConstantValue.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
@@ -158,10 +161,17 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     
     func setImageUrl(_ movieCastList: [MovieCastModel]) {
         for path in movieCastList {
-            if let profilePath = path.profilePath, let name = path.name {
-                let castModel = CastList(name: name, imagePath: APIParam.baseMovieImageUrl + profilePath)
-                movieDetailViewModel?.castList.append(castModel)
-            }
+            checkImageUrl(from: path)
+        }
+    }
+    
+    func checkImageUrl(from path: MovieCastModel) {
+        if path.profilePath != nil {
+            let castModel = CastList(name: path.name ?? "", imagePath: APIParam.baseMovieImageUrl + (path.profilePath ?? ""))
+            movieDetailViewModel?.castList.append(castModel)
+        } else {
+            let castModel = CastList(name: path.name ?? "", imagePath: nil)
+            movieDetailViewModel?.castList.append(castModel)
         }
     }
 }
@@ -192,9 +202,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
-            let imageUrl = URL(string: movieDetailViewModel?.castList[indexPath.item].imagePath ?? "")
-            cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+            if let imageUrl = URL(string: movieDetailViewModel?.castList[indexPath.item].imagePath ?? "") {
+                cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+            } else {
+                cell.castImageView.image = UIImage(named: ConstantValue.placeholderProfileImage)
+            }
             cell.castLabel.text = movieDetailViewModel?.castList[indexPath.item].name
             return cell
         } else {

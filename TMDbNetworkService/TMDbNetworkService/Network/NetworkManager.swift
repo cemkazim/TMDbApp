@@ -18,14 +18,15 @@ public class NetworkManager {
     
     // MARK: - Movie List Query -
     
-    public func getMovieResult(completionHandler: @escaping (MovieList) -> ()) {
+    public func getMovieList(completionHandler: @escaping (MovieList) -> ()) {
         AF.request(APIParam.popularMovieUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
             guard let movieListData = response.data else { return }
             do {
-                let movieList = try JSONDecoder().decode(MovieList.self, from: movieListData)
+                let json = JSONDecoder()
+                let movieList = try json.decode(MovieList.self, from: movieListData)
                 completionHandler(movieList)
-            } catch let error {
-                print(error)
+            } catch {
+                fatalError("MovieList data could not be retrieved")
             }
         }
     }
@@ -37,10 +38,11 @@ public class NetworkManager {
         AF.request(creditsUrl, method: .get, parameters: APIParam.parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
             guard let movieCastData = response.data else { return }
             do {
-                let movieCredits = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
+                let json = JSONDecoder()
+                let movieCredits = try json.decode(MovieCredits.self, from: movieCastData)
                 completionHandler(movieCredits)
-            } catch let error {
-                print(error)
+            } catch {
+                fatalError("MovieCredits data could not be retrieved")
             }
         }
     }
