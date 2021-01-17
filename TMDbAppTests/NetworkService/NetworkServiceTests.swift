@@ -25,7 +25,7 @@ class NetworkServiceTests: XCTestCase {
         super.tearDown()
     }
     
-    func testing_get_movie_result_method() {
+    func testingGetMovieResult() {
         networkManager?.getMovieResult(completionHandler: { [weak self] (results) in
             guard let self = self else { return }
             self.results = results
@@ -33,7 +33,7 @@ class NetworkServiceTests: XCTestCase {
         })
     }
     
-    func testing_get_movie_credits_method() {
+    func testingGetMovieCredits() {
         networkManager?.getMovieCredits(movieId: 733317, completionHandler: { [weak self] (credits) in
             guard let self = self else { return }
             self.credits = credits

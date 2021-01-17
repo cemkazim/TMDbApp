@@ -33,7 +33,7 @@ class MovieListViewControllerTest: XCTestCase {
     }
     
     func testingMovieResults() {
-        let expect = expectation(description: "Data fetching")
+        let expect = expectation(description: "Get data")
         movieListViewModel?.networkManager.getMovieResult(completionHandler: { [weak self] (data) in
             guard let self = self else { return }
             self.movieResults = data.results
