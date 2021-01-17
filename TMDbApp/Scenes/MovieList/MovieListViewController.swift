@@ -76,8 +76,6 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
         navigationItem.title = ConstantValue.tmdbAppNameText
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
