@@ -17,7 +17,7 @@ This screen is contained movie and cast details.
 #### Person Detail Screen
 It contains information about the actors in the movie.
 
-<img src="https://i.ibb.co/MCcg0Qr/third.jpg" width="200" height="433">
+<img src="https://i.ibb.co/HKqmX9W/simulator-screenshot-BBEBA651-843-E-4860-9554-B704-FD38-BBB3.png" width="200" height="433">
 
 ## Principles
 
