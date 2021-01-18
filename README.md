@@ -22,8 +22,8 @@ It contains information about the actors in the movie.
 ## Principles
 
 - Developed without the use of Storyboard. Programmatic components were used instead. In this way, it has reached a structure that can be readable, reusable and codable.
-- Alamofire integrated for API queries with RxSwift.
-- SDWebImage integrated for asynchronous images.
+- Integrated Alamofire and RxSwift for API queries.
+- Added SDWebImage for asynchronous images.
 - It is written MVVM architecture.
 - Unit test cases are written for the project classes.
-- Network Service, View Components and Utilities are separated from project and moved to various frameworks.
+- Separated Network Service, View Components and Utilities from project and moved to various frameworks.
