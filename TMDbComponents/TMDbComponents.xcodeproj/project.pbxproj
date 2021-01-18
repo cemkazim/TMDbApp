@@ -10,9 +10,9 @@
 		009C31EB25B32A2400C0B76D /* TMDbComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 009C31E925B32A2400C0B76D /* TMDbComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		009C31F425B32A5B00C0B76D /* BaseLabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */; };
 		009C31F725B32A6300C0B76D /* BaseImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */; };
-		009C322525B32DE800C0B76D /* TMDbUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; };
-		009C322625B32DE800C0B76D /* TMDbUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E8E29BAC798B8FE82EC7965 /* Pods_TMDbComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */; };
+		00AF81FF25B5ED5500C913A7 /* TMDbUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF81FE25B5ED5500C913A7 /* TMDbUtilities.framework */; };
+		00AF820025B5ED5500C913A7 /* TMDbUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF81FE25B5ED5500C913A7 /* TMDbUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BC019C4F592F6DD6B46DB401 /* Pods_TMDbComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BD4C19BF45D853C53646A34 /* Pods_TMDbComponents.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,7 +22,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				009C322625B32DE800C0B76D /* TMDbUtilities.framework in Embed Frameworks */,
+				00AF820025B5ED5500C913A7 /* TMDbUtilities.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,11 +35,10 @@
 		009C31EA25B32A2400C0B76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
 		009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageViewComponent.swift; sourceTree = "<group>"; };
-		009C31FB25B32AC100C0B76D /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		009C322425B32DE800C0B76D /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00AF81FE25B5ED5500C913A7 /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BD4C19BF45D853C53646A34 /* Pods_TMDbComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9BBE90B2ED5C39AD9B1433 /* Pods-TMDbComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.debug.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.debug.xcconfig"; sourceTree = "<group>"; };
 		D482F7EEC6DF8518EBC0EE48 /* Pods-TMDbComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.release.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.release.xcconfig"; sourceTree = "<group>"; };
-		DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009C322525B32DE800C0B76D /* TMDbUtilities.framework in Frameworks */,
-				8E8E29BAC798B8FE82EC7965 /* Pods_TMDbComponents.framework in Frameworks */,
+				00AF81FF25B5ED5500C913A7 /* TMDbUtilities.framework in Frameworks */,
+				BC019C4F592F6DD6B46DB401 /* Pods_TMDbComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,9 +94,8 @@
 		009C31FA25B32AC100C0B76D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				009C322425B32DE800C0B76D /* TMDbUtilities.framework */,
-				009C31FB25B32AC100C0B76D /* Utilities.framework */,
-				DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */,
+				00AF81FE25B5ED5500C913A7 /* TMDbUtilities.framework */,
+				4BD4C19BF45D853C53646A34 /* Pods_TMDbComponents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

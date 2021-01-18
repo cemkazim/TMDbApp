@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import TMDbUtilities
 
-protocol MovieListViewModelDelegate: class {
+public protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])
 }
 
@@ -19,10 +19,11 @@ public class MovieListViewModel {
     public var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
     public var filteredMovieModelList: [MovieModel] = []
+    private var disposeBag = DisposeBag()
     
-    weak var delegate: MovieListViewModelDelegate?
+    public weak var delegate: MovieListViewModelDelegate?
     
-    init() {
+    public init() {
         getData()
     }
     
@@ -33,7 +34,7 @@ public class MovieListViewModel {
             self.setMovieList(data.results)
         }, onError: { error in
             print(error)
-        }).disposed(by: DisposeBag())
+        }).disposed(by: disposeBag)
     }
     
     public func setMovieList(_ results: [MovieResultModel]) {

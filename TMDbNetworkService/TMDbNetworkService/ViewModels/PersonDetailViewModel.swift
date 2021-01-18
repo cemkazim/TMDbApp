@@ -7,11 +7,11 @@
 
 import Foundation
 
-class PersonDetailViewModel {
+public class PersonDetailViewModel {
     
     public var movieCastModel: MovieCastModel?
     
-    init(movieCastModel: MovieCastModel) {
+    public init(movieCastModel: MovieCastModel) {
         self.movieCastModel = movieCastModel
     }
 }
