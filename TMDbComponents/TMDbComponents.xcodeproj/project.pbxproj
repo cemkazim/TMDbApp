@@ -10,7 +10,6 @@
 		009C31EB25B32A2400C0B76D /* TMDbComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 009C31E925B32A2400C0B76D /* TMDbComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		009C31F425B32A5B00C0B76D /* BaseLabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */; };
 		009C31F725B32A6300C0B76D /* BaseImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */; };
-		009C321A25B32D7F00C0B76D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C321925B32D7F00C0B76D /* DataModel.swift */; };
 		009C322525B32DE800C0B76D /* TMDbUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; };
 		009C322625B32DE800C0B76D /* TMDbUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 009C322425B32DE800C0B76D /* TMDbUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E8E29BAC798B8FE82EC7965 /* Pods_TMDbComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */; };
@@ -37,7 +36,6 @@
 		009C31F325B32A5B00C0B76D /* BaseLabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
 		009C31F625B32A6300C0B76D /* BaseImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageViewComponent.swift; sourceTree = "<group>"; };
 		009C31FB25B32AC100C0B76D /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		009C321925B32D7F00C0B76D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		009C322425B32DE800C0B76D /* TMDbUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TMDbUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9BBE90B2ED5C39AD9B1433 /* Pods-TMDbComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.debug.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.debug.xcconfig"; sourceTree = "<group>"; };
 		D482F7EEC6DF8518EBC0EE48 /* Pods-TMDbComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbComponents.release.xcconfig"; path = "Target Support Files/Pods-TMDbComponents/Pods-TMDbComponents.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				009C31F225B32A4C00C0B76D /* BaseViewComponents */,
-				009C321825B32D6500C0B76D /* Models */,
 				009C31E925B32A2400C0B76D /* TMDbComponents.h */,
 				009C31EA25B32A2400C0B76D /* Info.plist */,
 			);
@@ -103,14 +100,6 @@
 				DF9A041AEF45F277188BD298 /* Pods_TMDbComponents.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		009C321825B32D6500C0B76D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				009C321925B32D7F00C0B76D /* DataModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		51603FBE05F019AE45F2DB6D /* Pods */ = {
@@ -231,7 +220,6 @@
 			files = (
 				009C31F425B32A5B00C0B76D /* BaseLabelComponent.swift in Sources */,
 				009C31F725B32A6300C0B76D /* BaseImageViewComponent.swift in Sources */,
-				009C321A25B32D7F00C0B76D /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

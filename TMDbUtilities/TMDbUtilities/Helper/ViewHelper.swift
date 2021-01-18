@@ -42,4 +42,20 @@ extension UIViewController {
         navigationController?.view.backgroundColor = .clear
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    public func showAlertView(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        let dismissButton = UIAlertAction(title: "Vazgeç", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        alertController.addAction(dismissButton)
+        present(alertController, animated: true)
+    }
+    
+    public func showError(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        present(alertController, animated: true)
+    }
 }

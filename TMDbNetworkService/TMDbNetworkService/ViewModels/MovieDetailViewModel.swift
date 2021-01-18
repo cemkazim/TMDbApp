@@ -1,14 +1,13 @@
 //
 //  MovieDetailViewModel.swift
-//  TMDbApp
+//  TMDbNetworkService
 //
-//  Created by Cem Kazım on 27.12.2020.
+//  Created by Cem Kazım on 18.01.2021.
 //
 
-import UIKit
-import TMDbNetworkService
+import Foundation
+import RxSwift
 import TMDbUtilities
-import TMDbComponents
 
 protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])
@@ -19,7 +18,6 @@ public class MovieDetailViewModel {
     public var movieResultModel: MovieResultModel?
     public var movieCast = [MovieCastModel]()
     public var castList = [CastList]()
-    public var networkManager = NetworkManager()
     
     weak var delegate: MovieDetailViewModelDelegate?
     
@@ -29,10 +27,12 @@ public class MovieDetailViewModel {
     }
     
     public func getData() {
-        networkManager.getMovieCredits(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (data) in
+        NetworkManager.shared.getMovieCredits(movieId: movieResultModel?.id ?? 0).subscribe(onNext: { [weak self] (data) in
             guard let self = self else { return }
             self.delegate?.getMovieCast(movieCast: data.cast)
-        })
+        }, onError: { (error) in
+            print(error)
+        }).disposed(by: DisposeBag())
     }
     
     public func dateFormatter(_ stringDate: String) -> String {

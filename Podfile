@@ -8,6 +8,7 @@ end
   
 def network_service
   pod 'Alamofire'
+  pod 'RxSwift'
 end
 
 target 'TMDbNetworkService' do

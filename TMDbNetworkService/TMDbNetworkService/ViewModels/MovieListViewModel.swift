@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import TMDbNetworkService
+import RxSwift
 import TMDbUtilities
-import TMDbComponents
 
 protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])
@@ -20,7 +19,6 @@ public class MovieListViewModel {
     public var movieModel: MovieModel?
     public var movieModelList: [MovieModel] = []
     public var filteredMovieModelList: [MovieModel] = []
-    public var networkManager = NetworkManager()
     
     weak var delegate: MovieListViewModelDelegate?
     
@@ -29,11 +27,13 @@ public class MovieListViewModel {
     }
     
     public func getData() {
-        networkManager.getMovieList(completionHandler: { [weak self] (data) in
+        NetworkManager.shared.getMovieList().subscribe(onNext: { [weak self] data in
             guard let self = self else { return }
             self.movieResults = data.results
             self.setMovieList(data.results)
-        })
+        }, onError: { error in
+            print(error)
+        }).disposed(by: DisposeBag())
     }
     
     public func setMovieList(_ results: [MovieResultModel]) {

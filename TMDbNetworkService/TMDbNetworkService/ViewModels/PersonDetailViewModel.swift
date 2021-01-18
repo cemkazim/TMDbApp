@@ -1,13 +1,11 @@
 //
 //  PersonDetailViewModel.swift
-//  TMDbApp
+//  TMDbNetworkService
 //
-//  Created by Cem Kazım on 15.01.2021.
+//  Created by Cem Kazım on 18.01.2021.
 //
 
 import Foundation
-import TMDbNetworkService
-import TMDbComponents
 
 class PersonDetailViewModel {
     
