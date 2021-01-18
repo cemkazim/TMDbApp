@@ -16,7 +16,6 @@ public class APIParam {
     public static let credits = "/credits"
     public static let otherParam = "&language=en-US"
     public static let baseMovieImageUrl = "https://image.tmdb.org/t/p/original"
-        
     public static let popularMovieUrl = movieBaseUrl + popularMovie + keyToken + apiKey + otherParam
     public static let creditsUrl = credits + keyToken + apiKey + otherParam
     public static let parameters = [MockParam.movieId.rawValue: MockParam.id.rawValue]

@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 import RxSwift
 import TMDbUtilities
-import TMDbComponents
 
 public class NetworkManager {
     
