@@ -26,4 +26,4 @@ It contains information about the actors in the movie.
 - SDWebImage integrated for asynchronous images.
 - It is written MVVM architecture.
 - Unit test cases are written for the project classes.
-- Network Service, View Components and Utilities are seperated from project and moved to various frameworks.
+- Network Service, View Components and Utilities are separated from project and moved to various frameworks.
