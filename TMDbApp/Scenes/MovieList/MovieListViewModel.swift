@@ -14,7 +14,7 @@ protocol MovieListViewModelDelegate: class {
     func getMovieModelList(_ movieModelList: [MovieModel])
 }
 
-class MovieListViewModel {
+public class MovieListViewModel {
     
     public var movieResults: [MovieResultModel] = []
     public var movieModel: MovieModel?
@@ -22,7 +22,7 @@ class MovieListViewModel {
     public var filteredMovieModelList: [MovieModel] = []
     public var networkManager = NetworkManager()
     
-    public weak var delegate: MovieListViewModelDelegate?
+    weak var delegate: MovieListViewModelDelegate?
     
     init() {
         getData()

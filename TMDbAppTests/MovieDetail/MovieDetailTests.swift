@@ -19,14 +19,12 @@ class MovieDetailTests: XCTestCase {
         movieDetailViewModel = MovieDetailViewModel(movieResultModel: nil)
     }
     
-    func testingGetData() {
-        let expect = expectation(description: "Get data")
-        movieDetailViewModel?.networkManager.getMovieCredits(movieId: 508442, completionHandler: { [weak self] (response) in
-            guard let self = self else { return }
-            self.movieDetailViewModel?.movieCast = response.cast
-            XCTAssertNotNil(self.movieDetailViewModel?.movieCast)
-            expect.fulfill()
-        })
-        waitForExpectations(timeout: 10, handler: nil)
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testingMovieCredits() {
+        movieDetailViewModel?.getData()
+        XCTAssertNotNil(movieDetailViewModel?.delegate)
     }
 }

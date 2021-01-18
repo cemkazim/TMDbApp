@@ -13,8 +13,6 @@ import TMDbComponents
 class NetworkServiceTests: XCTestCase {
 
     var networkManager: NetworkManager?
-    var credits: MovieCredits?
-    var results: MovieList?
     
     override func setUp() {
         super.setUp()
@@ -25,19 +23,21 @@ class NetworkServiceTests: XCTestCase {
         super.tearDown()
     }
     
-    func testingGetMovieResult() {
-        networkManager?.getMovieResult(completionHandler: { [weak self] (results) in
-            guard let self = self else { return }
-            self.results = results
-            XCTAssertNotNil(self.results)
+    func testingGetMovieList() {
+        let expect = expectation(description: "Get Movie List")
+        networkManager?.getMovieList(completionHandler: { (result) in
+            XCTAssertNotNil(result)
+            expect.fulfill()
         })
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testingGetMovieCredits() {
-        networkManager?.getMovieCredits(movieId: 733317, completionHandler: { [weak self] (credits) in
-            guard let self = self else { return }
-            self.credits = credits
-            XCTAssertNotNil(self.credits)
+        let expect = expectation(description: "Get Movie Credits")
+        networkManager?.getMovieCredits(movieId: 733317, completionHandler: { (credits) in
+            XCTAssertNotNil(credits)
+            expect.fulfill()
         })
+        waitForExpectations(timeout: 10, handler: nil)
     }
 }

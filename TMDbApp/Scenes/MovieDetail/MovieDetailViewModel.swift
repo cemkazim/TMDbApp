@@ -14,14 +14,14 @@ protocol MovieDetailViewModelDelegate: class {
     func getMovieCast(movieCast: [MovieCastModel])
 }
 
-class MovieDetailViewModel {
+public class MovieDetailViewModel {
     
     public var movieResultModel: MovieResultModel?
     public var movieCast = [MovieCastModel]()
     public var castList = [CastList]()
     public var networkManager = NetworkManager()
     
-    public weak var delegate: MovieDetailViewModelDelegate?
+    weak var delegate: MovieDetailViewModelDelegate?
     
     init(movieResultModel: MovieResultModel?) {
         self.movieResultModel = movieResultModel
