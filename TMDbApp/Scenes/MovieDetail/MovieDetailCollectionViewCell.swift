@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import TMDbUtilities
-import TMDbComponents
 
 class MovieDetailCollectionViewCell: UICollectionViewCell {
     

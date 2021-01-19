@@ -7,8 +7,6 @@
 
 import UIKit
 import SDWebImage
-import TMDbUtilities
-import TMDbComponents
 
 class MovieListTableViewCell: UITableViewCell {
     

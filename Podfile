@@ -1,34 +1,13 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'TMDbApp' do
-  use_frameworks!
+def additional_components
   pod 'SDWebImage'
-end
-  
-def network_service
   pod 'Alamofire'
   pod 'RxSwift'
 end
 
-target 'TMDbNetworkService' do
-  workspace 'TMDbApp'
-  project 'TMDbNetworkService/TMDbNetworkService.xcodeproj'
+target 'TMDbApp' do
   use_frameworks!
-  
-  network_service
-end
-
-target 'TMDbComponents' do
-  workspace 'TMDbApp'
-  project 'TMDbComponents/TMDbComponents.xcodeproj'
-  use_frameworks!
-  
-end
-
-target 'TMDbUtilities' do
-  workspace 'TMDbApp'
-  project 'TMDbUtilities/TMDbUtilities.xcodeproj'
-  use_frameworks!
-  
+  additional_components
 end
