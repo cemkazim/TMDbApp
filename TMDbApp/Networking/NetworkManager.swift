@@ -21,7 +21,7 @@ class NetworkManager {
     
     func getMovieList() -> Observable<MovieList> {
         return Observable.create { observer -> Disposable in
-            AF.request(APIParam.movieResultUrl.rawValue, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+            AF.request(APIParam.movieBaseUrl.rawValue + APIParam.movieResultUrl.rawValue, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
                 guard let movieListData = response.data else { return }
                 do {
                     let movieList = try JSONDecoder().decode(MovieList.self, from: movieListData)
