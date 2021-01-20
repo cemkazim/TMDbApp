@@ -9,11 +9,11 @@ import UIKit
 
 extension UIViewController {
     
-    public func pushTo(_ viewController: UIViewController) {
+    func pushTo(_ viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    public func updateBackgroundColor(_ view: UIView, _ firstColor: CGColor, _ secondColor: CGColor) {
+    func updateBackgroundColor(_ view: UIView, _ firstColor: CGColor, _ secondColor: CGColor) {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [
@@ -34,7 +34,7 @@ extension UIViewController {
         gradient.add(gradientChangeAnimation, forKey: ConstantValue.colorChangeKey)
     }
     
-    public func removeNavigationBar() {
+    func removeNavigationBar() {
         navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -43,7 +43,7 @@ extension UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    public func showAlertView(title: String, message: String) {
+    func showAlertView(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Tamam", style: .default, handler: nil)
         let dismissButton = UIAlertAction(title: "Vazgeç", style: .default, handler: nil)
@@ -52,7 +52,7 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
-    public func showError(title: String, message: String) {
+    func showError(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Tamam", style: .default, handler: nil)
         alertController.addAction(okButton)

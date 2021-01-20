@@ -7,18 +7,18 @@
 
 import UIKit
 
-public class BaseLabelComponent: UILabel {
+class BaseLabelComponent: UILabel {
     
-    override public init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupLabel()
     }
     
-    required public init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    public func setupLabel() {
+    func setupLabel() {
         text = ConstantValue.placeholderText
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 17)

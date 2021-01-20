@@ -133,7 +133,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     func getDataFrom(_ movieResultModel: MovieResultModel?) {
         titleLabel.text = movieResultModel?.title
         coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        if let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieResultModel?.posterPath ?? "")) {
+        if let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResultModel?.posterPath ?? "")) {
             coverImageView.sd_setImage(with: imageUrl, completed: nil)
         } else {
             coverImageView.image = UIImage(named: ConstantValue.placeholderImage)
@@ -164,7 +164,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     
     func checkImageUrl(from path: MovieCastModel) {
         if path.profilePath != nil {
-            let castModel = CastList(name: path.name ?? "", imagePath: APIParam.baseMovieImageUrl + (path.profilePath ?? ""))
+            let castModel = CastList(name: path.name ?? "", imagePath: APIParam.movieImageUrl.rawValue + (path.profilePath ?? ""))
             movieDetailViewModel?.castList.append(castModel)
         } else {
             let castModel = CastList(name: path.name ?? "", imagePath: nil)

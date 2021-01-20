@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum MockParam: String {
+enum MockParam: String {
     
     case movieId = "movie_id"
     case id = "123456"

@@ -7,16 +7,10 @@
 
 import Foundation
 
-public class APIParam {
+enum APIParam: String {
     
-    public static let apiKey = "fc4147091caa304654154fb4dee3bf04"
-    public static let keyToken = "?api_key="
-    public static let movieBaseUrl = "https://api.themoviedb.org/3/movie/"
-    public static let popularMovie = "popular"
-    public static let credits = "/credits"
-    public static let otherParam = "&language=en-US"
-    public static let baseMovieImageUrl = "https://image.tmdb.org/t/p/original"
-    public static let popularMovieUrl = movieBaseUrl + popularMovie + keyToken + apiKey + otherParam
-    public static let creditsUrl = credits + keyToken + apiKey + otherParam
-    public static let parameters = [MockParam.movieId.rawValue: MockParam.id.rawValue]
+    case movieBaseUrl = "https://api.themoviedb.org/3/movie/"
+    case movieResultUrl = "popular?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
+    case movieCreditsUrl = "/credits?api_key=fc4147091caa304654154fb4dee3bf04&language=en-US"
+    case movieImageUrl = "https://image.tmdb.org/t/p/original"
 }

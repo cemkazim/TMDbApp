@@ -21,7 +21,7 @@ class MovieDetailViewModel {
     
     weak var delegate: MovieDetailViewModelDelegate?
     
-    public init(movieResultModel: MovieResultModel?) {
+    init(movieResultModel: MovieResultModel?) {
         self.movieResultModel = movieResultModel
         getData()
     }

@@ -108,7 +108,7 @@ class PersonDetailViewController: UIViewController {
     
     func getDataFrom(_ movieCastModel: MovieCastModel?) {
         if movieCastModel?.profilePath != nil {
-            let imageUrl = URL(string: APIParam.baseMovieImageUrl + (movieCastModel?.profilePath ?? ""))
+            let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieCastModel?.profilePath ?? ""))
             personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             personImageView.sd_setImage(with: imageUrl, completed: nil)
         } else {

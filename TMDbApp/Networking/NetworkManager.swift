@@ -21,7 +21,7 @@ class NetworkManager {
     
     func getMovieList() -> Observable<MovieList> {
         return Observable.create { observer -> Disposable in
-            AF.request(APIParam.popularMovieUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+            AF.request(APIParam.movieResultUrl.rawValue, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
                 guard let movieListData = response.data else { return }
                 do {
                     let movieList = try JSONDecoder().decode(MovieList.self, from: movieListData)
@@ -38,8 +38,8 @@ class NetworkManager {
     
     func getMovieCredits(movieId: Int) -> Observable<MovieCredits> {
         return Observable.create { observer -> Disposable in
-            let creditsUrl = "\(APIParam.movieBaseUrl)\(movieId)\(APIParam.creditsUrl)"
-            AF.request(creditsUrl, method: .get, parameters: APIParam.parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
+            let creditsUrl = "\(APIParam.movieBaseUrl.rawValue)\(movieId)\(APIParam.movieCreditsUrl.rawValue)"
+            AF.request(creditsUrl, method: .get, parameters: [MockParam.movieId.rawValue: MockParam.id.rawValue], encoding: URLEncoding.default, headers: nil, interceptor: nil).response { (response) in
                 guard let movieCastData = response.data else { return }
                 do {
                     let movieCredits = try JSONDecoder().decode(MovieCredits.self, from: movieCastData)
