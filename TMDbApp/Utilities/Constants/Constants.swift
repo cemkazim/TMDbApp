@@ -1,22 +1,24 @@
 //
-//  Constant.swift
-//  TMDbUtilities
+//  Constants.swift
+//  TMDbApp
 //
 //  Created by Cem Kazım on 16.01.2021.
 //
 
 import UIKit
 
-class ConstantValue {
+struct CellIdentifiers {
     
-    static let placeholderImage = "placeholder"
-    static let placeholderProfileImage = "placeholder_profile"
-    static let initCoderText = "init(coder:) has not been implemented"
+    static let movieDetailCollectionViewCellId = "MovieDetailCollectionViewCell"
     static let movieListTableViewCellId = "MovieListTableViewCell"
+}
+
+struct ConstantTexts {
+    
+    static let initCoderText = "init(coder:) has not been implemented"
     static let searchText = "Search"
     static let cancelButtonText = "Cancel"
     static let cancelButtonTextId = "cancelButtonText"
-    static let movieDetailCollectionViewCellId = "MovieDetailCollectionViewCell"
     static let placeholderText = "'Learn and change future' - Cem Kazim"
     static let colorsKeyPath = "colors"
     static let colorChangeKey = "colorChange"
@@ -34,12 +36,21 @@ class ConstantValue {
     static let tmdbAppNameText = "TMDbApp"
     static let movieDetailText = "Movie Details"
     static let personDetailText = "Person Details"
+}
+
+struct DateFormats {
+    
     static let onlyDateFormat = "yyyy-MM-dd"
     static let withMonthDateFormat = "MMM dd yyyy"
-    static let searchBarAllScopeText = "All"
-    static let searchBarTitleScopeText = "Title"
-    static let searchBarGenreScopeText = "Genre"
-    static let searchBarActorScopeText = "Actor"
+}
+
+struct ImageNames {
+    
+    static let placeholder = "placeholder"
+    static let placeholderProfile = "placeholder_profile"
+}
+
+struct CustomColors {
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }

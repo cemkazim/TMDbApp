@@ -9,12 +9,13 @@ import Foundation
 import Alamofire
 import RxSwift
 
-class NetworkManager {
+class NetworkManager: BaseDataProtocol<MovieList> {
     
     static let shared = NetworkManager()
+    private var data: MovieList?
     
     private init() {
-        print("--- Network Manager is initiliazed! ---")
+        super.init(data: data)
     }
     
     // MARK: - Movie List Query -

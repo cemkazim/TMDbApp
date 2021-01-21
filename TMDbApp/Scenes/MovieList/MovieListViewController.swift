@@ -17,8 +17,8 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: ConstantValue.movieListTableViewCellId)
-        tableView.backgroundColor = UIColor.clear
+        tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.movieListTableViewCellId)
+        tableView.backgroundColor = .clear
         return tableView
     }()
     lazy var movieSearchController: UISearchController = {
@@ -30,9 +30,9 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         searchController.searchBar.barStyle = UIBarStyle.black
         searchController.searchBar.backgroundColor = UIColor.clear
         searchController.searchBar.isTranslucent = true
-        searchController.searchBar.placeholder = ConstantValue.searchText
+        searchController.searchBar.placeholder = ConstantTexts.searchText
         searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchController.searchBar.setValue(ConstantValue.cancelButtonText, forKey: ConstantValue.cancelButtonTextId)
+        searchController.searchBar.setValue(ConstantTexts.cancelButtonText, forKey: ConstantTexts.cancelButtonTextId)
         return searchController
     }()
     lazy var loaderActivityIndicatorView: UIActivityIndicatorView = {
@@ -70,8 +70,8 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     }
     
     func setupView() {
-        updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
-        navigationItem.title = ConstantValue.tmdbAppNameText
+        updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
+        navigationItem.title = ConstantTexts.tmdbAppNameText
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
@@ -110,6 +110,14 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         movieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()
     }
+    
+    func getReleaseDate(_ indexPath: IndexPath) -> String {
+        return "\(ConstantTexts.releaseDateText)\(movieListViewModel.movieModelList[indexPath.row].releaseDate ?? "")"
+    }
+    
+    func getImageUrl(_ indexPath: IndexPath) -> URL? {
+        return URL(string: movieListViewModel.movieModelList[indexPath.row].imageUrl ?? "")
+    }
 }
 
 // MARK: - MovieListViewController: UITableViewDelegate, UITableViewDataSource -
@@ -129,11 +137,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ConstantValue.movieListTableViewCellId) as? MovieListTableViewCell {
-            let imageUrl = URL(string: movieListViewModel.movieModelList[indexPath.row].imageUrl ?? "")
-            let releaseDate = "\(ConstantValue.releaseDateText)\(movieListViewModel.movieModelList[indexPath.row].releaseDate ?? "")"
-            cell.movieImageView.sd_setImage(with: imageUrl, completed: nil)
-            cell.movieReleaseDateLabel.text = releaseDate
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.movieListTableViewCellId) as? MovieListTableViewCell {
+            cell.movieImageView.sd_setImage(with: getImageUrl(indexPath), completed: nil)
+            cell.movieReleaseDateLabel.text = getReleaseDate(indexPath)
             if movieSearchController.isActive {
                 cell.movieNameLabel.text = movieListViewModel.filteredMovieModelList[indexPath.row].title
             } else {

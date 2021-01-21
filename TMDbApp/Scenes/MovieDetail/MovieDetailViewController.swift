@@ -54,7 +54,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId)
+        collectionView.register(MovieDetailCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifiers.movieDetailCollectionViewCellId)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.backgroundView = UIView.init(frame: .zero)
@@ -84,9 +84,9 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     // MARK: - Methods -
     
     func setupView() {
-        navigationItem.title = ConstantValue.movieDetailText
+        navigationItem.title = ConstantTexts.movieDetailText
         movieDetailViewModel?.delegate = self
-        updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
+        updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
         mainScrollView.addSubview(titleLabel)
         mainScrollView.addSubview(coverImageView)
         mainScrollView.addSubview(ratingLabel)
@@ -136,11 +136,11 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         if let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResultModel?.posterPath ?? "")) {
             coverImageView.sd_setImage(with: imageUrl, completed: nil)
         } else {
-            coverImageView.image = UIImage(named: ConstantValue.placeholderImage)
+            coverImageView.image = UIImage(named: ImageNames.placeholder)
         }
-        ratingLabel.text = ConstantValue.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantValue.voteAverageDecimalText
+        ratingLabel.text = ConstantTexts.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantTexts.voteAverageDecimalText
         if let releaseDate = movieResultModel?.releaseDate {
-            releaseDateLabel.text = ConstantValue.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
+            releaseDateLabel.text = ConstantTexts.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
         }
         summaryLabel.text = movieResultModel?.overview
     }
@@ -198,12 +198,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantValue.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
             if let imageUrl = URL(string: movieDetailViewModel?.castList[indexPath.item].imagePath ?? "") {
                 cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
                 cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
             } else {
-                cell.castImageView.image = UIImage(named: ConstantValue.placeholderProfileImage)
+                cell.castImageView.image = UIImage(named: ImageNames.placeholderProfile)
             }
             cell.castLabel.text = movieDetailViewModel?.castList[indexPath.item].name
             return cell

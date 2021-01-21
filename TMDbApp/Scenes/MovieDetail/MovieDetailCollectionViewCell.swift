@@ -34,7 +34,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError(ConstantValue.initCoderText)
+        fatalError(ConstantTexts.initCoderText)
     }
     
     // MARK: - Methods -

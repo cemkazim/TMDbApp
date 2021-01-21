@@ -37,9 +37,9 @@ class MovieDetailViewModel {
     
     func dateFormatter(_ stringDate: String) -> String {
         let getterFormatter = DateFormatter()
-        getterFormatter.dateFormat = ConstantValue.onlyDateFormat
+        getterFormatter.dateFormat = DateFormats.onlyDateFormat
         let setterFormater = DateFormatter()
-        setterFormater.dateFormat = ConstantValue.withMonthDateFormat
+        setterFormater.dateFormat = DateFormats.withMonthDateFormat
         let date = getterFormatter.date(from: stringDate)
         return setterFormater.string(from: date ?? Date())
     }

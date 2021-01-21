@@ -19,7 +19,7 @@ class BaseImageViewComponent: UIImageView {
     }
     
     func setupImageView() {
-        image = UIImage(named: ConstantValue.placeholderImage)
+        image = UIImage(named: ImageNames.placeholder)
         translatesAutoresizingMaskIntoConstraints = false
         contentMode = .scaleAspectFit
         layer.masksToBounds = true

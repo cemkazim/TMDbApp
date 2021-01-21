@@ -23,7 +23,7 @@ extension UIViewController {
         gradient.startPoint = CGPoint(x: 0, y: 0)
         gradient.endPoint = CGPoint(x: 1, y: 1)
         view.layer.insertSublayer(gradient, at: 0)
-        let gradientChangeAnimation = CABasicAnimation(keyPath: ConstantValue.colorsKeyPath)
+        let gradientChangeAnimation = CABasicAnimation(keyPath: ConstantTexts.colorsKeyPath)
         gradientChangeAnimation.duration = 2.5
         gradientChangeAnimation.toValue = [
             secondColor,
@@ -31,7 +31,7 @@ extension UIViewController {
         ]
         gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
         gradientChangeAnimation.isRemovedOnCompletion = false
-        gradient.add(gradientChangeAnimation, forKey: ConstantValue.colorChangeKey)
+        gradient.add(gradientChangeAnimation, forKey: ConstantTexts.colorChangeKey)
     }
     
     func removeNavigationBar() {

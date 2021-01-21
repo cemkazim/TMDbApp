@@ -19,7 +19,7 @@ class BaseLabelComponent: UILabel {
     }
     
     func setupLabel() {
-        text = ConstantValue.placeholderText
+        text = ConstantTexts.placeholderText
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 17)
         textAlignment = .left

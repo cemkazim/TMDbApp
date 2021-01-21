@@ -71,8 +71,8 @@ class PersonDetailViewController: UIViewController {
     // MARK: - Methods -
     
     func setupView() {
-        navigationItem.title = ConstantValue.personDetailText
-        updateBackgroundColor(view, ConstantValue.firstChangableColor, ConstantValue.secondChangableColor)
+        navigationItem.title = ConstantTexts.personDetailText
+        updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
         view.addSubview(personImageView)
         view.addSubview(labelStackView)
         getDataFrom(personDetailViewModel?.movieCastModel)
@@ -112,20 +112,20 @@ class PersonDetailViewController: UIViewController {
             personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             personImageView.sd_setImage(with: imageUrl, completed: nil)
         } else {
-            personImageView.image = UIImage(named: ConstantValue.placeholderProfileImage)
+            personImageView.image = UIImage(named: ImageNames.placeholderProfile)
         }
-        personNameLabel.text = ConstantValue.nameText + (movieCastModel?.name ?? ConstantValue.unknownText)
-        personKnownForDepartmentLabel.text = ConstantValue.knownForDepartmentText + (movieCastModel?.knownForDepartment ?? ConstantValue.unknownText)
-        personCharacterLabel.text = ConstantValue.characterText + (movieCastModel?.character ?? ConstantValue.unknownText)
-        personPopularityLabel.text = "\(ConstantValue.popularityText)\(movieCastModel?.popularity ?? 0.0)"
+        personNameLabel.text = ConstantTexts.nameText + (movieCastModel?.name ?? ConstantTexts.unknownText)
+        personKnownForDepartmentLabel.text = ConstantTexts.knownForDepartmentText + (movieCastModel?.knownForDepartment ?? ConstantTexts.unknownText)
+        personCharacterLabel.text = ConstantTexts.characterText + (movieCastModel?.character ?? ConstantTexts.unknownText)
+        personPopularityLabel.text = "\(ConstantTexts.popularityText)\(movieCastModel?.popularity ?? 0.0)"
         if let personGender = movieCastModel?.gender {
             switch personGender {
             case 1:
-                personGenderLabel.text = ConstantValue.genderText + ConstantValue.womanText
+                personGenderLabel.text = ConstantTexts.genderText + ConstantTexts.womanText
             case 2:
-                personGenderLabel.text = ConstantValue.genderText + ConstantValue.manText
+                personGenderLabel.text = ConstantTexts.genderText + ConstantTexts.manText
             default:
-                personGenderLabel.text = ConstantValue.genderText + ConstantValue.unknownText
+                personGenderLabel.text = ConstantTexts.genderText + ConstantTexts.unknownText
             }
         }
     }

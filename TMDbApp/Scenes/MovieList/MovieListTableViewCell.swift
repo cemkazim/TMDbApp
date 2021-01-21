@@ -46,23 +46,23 @@ class MovieListTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError(ConstantValue.initCoderText)
+        fatalError(ConstantTexts.initCoderText)
     }
     
     // MARK: - Methods -
     
     func setupView() {
-        contentView.addSubview(movieImageView)
-        contentView.addSubview(labelStackView)
+        addSubview(movieImageView)
+        addSubview(labelStackView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            movieImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             movieImageView.widthAnchor.constraint(equalToConstant: 100),
             movieImageView.heightAnchor.constraint(equalToConstant: 100),
-            movieImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             movieNameLabel.widthAnchor.constraint(equalToConstant: 200),
             
