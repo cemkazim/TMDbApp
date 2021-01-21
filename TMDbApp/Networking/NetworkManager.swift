@@ -14,7 +14,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {
-        print("--- Network Manager is initialized ---")
+        // initialized...
     }
     
     func getData<T: Decodable>(requestUrl: String) -> Observable<T> {

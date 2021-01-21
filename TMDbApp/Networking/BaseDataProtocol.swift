@@ -11,7 +11,7 @@ import RxSwift
 
 class BaseDataProtocol<T> {
     
-    init() {
+    private init() {
         // initialized...
     }
     
