@@ -111,12 +111,10 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         loaderActivityIndicatorView.stopAnimating()
     }
     
-    func getReleaseDate(_ indexPath: IndexPath) -> String {
-        return "\(ConstantTexts.releaseDateText)\(movieListViewModel.movieModelList[indexPath.row].releaseDate ?? "")"
-    }
-    
-    func getImageUrl(_ indexPath: IndexPath) -> URL? {
-        return URL(string: movieListViewModel.movieModelList[indexPath.row].imageUrl ?? "")
+    func checkSearchBar(with movieModelList: MovieModel, cell: MovieListTableViewCell) {
+        cell.movieNameLabel.text = movieModelList.title
+        cell.movieImageView.sd_setImage(with: URL(string: movieModelList.imageUrl ?? ""), completed: nil)
+        cell.movieReleaseDateLabel.text = "\(ConstantTexts.releaseDateText)\(movieModelList.releaseDate ?? "")"
     }
 }
 
@@ -138,12 +136,10 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.movieListTableViewCellId) as? MovieListTableViewCell {
-            cell.movieImageView.sd_setImage(with: getImageUrl(indexPath), completed: nil)
-            cell.movieReleaseDateLabel.text = getReleaseDate(indexPath)
             if movieSearchController.isActive {
-                cell.movieNameLabel.text = movieListViewModel.filteredMovieModelList[indexPath.row].title
+                checkSearchBar(with: movieListViewModel.filteredMovieModelList[indexPath.row], cell: cell)
             } else {
-                cell.movieNameLabel.text = movieListViewModel.movieModelList[indexPath.row].title
+                checkSearchBar(with: movieListViewModel.movieModelList[indexPath.row], cell: cell)
             }
             return cell
         } else {

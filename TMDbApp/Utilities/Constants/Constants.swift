@@ -51,6 +51,7 @@ struct ImageNames {
 }
 
 struct CustomColors {
+    
     static let firstChangableColor = UIColor(red: 169/255, green: 62/255, blue: 152/255, alpha: 1).cgColor
     static let secondChangableColor = UIColor(red: 30/255, green: 40/255, blue: 50/255, alpha: 1).cgColor
 }
