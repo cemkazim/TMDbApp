@@ -17,20 +17,22 @@ class MovieDetailViewModel {
     var movieResultModel: MovieResultModel?
     var movieCast = [MovieCastModel]()
     var castList = [CastList]()
+    var creditsUrl = ""
     private var disposeBag = DisposeBag()
     
     weak var delegate: MovieDetailViewModelDelegate?
     
     init(movieResultModel: MovieResultModel?) {
         self.movieResultModel = movieResultModel
+        creditsUrl = "\(APIParam.movieBaseUrl.rawValue)\(movieResultModel?.id ?? 0)\(APIParam.movieCreditsUrl.rawValue)"
         getData()
     }
     
     func getData() {
-        NetworkManager.shared.getMovieCredits(movieId: movieResultModel?.id ?? 0).subscribe(onNext: { [weak self] (data) in
+        NetworkManager.shared.getData(requestUrl: creditsUrl).subscribe(onNext: { [weak self] (data: MovieCredits) in
             guard let self = self else { return }
             self.delegate?.getMovieCast(movieCast: data.cast)
-        }, onError: { (error) in
+        }, onError: { (error: Error) in
             print(error)
         }).disposed(by: disposeBag)
     }
