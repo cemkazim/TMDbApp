@@ -29,7 +29,11 @@ class MovieDetailViewModel {
     }
     
     func getData() {
-        NetworkManager.shared.getData(requestUrl: creditsUrl).subscribe(onNext: { [weak self] (data: MovieCredits) in
+        NetworkManager
+            .shared
+            .getData(requestUrl: creditsUrl,
+                     requestParameters: [MockParam.movieId.rawValue: MockParam.id.rawValue])
+            .subscribe(onNext: { [weak self] (data: MovieCredits) in
             guard let self = self else { return }
             self.delegate?.getMovieCast(movieCast: data.cast)
         }, onError: { (error: Error) in
