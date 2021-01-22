@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol MovieDetailViewModelDelegate: class {
-    func getMovieCast(movieCast: [MovieCastModel])
+    func setMovieCast(movieCast: [MovieCastModel])
 }
 
 class MovieDetailViewModel {
@@ -17,28 +17,20 @@ class MovieDetailViewModel {
     var movieResultModel: MovieResultModel?
     var movieCast = [MovieCastModel]()
     var castList = [CastList]()
-    var creditsUrl = ""
     private var disposeBag = DisposeBag()
     
     weak var delegate: MovieDetailViewModelDelegate?
     
     init(movieResultModel: MovieResultModel?) {
         self.movieResultModel = movieResultModel
-        creditsUrl = "\(APIParam.movieBaseUrl.rawValue)\(movieResultModel?.id ?? 0)\(APIParam.movieCreditsUrl.rawValue)"
         getData()
     }
     
     func getData() {
-        NetworkManager
-            .shared
-            .getData(requestUrl: creditsUrl,
-                     requestParameters: [MockParam.movieId.rawValue: MockParam.id.rawValue])
-            .subscribe(onNext: { [weak self] (data: MovieCredits) in
+        ServiceLayer.shared.getMovieCast(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (cast) in
             guard let self = self else { return }
-            self.delegate?.getMovieCast(movieCast: data.cast)
-        }, onError: { (error: Error) in
-            print(error)
-        }).disposed(by: disposeBag)
+            self.delegate?.setMovieCast(movieCast: cast)
+        })
     }
     
     func dateFormatter(_ stringDate: String) -> String {

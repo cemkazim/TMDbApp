@@ -1,6 +1,6 @@
 //
-//  NetworkManager.swift
-//  NetworkService
+//  NetworkLayer.swift
+//  TMDbApp
 //
 //  Created by Cem Kazım on 16.01.2021.
 //
@@ -8,15 +8,13 @@
 import Alamofire
 import RxSwift
 
-class NetworkManager {
+class NetworkLayer {
     
-    static let shared = NetworkManager()
+    static let shared = NetworkLayer()
     
-    private init() {
-        // initialized...
-    }
+    private init() {}
     
-    func getData<T: Decodable>(requestUrl: String, requestParameters: Parameters? = nil) -> Observable<T> {
+    func request<T: Decodable>(requestUrl: String, requestParameters: Parameters? = nil) -> Observable<T> {
         return Observable.create { observer -> Disposable in
             AF.request(requestUrl, method: .get, parameters: requestParameters, encoding: URLEncoding.default).response { (response) in
                 guard let remoteData = response.data else { return }

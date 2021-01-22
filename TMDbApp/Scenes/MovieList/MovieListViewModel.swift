@@ -27,16 +27,11 @@ class MovieListViewModel {
     }
     
     func getData() {
-        NetworkManager
-            .shared
-            .getData(requestUrl: APIParam.movieBaseUrl.rawValue + APIParam.movieResultUrl.rawValue)
-            .subscribe(onNext: { [weak self] (data: MovieList) in
+        ServiceLayer.shared.getMovieList(completionHandler: { [weak self] (results) in
             guard let self = self else { return }
-            self.movieResults = data.results
-            self.setMovieList(data.results)
-        }, onError: { (error: Error) in
-            print(error)
-        }).disposed(by: disposeBag)
+            self.movieResults = results
+            self.setMovieList(results)
+        })
     }
     
     func setMovieList(_ results: [MovieResultModel]) {

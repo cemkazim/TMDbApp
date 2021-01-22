@@ -42,6 +42,7 @@ struct DateFormats {
     
     static let onlyDateFormat = "yyyy-MM-dd"
     static let withMonthDateFormat = "MMM dd yyyy"
+    static let birthOfChrist = "00.00.0000"
 }
 
 struct ImageNames {

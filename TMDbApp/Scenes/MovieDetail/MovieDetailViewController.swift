@@ -131,18 +131,22 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     }
     
     func getDataFrom(_ movieResultModel: MovieResultModel?) {
-        titleLabel.text = movieResultModel?.title
-        coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        if let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResultModel?.posterPath ?? "")) {
+        if let title = movieResultModel?.title,
+           let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResultModel?.posterPath ?? "")),
+           let releaseDate = movieResultModel?.releaseDate,
+           let summary = movieResultModel?.overview {
+            titleLabel.text = title
+            coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             coverImageView.sd_setImage(with: imageUrl, completed: nil)
+            releaseDateLabel.text = ConstantTexts.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? DateFormats.birthOfChrist)
+            ratingLabel.text = ConstantTexts.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantTexts.voteAverageDecimalText
+            summaryLabel.text = summary
         } else {
+            titleLabel.text = ConstantTexts.unknownText
             coverImageView.image = UIImage(named: ImageNames.placeholder)
+            releaseDateLabel.text = ConstantTexts.unknownText
+            summaryLabel.text = ConstantTexts.unknownText
         }
-        ratingLabel.text = ConstantTexts.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantTexts.voteAverageDecimalText
-        if let releaseDate = movieResultModel?.releaseDate {
-            releaseDateLabel.text = ConstantTexts.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? "00.00.0000")
-        }
-        summaryLabel.text = movieResultModel?.overview
     }
     
     func resizeScrollView() {
@@ -150,7 +154,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
-    func getMovieCast(movieCast: [MovieCastModel]) {
+    func setMovieCast(movieCast: [MovieCastModel]) {
         movieDetailViewModel?.movieCast = movieCast
         setImageUrl(movieCast)
         castCollectionView.reloadData()
