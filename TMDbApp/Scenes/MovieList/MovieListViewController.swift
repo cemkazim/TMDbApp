@@ -105,7 +105,7 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
         }
     }
     
-    func getMovieModelList(_ movieModelList: [MovieModel]) {
+    func setMovieModelList(_ movieModelList: [MovieModel]) {
         movieListViewModel.movieModelList = movieModelList
         movieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()

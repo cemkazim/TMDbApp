@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol MovieDetailViewModelDelegate: class {
     func setMovieCast(movieCast: [MovieCastModel])
@@ -17,7 +16,6 @@ class MovieDetailViewModel {
     var movieResultModel: MovieResultModel?
     var movieCast = [MovieCastModel]()
     var castList = [CastList]()
-    private var disposeBag = DisposeBag()
     
     weak var delegate: MovieDetailViewModelDelegate?
     

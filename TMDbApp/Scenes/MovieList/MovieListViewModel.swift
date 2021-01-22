@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol MovieListViewModelDelegate: class {
-    func getMovieModelList(_ movieModelList: [MovieModel])
+    func setMovieModelList(_ movieModelList: [MovieModel])
 }
 
 class MovieListViewModel {
@@ -18,7 +17,6 @@ class MovieListViewModel {
     var movieModel: MovieModel?
     var movieModelList: [MovieModel] = []
     var filteredMovieModelList: [MovieModel] = []
-    private var disposeBag = DisposeBag()
     
     weak var delegate: MovieListViewModelDelegate?
     
@@ -43,6 +41,6 @@ class MovieListViewModel {
                 }
             }
         }
-        delegate?.getMovieModelList(movieModelList)
+        delegate?.setMovieModelList(movieModelList)
     }
 }

@@ -111,6 +111,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003C4AA825BAF14A004CC30C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				00AF82B025B783C000C913A7 /* NetworkLayer.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		003C4AA925BAF159004CC30C /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				003C4AA225BAEC7A004CC30C /* ServiceLayer.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 		003EDC292598D04000BB1560 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,8 +251,8 @@
 		00AF82AF25B7839900C913A7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				00AF82B025B783C000C913A7 /* NetworkLayer.swift */,
-				003C4AA225BAEC7A004CC30C /* ServiceLayer.swift */,
+				003C4AA825BAF14A004CC30C /* API */,
+				003C4AA925BAF159004CC30C /* Local */,
 			);
 			path = Network;
 			sourceTree = "<group>";
