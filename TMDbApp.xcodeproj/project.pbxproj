@@ -113,20 +113,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0033FCBC25BCC59D002D5035 /* Local */ = {
+		0033FCBC25BCC59D002D5035 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				0033FCDD25BCC87B002D5035 /* Layers */,
+				0033FCD125BCC7A9002D5035 /* PopularMovieList */,
+				0033FCD225BCC7B9002D5035 /* MovieDetail */,
 			);
-			path = Local;
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
-		0033FCBD25BCC5A1002D5035 /* API */ = {
+		0033FCBD25BCC5A1002D5035 /* APILayer */ = {
 			isa = PBXGroup;
 			children = (
 				00AF82B025B783C000C913A7 /* BaseNetworkLayer.swift */,
 			);
-			path = API;
+			path = APILayer;
 			sourceTree = "<group>";
 		};
 		0033FCD125BCC7A9002D5035 /* PopularMovieList */ = {
@@ -143,15 +144,6 @@
 				0033FCE425BCC8A9002D5035 /* MovieDetailServiceLayer.swift */,
 			);
 			path = MovieDetail;
-			sourceTree = "<group>";
-		};
-		0033FCDD25BCC87B002D5035 /* Layers */ = {
-			isa = PBXGroup;
-			children = (
-				0033FCD125BCC7A9002D5035 /* PopularMovieList */,
-				0033FCD225BCC7B9002D5035 /* MovieDetail */,
-			);
-			path = Layers;
 			sourceTree = "<group>";
 		};
 		003EDC292598D04000BB1560 /* PersonDetail */ = {
@@ -278,8 +270,8 @@
 		00AF82AF25B7839900C913A7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0033FCBD25BCC5A1002D5035 /* API */,
-				0033FCBC25BCC59D002D5035 /* Local */,
+				0033FCBD25BCC5A1002D5035 /* APILayer */,
+				0033FCBC25BCC59D002D5035 /* ServiceLayer */,
 			);
 			path = Network;
 			sourceTree = "<group>";
