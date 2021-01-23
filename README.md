@@ -27,3 +27,9 @@ It contains information about the actors in the movie.
 - It is written MVVM architecture.
 - Unit test cases are written for the project classes.
 - Separated Network Service, View Components and Utilities from project and moved to various frameworks.
+
+## Software Hierarchy
+
+This application was written with the following hierarchy.
+
+<img src="https://i.ibb.co/ZKL0qRK/hierarchy.png" width="200" height="1033">
