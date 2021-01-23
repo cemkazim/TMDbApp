@@ -1,5 +1,5 @@
 //
-//  MovieListViewController.swift
+//  PopularMovieListViewController.swift
 //  TMDbApp
 //
 //  Created by Cem Kazım on 26.12.2020.
@@ -8,20 +8,20 @@
 import UIKit
 import SDWebImage
 
-class MovieListViewController: UIViewController, MovieListViewModelDelegate {
+class PopularMovieListViewController: UIViewController, PopularMovieListViewModelDelegate {
     
     // MARK: - UI Objects -
     
-    lazy var movieTableView: UITableView = {
+    lazy var popularMovieTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.movieListTableViewCellId)
+        tableView.register(PopularMovieListTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.popularMovieListTableViewCellId)
         tableView.backgroundColor = .clear
         return tableView
     }()
-    lazy var movieSearchController: UISearchController = {
+    lazy var popularMovieSearchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -43,8 +43,8 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     
     // MARK: - View Model Property -
     
-    lazy var movieListViewModel: MovieListViewModel = {
-        let viewModel = MovieListViewModel()
+    lazy var popularMovieListViewModel: PopularMovieListViewModel = {
+        let viewModel = PopularMovieListViewModel()
         viewModel.delegate = self
         return viewModel
     }()
@@ -62,18 +62,18 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     func setupSearchController() {
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
-            navigationItem.searchController = movieSearchController
+            navigationItem.searchController = popularMovieSearchController
         } else {
-            movieSearchController.hidesNavigationBarDuringPresentation = false
-            navigationItem.titleView = movieSearchController.searchBar
+            popularMovieSearchController.hidesNavigationBarDuringPresentation = false
+            navigationItem.titleView = popularMovieSearchController.searchBar
         }
     }
     
     func setupView() {
         updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
-        navigationItem.title = ConstantTexts.tmdbAppNameText
+        navigationItem.title = ConstantTexts.popularMoviesText
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        view.addSubview(movieTableView)
+        view.addSubview(popularMovieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
         setupConstraints()
@@ -84,20 +84,20 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     func setupConstraints() {
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                movieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-                movieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-                movieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-                movieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+                popularMovieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+                popularMovieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+                popularMovieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+                popularMovieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
                 
                 loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                movieTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-                movieTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-                movieTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                movieTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+                popularMovieTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                popularMovieTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                popularMovieTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                popularMovieTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
                 
                 loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -106,40 +106,40 @@ class MovieListViewController: UIViewController, MovieListViewModelDelegate {
     }
     
     func setMovieModelList(_ movieModelList: [MovieModel]) {
-        movieListViewModel.movieModelList = movieModelList
-        movieTableView.reloadData()
+        popularMovieListViewModel.movieModelList = movieModelList
+        popularMovieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()
     }
     
-    func getCellData(with movieModelList: MovieModel, cell: MovieListTableViewCell) {
+    func getCellData(with movieModelList: MovieModel, cell: PopularMovieListTableViewCell) {
         cell.movieNameLabel.text = movieModelList.title
-        cell.movieImageView.sd_setImage(with: URL(string: movieModelList.imageUrl ?? ""), completed: nil)
+        cell.movieImageView.sd_setImage(with: URL(string: movieModelList.imageUrl ?? ""))
         cell.movieReleaseDateLabel.text = "\(ConstantTexts.releaseDateText)\(movieModelList.releaseDate ?? "")"
     }
 }
 
 // MARK: - MovieListViewController: UITableViewDelegate, UITableViewDataSource -
 
-extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
+extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if movieSearchController.isActive {
-            return movieListViewModel.filteredMovieModelList.count
+        if popularMovieSearchController.isActive {
+            return popularMovieListViewModel.filteredMovieModelList.count
         } else {
-            return movieListViewModel.movieModelList.count
+            return popularMovieListViewModel.movieModelList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.movieListTableViewCellId) as? MovieListTableViewCell {
-            if movieSearchController.isActive {
-                getCellData(with: movieListViewModel.filteredMovieModelList[indexPath.row], cell: cell)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.popularMovieListTableViewCellId) as? PopularMovieListTableViewCell {
+            if popularMovieSearchController.isActive {
+                getCellData(with: popularMovieListViewModel.filteredMovieModelList[indexPath.row], cell: cell)
             } else {
-                getCellData(with: movieListViewModel.movieModelList[indexPath.row], cell: cell)
+                getCellData(with: popularMovieListViewModel.movieModelList[indexPath.row], cell: cell)
             }
             return cell
         } else {
@@ -153,7 +153,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailViewController = MovieDetailViewController()
-        let movieDetailViewModel = MovieDetailViewModel(movieResultModel: movieListViewModel.movieResults[indexPath.row])
+        let movieDetailViewModel = MovieDetailViewModel(movieResultModel: popularMovieListViewModel.movieResults[indexPath.row])
         movieDetailViewController.movieDetailViewModel = movieDetailViewModel
         pushTo(movieDetailViewController)
     }
@@ -171,45 +171,45 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating -
 
-extension MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
+extension PopularMovieListViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         // code was here...
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        movieListViewModel.filteredMovieModelList.removeAll(keepingCapacity: false)
+        popularMovieListViewModel.filteredMovieModelList.removeAll(keepingCapacity: false)
         if let searchTerm = searchController.searchBar.text {
-            let filteredArray = movieListViewModel.movieModelList.filter { result in
+            let filteredArray = popularMovieListViewModel.movieModelList.filter { result in
                 return (result.title?.lowercased().contains(searchTerm.lowercased()) ?? false)
             }
-            movieListViewModel.filteredMovieModelList = filteredArray
+            popularMovieListViewModel.filteredMovieModelList = filteredArray
             if !searchController.isBeingDismissed {
-                movieTableView.reloadData()
+                popularMovieTableView.reloadData()
             }
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        movieSearchController.searchBar.endEditing(true)
-        movieTableView.reloadData()
+        popularMovieSearchController.searchBar.endEditing(true)
+        popularMovieTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        movieSearchController.isActive = false
-        movieSearchController.searchBar.endEditing(true)
-        movieSearchController.searchBar.showsCancelButton = false
-        movieTableView.reloadData()
+        popularMovieSearchController.isActive = false
+        popularMovieSearchController.searchBar.endEditing(true)
+        popularMovieSearchController.searchBar.showsCancelButton = false
+        popularMovieTableView.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        movieSearchController.isActive = false
-        movieSearchController.searchBar.showsCancelButton = true
+        popularMovieSearchController.isActive = false
+        popularMovieSearchController.searchBar.showsCancelButton = true
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        movieSearchController.isActive = true
-        movieSearchController.searchBar.showsCancelButton = true
-        movieTableView.reloadData()
+        popularMovieSearchController.isActive = true
+        popularMovieSearchController.searchBar.showsCancelButton = true
+        popularMovieTableView.reloadData()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MovieListTableViewCell.swift
+//  PopularMovieListTableViewCell.swift
 //  TMDbApp
 //
 //  Created by Cem Kazım on 26.12.2020.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class MovieListTableViewCell: UITableViewCell {
+class PopularMovieListTableViewCell: UITableViewCell {
     
     // MARK: - UI Objects -
     

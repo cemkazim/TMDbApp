@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().tintColor = .white
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.red
-        window?.rootViewController = UINavigationController(rootViewController: MovieListViewController())
+        window?.rootViewController = UINavigationController(rootViewController: PopularMovieListViewController())
         window?.makeKeyAndVisible()
         return true
     }

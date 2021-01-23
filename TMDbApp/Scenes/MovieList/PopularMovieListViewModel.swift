@@ -1,5 +1,5 @@
 //
-//  MovieListViewModel.swift
+//  PopularMovieListViewModel.swift
 //  TMDbApp
 //
 //  Created by Cem Kazım on 26.12.2020.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol MovieListViewModelDelegate: class {
+protocol PopularMovieListViewModelDelegate: class {
     func setMovieModelList(_ movieModelList: [MovieModel])
 }
 
-class MovieListViewModel {
+class PopularMovieListViewModel {
     
     var movieResults: [MovieResultModel] = []
     var movieModel: MovieModel?
     var movieModelList: [MovieModel] = []
     var filteredMovieModelList: [MovieModel] = []
     
-    weak var delegate: MovieListViewModelDelegate?
+    weak var delegate: PopularMovieListViewModelDelegate?
     
     init() {
         getData()

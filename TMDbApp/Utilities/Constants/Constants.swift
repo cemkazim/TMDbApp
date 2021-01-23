@@ -10,7 +10,7 @@ import UIKit
 struct CellIdentifiers {
     
     static let movieDetailCollectionViewCellId = "MovieDetailCollectionViewCell"
-    static let movieListTableViewCellId = "MovieListTableViewCell"
+    static let popularMovieListTableViewCellId = "PopularMovieListTableViewCell"
 }
 
 struct ConstantTexts {
@@ -33,9 +33,9 @@ struct ConstantTexts {
     static let unknownText = "Unkwown"
     static let womanText = "Woman"
     static let manText = "Man"
-    static let tmdbAppNameText = "TMDbApp"
-    static let movieDetailText = "Movie Details"
-    static let personDetailText = "Person Details"
+    static let popularMoviesText = "Popular Movies"
+    static let movieDetailText = "Movie Detail"
+    static let personDetailText = "Person Detail"
 }
 
 struct DateFormats {

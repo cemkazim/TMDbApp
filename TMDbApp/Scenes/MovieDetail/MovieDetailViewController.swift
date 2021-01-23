@@ -205,7 +205,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.movieDetailCollectionViewCellId, for: indexPath) as? MovieDetailCollectionViewCell {
             if let imageUrl = URL(string: movieDetailViewModel?.castList[indexPath.item].imagePath ?? "") {
                 cell.castImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                cell.castImageView.sd_setImage(with: imageUrl, completed: nil)
+                cell.castImageView.sd_setImage(with: imageUrl)
             } else {
                 cell.castImageView.image = UIImage(named: ImageNames.placeholderProfile)
             }
