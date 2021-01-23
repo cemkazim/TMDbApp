@@ -25,7 +25,7 @@ class PopularMovieListViewModel {
     }
     
     func getData() {
-        ServiceLayer.shared.getMovieList(completionHandler: { [weak self] (results) in
+        PopularMovieListServiceLayer.shared.getMovieList(completionHandler: { [weak self] (results) in
             guard let self = self else { return }
             self.movieResults = results
             self.setMovieList(results)
@@ -33,6 +33,7 @@ class PopularMovieListViewModel {
     }
     
     func setMovieList(_ results: [MovieResultModel]) {
+        movieResults = results
         for movie in results {
             if let imagePath = movie.posterPath, let title = movie.title, let releaseDate = movie.releaseDate {
                 movieModel = MovieModel(title: title, imageUrl: APIParam.movieImageUrl.rawValue + imagePath, releaseDate: releaseDate)

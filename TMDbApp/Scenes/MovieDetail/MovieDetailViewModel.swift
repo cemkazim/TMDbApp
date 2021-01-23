@@ -8,6 +8,7 @@
 import Foundation
 
 protocol MovieDetailViewModelDelegate: class {
+    
     func setMovieCast(movieCast: [MovieCastModel])
 }
 
@@ -25,7 +26,7 @@ class MovieDetailViewModel {
     }
     
     func getData() {
-        ServiceLayer.shared.getMovieCast(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (cast) in
+        MovieDetailServiceLayer.shared.getMovieCast(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (cast) in
             guard let self = self else { return }
             self.delegate?.setMovieCast(movieCast: cast)
         })

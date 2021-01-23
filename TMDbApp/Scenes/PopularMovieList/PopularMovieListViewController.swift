@@ -12,7 +12,7 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
     
     // MARK: - UI Objects -
     
-    lazy var popularMovieTableView: UITableView = {
+    lazy var movieTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -21,7 +21,7 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
         tableView.backgroundColor = .clear
         return tableView
     }()
-    lazy var popularMovieSearchController: UISearchController = {
+    lazy var movieSearchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -62,10 +62,10 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
     func setupSearchController() {
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
-            navigationItem.searchController = popularMovieSearchController
+            navigationItem.searchController = movieSearchController
         } else {
-            popularMovieSearchController.hidesNavigationBarDuringPresentation = false
-            navigationItem.titleView = popularMovieSearchController.searchBar
+            movieSearchController.hidesNavigationBarDuringPresentation = false
+            navigationItem.titleView = movieSearchController.searchBar
         }
     }
     
@@ -73,7 +73,7 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
         updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
         navigationItem.title = ConstantTexts.popularMoviesText
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        view.addSubview(popularMovieTableView)
+        view.addSubview(movieTableView)
         view.addSubview(loaderActivityIndicatorView)
         loaderActivityIndicatorView.startAnimating()
         setupConstraints()
@@ -84,20 +84,20 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
     func setupConstraints() {
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                popularMovieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-                popularMovieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-                popularMovieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-                popularMovieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+                movieTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+                movieTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+                movieTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+                movieTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
                 
-                loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+                loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                popularMovieTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-                popularMovieTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-                popularMovieTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                popularMovieTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+                movieTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                movieTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                movieTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                movieTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
                 
                 loaderActivityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 loaderActivityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -107,7 +107,7 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
     
     func setMovieModelList(_ movieModelList: [MovieModel]) {
         popularMovieListViewModel.movieModelList = movieModelList
-        popularMovieTableView.reloadData()
+        movieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()
     }
     
@@ -127,7 +127,7 @@ extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if popularMovieSearchController.isActive {
+        if movieSearchController.isActive {
             return popularMovieListViewModel.filteredMovieModelList.count
         } else {
             return popularMovieListViewModel.movieModelList.count
@@ -136,7 +136,7 @@ extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.popularMovieListTableViewCellId) as? PopularMovieListTableViewCell {
-            if popularMovieSearchController.isActive {
+            if movieSearchController.isActive {
                 getCellData(with: popularMovieListViewModel.filteredMovieModelList[indexPath.row], cell: cell)
             } else {
                 getCellData(with: popularMovieListViewModel.movieModelList[indexPath.row], cell: cell)
@@ -157,16 +157,6 @@ extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSo
         movieDetailViewController.movieDetailViewModel = movieDetailViewModel
         pushTo(movieDetailViewController)
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, -20, 0)
-        cell.layer.transform = rotationTransform
-        cell.alpha = 0
-        UIView.animate(withDuration: 0.75) {
-            cell.layer.transform = CATransform3DIdentity
-            cell.alpha = 1
-        }
-    }
 }
 
 // MARK: - MovieListViewController: UISearchBarDelegate, UISearchResultsUpdating -
@@ -185,31 +175,31 @@ extension PopularMovieListViewController: UISearchBarDelegate, UISearchResultsUp
             }
             popularMovieListViewModel.filteredMovieModelList = filteredArray
             if !searchController.isBeingDismissed {
-                popularMovieTableView.reloadData()
+                movieTableView.reloadData()
             }
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        popularMovieSearchController.searchBar.endEditing(true)
-        popularMovieTableView.reloadData()
+        movieSearchController.searchBar.endEditing(true)
+        movieTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        popularMovieSearchController.isActive = false
-        popularMovieSearchController.searchBar.endEditing(true)
-        popularMovieSearchController.searchBar.showsCancelButton = false
-        popularMovieTableView.reloadData()
+        movieSearchController.isActive = false
+        movieSearchController.searchBar.endEditing(true)
+        movieSearchController.searchBar.showsCancelButton = false
+        movieTableView.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        popularMovieSearchController.isActive = false
-        popularMovieSearchController.searchBar.showsCancelButton = true
+        movieSearchController.isActive = false
+        movieSearchController.searchBar.showsCancelButton = true
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        popularMovieSearchController.isActive = true
-        popularMovieSearchController.searchBar.showsCancelButton = true
-        popularMovieTableView.reloadData()
+        movieSearchController.isActive = true
+        movieSearchController.searchBar.showsCancelButton = true
+        movieTableView.reloadData()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  NetworkLayer.swift
+//  BaseNetworkLayer.swift
 //  TMDbApp
 //
 //  Created by Cem Kazım on 16.01.2021.
@@ -8,9 +8,9 @@
 import Alamofire
 import RxSwift
 
-class NetworkLayer {
+class BaseNetworkLayer {
     
-    static let shared = NetworkLayer()
+    static let shared = BaseNetworkLayer()
     
     private init() {}
     

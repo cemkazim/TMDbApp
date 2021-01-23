@@ -67,7 +67,7 @@ class PopularMovieListTableViewCell: UITableViewCell {
             movieNameLabel.widthAnchor.constraint(equalToConstant: 200),
             
             labelStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 15),
-            labelStackView.centerYAnchor.constraint(equalTo: movieImageView.centerYAnchor),
+            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
