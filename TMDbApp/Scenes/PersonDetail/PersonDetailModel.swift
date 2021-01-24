@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct MovieCastModel: Decodable {
+ struct PersonDetailModel: Decodable {
     
      let name: String?
      let character: String?

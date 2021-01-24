@@ -8,21 +8,26 @@
 import Foundation
 
 protocol PopularMovieListViewModelDelegate: class {
-    func setMovieModelList(_ movieModelList: [MovieModel])
+    func setMovieList(_ movieList: [MovieModel])
 }
 
 class PopularMovieListViewModel {
     
-    var movieResults: [MovieResultModel] = []
-    var movieModel: MovieModel?
-    var movieModelList: [MovieModel] = []
-    var filteredMovieModelList: [MovieModel] = []
+    // MARK: - Properties -
     
+    var movieResults: [MovieResults] = []
+    var movieModel: MovieModel?
+    var movieList: [MovieModel] = []
+    var filteredMovieList: [MovieModel] = []
     weak var delegate: PopularMovieListViewModelDelegate?
+    
+    // MARK: - Initialize -
     
     init() {
         getData()
     }
+    
+    // MARK: - Methods -
     
     func getData() {
         PopularMovieListServiceLayer.shared.getMovieList(completionHandler: { [weak self] (results) in
@@ -32,16 +37,16 @@ class PopularMovieListViewModel {
         })
     }
     
-    func setMovieList(_ results: [MovieResultModel]) {
+    func setMovieList(_ results: [MovieResults]) {
         movieResults = results
         for movie in results {
             if let imagePath = movie.posterPath, let title = movie.title, let releaseDate = movie.releaseDate {
                 movieModel = MovieModel(title: title, imageUrl: APIParam.movieImageUrl.rawValue + imagePath, releaseDate: releaseDate)
                 if let model = movieModel {
-                    movieModelList.append(model)
+                    movieList.append(model)
                 }
             }
         }
-        delegate?.setMovieModelList(movieModelList)
+        delegate?.setMovieList(movieList)
     }
 }

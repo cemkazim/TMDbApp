@@ -75,7 +75,7 @@ class PersonDetailViewController: UIViewController {
         updateBackgroundColor(view, CustomColors.firstChangableColor, CustomColors.secondChangableColor)
         view.addSubview(personImageView)
         view.addSubview(labelStackView)
-        getDataFrom(personDetailViewModel?.movieCastModel)
+        getDataFrom(personDetailViewModel?.personDetailModel)
     }
     
     func setupConstraints() {
@@ -106,7 +106,7 @@ class PersonDetailViewController: UIViewController {
         }
     }
     
-    func getDataFrom(_ movieCastModel: MovieCastModel?) {
+    func getDataFrom(_ movieCastModel: PersonDetailModel?) {
         if movieCastModel?.profilePath != nil {
             let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieCastModel?.profilePath ?? ""))
             personImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge

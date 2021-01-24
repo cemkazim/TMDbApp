@@ -70,7 +70,7 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        getDataFrom(movieDetailViewModel?.movieResultModel)
+        getDataFrom(movieDetailViewModel?.movieResults)
     }
     
     override func viewDidLayoutSubviews() {
@@ -130,16 +130,16 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         ])
     }
     
-    func getDataFrom(_ movieResultModel: MovieResultModel?) {
-        if let title = movieResultModel?.title,
-           let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResultModel?.posterPath ?? "")),
-           let releaseDate = movieResultModel?.releaseDate,
-           let summary = movieResultModel?.overview {
+    func getDataFrom(_ movieResult: MovieResults?) {
+        if let title = movieResult?.title,
+           let imageUrl = URL(string: APIParam.movieImageUrl.rawValue + (movieResult?.posterPath ?? "")),
+           let releaseDate = movieResult?.releaseDate,
+           let summary = movieResult?.overview {
             titleLabel.text = title
             coverImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             coverImageView.sd_setImage(with: imageUrl, completed: nil)
             releaseDateLabel.text = ConstantTexts.releaseDateText + (movieDetailViewModel?.dateFormatter(releaseDate) ?? DateFormats.birthOfChrist)
-            ratingLabel.text = ConstantTexts.voteAverageText + "\(movieResultModel?.voteAverage ?? 0.0)" + ConstantTexts.voteAverageDecimalText
+            ratingLabel.text = ConstantTexts.voteAverageText + "\(movieResult?.voteAverage ?? 0.0)" + ConstantTexts.voteAverageDecimalText
             summaryLabel.text = summary
         } else {
             titleLabel.text = ConstantTexts.unknownText
@@ -154,25 +154,25 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
-    func setMovieCast(movieCast: [MovieCastModel]) {
-        movieDetailViewModel?.movieCast = movieCast
-        setImageUrl(movieCast)
+    func setMovieCast(_ personDetailList: [PersonDetailModel]) {
+        movieDetailViewModel?.personDetailList = personDetailList
+        setImageUrl(personDetailList)
         castCollectionView.reloadData()
     }
     
-    func setImageUrl(_ movieCastList: [MovieCastModel]) {
+    func setImageUrl(_ movieCastList: [PersonDetailModel]) {
         for path in movieCastList {
             checkImageUrl(from: path)
         }
     }
     
-    func checkImageUrl(from path: MovieCastModel) {
+    func checkImageUrl(from path: PersonDetailModel) {
         if path.profilePath != nil {
-            let castModel = CastList(name: path.name ?? "", imagePath: APIParam.movieImageUrl.rawValue + (path.profilePath ?? ""))
-            movieDetailViewModel?.castList.append(castModel)
+            let model = CastModel(name: path.name ?? "", imagePath: APIParam.movieImageUrl.rawValue + (path.profilePath ?? ""))
+            movieDetailViewModel?.castList.append(model)
         } else {
-            let castModel = CastList(name: path.name ?? "", imagePath: nil)
-            movieDetailViewModel?.castList.append(castModel)
+            let model = CastModel(name: path.name ?? "", imagePath: nil)
+            movieDetailViewModel?.castList.append(model)
         }
     }
 }
@@ -218,8 +218,8 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = PersonDetailViewController()
-        if let model = movieDetailViewModel?.movieCast[indexPath.row] {
-            let viewModel = PersonDetailViewModel(movieCastModel: model)
+        if let model = movieDetailViewModel?.personDetailList[indexPath.row] {
+            let viewModel = PersonDetailViewModel(personDetailModel: model)
             viewController.personDetailViewModel = viewModel
         }
         pushTo(viewController)

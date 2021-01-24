@@ -9,26 +9,26 @@ import Foundation
 
 protocol MovieDetailViewModelDelegate: class {
     
-    func setMovieCast(movieCast: [MovieCastModel])
+    func setMovieCast(_ personDetailList: [PersonDetailModel])
 }
 
 class MovieDetailViewModel {
     
-    var movieResultModel: MovieResultModel?
-    var movieCast = [MovieCastModel]()
-    var castList = [CastList]()
+    var movieResults: MovieResults?
+    var personDetailList = [PersonDetailModel]()
+    var castList = [CastModel]()
     
     weak var delegate: MovieDetailViewModelDelegate?
     
-    init(movieResultModel: MovieResultModel?) {
-        self.movieResultModel = movieResultModel
+    init(movieResults: MovieResults?) {
+        self.movieResults = movieResults
         getData()
     }
     
     func getData() {
-        MovieDetailServiceLayer.shared.getMovieCast(movieId: movieResultModel?.id ?? 0, completionHandler: { [weak self] (cast) in
+        MovieDetailServiceLayer.shared.getMovieCast(movieId: movieResults?.id ?? 0, completionHandler: { [weak self] (cast) in
             guard let self = self else { return }
-            self.delegate?.setMovieCast(movieCast: cast)
+            self.delegate?.setMovieCast(cast)
         })
     }
     

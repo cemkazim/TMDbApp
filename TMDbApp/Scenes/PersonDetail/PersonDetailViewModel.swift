@@ -9,9 +9,9 @@ import Foundation
 
 class PersonDetailViewModel {
     
-    var movieCastModel: MovieCastModel?
+    var personDetailModel: PersonDetailModel?
     
-    init(movieCastModel: MovieCastModel) {
-        self.movieCastModel = movieCastModel
+    init(personDetailModel: PersonDetailModel) {
+        self.personDetailModel = personDetailModel
     }
 }

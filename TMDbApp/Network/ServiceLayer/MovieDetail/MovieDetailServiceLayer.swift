@@ -13,7 +13,9 @@ class MovieDetailServiceLayer {
     static let shared = MovieDetailServiceLayer()
     private var disposeBag = DisposeBag()
     
-    func getMovieCast(movieId: Int, completionHandler: @escaping ([MovieCastModel]) -> ()) {
+    private init() {}
+    
+    func getMovieCast(movieId: Int, completionHandler: @escaping ([PersonDetailModel]) -> ()) {
         let requestUrl = "\(APIParam.movieBaseUrl.rawValue)\(movieId)\(APIParam.movieCreditsUrl.rawValue)"
         BaseNetworkLayer
             .shared

@@ -23,7 +23,7 @@ struct MovieCollection: Decodable {
 struct MovieCredits: Decodable {
     
     let id: Int?
-    let cast: [MovieCastModel]
+    let cast: [PersonDetailModel]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,7 +31,7 @@ struct MovieCredits: Decodable {
     }
 }
 
-class CastList {
+class CastModel {
     
     var name: String?
     var imagePath: String?

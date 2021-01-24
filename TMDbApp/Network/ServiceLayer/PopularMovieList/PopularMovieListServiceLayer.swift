@@ -13,11 +13,13 @@ class PopularMovieListServiceLayer {
     static let shared = PopularMovieListServiceLayer()
     private var disposeBag = DisposeBag()
     
-    func getMovieList(completionHandler: @escaping ([MovieResultModel]) -> ()) {
+    private init() {}
+    
+    func getMovieList(completionHandler: @escaping ([MovieResults]) -> ()) {
         BaseNetworkLayer
             .shared
             .request(requestUrl: APIParam.movieBaseUrl.rawValue + APIParam.movieResultUrl.rawValue)
-            .subscribe(onNext: { (data: MovieList) in
+            .subscribe(onNext: { (data: PopularMovies) in
                 completionHandler(data.results)
             }, onError: { (error: Error) in
                 print(error)

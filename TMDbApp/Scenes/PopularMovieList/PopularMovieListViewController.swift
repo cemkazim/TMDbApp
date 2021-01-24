@@ -10,7 +10,7 @@ import SDWebImage
 
 class PopularMovieListViewController: UIViewController, PopularMovieListViewModelDelegate {
     
-    // MARK: - UI Objects -
+    // MARK: - Properties -
     
     lazy var movieTableView: UITableView = {
         let tableView = UITableView()
@@ -40,9 +40,6 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         return indicatorView
     }()
-    
-    // MARK: - View Model Property -
-    
     lazy var popularMovieListViewModel: PopularMovieListViewModel = {
         let viewModel = PopularMovieListViewModel()
         viewModel.delegate = self
@@ -105,16 +102,16 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
         }
     }
     
-    func setMovieModelList(_ movieModelList: [MovieModel]) {
-        popularMovieListViewModel.movieModelList = movieModelList
+    func setMovieList(_ movieList: [MovieModel]) {
+        popularMovieListViewModel.movieList = movieList
         movieTableView.reloadData()
         loaderActivityIndicatorView.stopAnimating()
     }
     
-    func getCellData(with movieModelList: MovieModel, cell: PopularMovieListTableViewCell) {
-        cell.movieNameLabel.text = movieModelList.title
-        cell.movieImageView.sd_setImage(with: URL(string: movieModelList.imageUrl ?? ""))
-        cell.movieReleaseDateLabel.text = "\(ConstantTexts.releaseDateText)\(movieModelList.releaseDate ?? "")"
+    func getCellData(with movieList: MovieModel, cell: PopularMovieListTableViewCell) {
+        cell.movieNameLabel.text = movieList.title
+        cell.movieImageView.sd_setImage(with: URL(string: movieList.imageUrl ?? ""))
+        cell.movieReleaseDateLabel.text = "\(ConstantTexts.releaseDateText)\(movieList.releaseDate ?? "")"
     }
 }
 
@@ -128,18 +125,18 @@ extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movieSearchController.isActive {
-            return popularMovieListViewModel.filteredMovieModelList.count
+            return popularMovieListViewModel.filteredMovieList.count
         } else {
-            return popularMovieListViewModel.movieModelList.count
+            return popularMovieListViewModel.movieList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.popularMovieListTableViewCellId) as? PopularMovieListTableViewCell {
             if movieSearchController.isActive {
-                getCellData(with: popularMovieListViewModel.filteredMovieModelList[indexPath.row], cell: cell)
+                getCellData(with: popularMovieListViewModel.filteredMovieList[indexPath.row], cell: cell)
             } else {
-                getCellData(with: popularMovieListViewModel.movieModelList[indexPath.row], cell: cell)
+                getCellData(with: popularMovieListViewModel.movieList[indexPath.row], cell: cell)
             }
             return cell
         } else {
@@ -153,7 +150,7 @@ extension PopularMovieListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailViewController = MovieDetailViewController()
-        let movieDetailViewModel = MovieDetailViewModel(movieResultModel: popularMovieListViewModel.movieResults[indexPath.row])
+        let movieDetailViewModel = MovieDetailViewModel(movieResults: popularMovieListViewModel.movieResults[indexPath.row])
         movieDetailViewController.movieDetailViewModel = movieDetailViewModel
         pushTo(movieDetailViewController)
     }
@@ -168,12 +165,12 @@ extension PopularMovieListViewController: UISearchBarDelegate, UISearchResultsUp
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        popularMovieListViewModel.filteredMovieModelList.removeAll(keepingCapacity: false)
+        popularMovieListViewModel.filteredMovieList.removeAll(keepingCapacity: false)
         if let searchTerm = searchController.searchBar.text {
-            let filteredArray = popularMovieListViewModel.movieModelList.filter { result in
+            let filteredArray = popularMovieListViewModel.movieList.filter { result in
                 return (result.title?.lowercased().contains(searchTerm.lowercased()) ?? false)
             }
-            popularMovieListViewModel.filteredMovieModelList = filteredArray
+            popularMovieListViewModel.filteredMovieList = filteredArray
             if !searchController.isBeingDismissed {
                 movieTableView.reloadData()
             }
