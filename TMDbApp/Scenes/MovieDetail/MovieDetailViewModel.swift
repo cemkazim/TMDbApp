@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieDetailViewModelDelegate: class {
     func setMovieCast(_ personDetailList: [PersonDetailModel])
+    func getMovieDetailError(_ error: Error)
 }
 
 class MovieDetailViewModel {
@@ -28,6 +29,9 @@ class MovieDetailViewModel {
         MovieDetailServiceLayer.shared.getMovieCast(movieId: movieResults?.id ?? 0, completionHandler: { [weak self] (cast) in
             guard let self = self else { return }
             self.delegate?.setMovieCast(cast)
+        }, errorHandler: { [weak self] (error) in
+            guard let self = self else { return }
+            self.delegate?.getMovieDetailError(error)
         })
     }
     

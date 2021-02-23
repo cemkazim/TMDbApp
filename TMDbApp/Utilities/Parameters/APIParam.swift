@@ -18,7 +18,7 @@ class APIUrl {
     
     static let shared = APIUrl()
     
-    init() {}
+    private init() {}
     
     func getPopularMovieListUrl() -> String {
         return APIParam.movieBaseUrl.rawValue + APIParam.movieResultUrl.rawValue

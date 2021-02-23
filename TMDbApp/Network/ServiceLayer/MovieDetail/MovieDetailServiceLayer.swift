@@ -15,7 +15,7 @@ class MovieDetailServiceLayer {
     
     private init() {}
     
-    func getMovieCast(movieId: Int, completionHandler: @escaping ([PersonDetailModel]) -> ()) {
+    func getMovieCast(movieId: Int, completionHandler: @escaping ([PersonDetailModel]) -> Void, errorHandler: @escaping (Error) -> Void) {
         BaseNetworkLayer
             .shared
             .request(requestUrl: APIUrl.shared.getMovieDetailUrl(with: movieId),
@@ -24,7 +24,7 @@ class MovieDetailServiceLayer {
             .subscribe(onNext: { (data: MovieCredits) in
                 completionHandler(data.cast)
             }, onError: { (error: Error) in
-                print(error)
+                errorHandler(error)
             }).disposed(by: disposeBag)
     }
 }

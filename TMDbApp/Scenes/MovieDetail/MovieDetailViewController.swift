@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate {
+class MovieDetailViewController: UIViewController {
     
     // MARK: - UI Objects -
     
@@ -154,12 +154,6 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
         mainScrollView.contentSize = CGSize(width: view.frame.size.width, height: height)
     }
     
-    func setMovieCast(_ personDetailList: [PersonDetailModel]) {
-        movieDetailViewModel?.personDetailList = personDetailList
-        setImageUrl(personDetailList)
-        castCollectionView.reloadData()
-    }
-    
     func setImageUrl(_ movieCastList: [PersonDetailModel]) {
         for path in movieCastList {
             checkImageUrl(from: path)
@@ -174,6 +168,21 @@ class MovieDetailViewController: UIViewController, MovieDetailViewModelDelegate 
             let model = CastModel(name: path.name ?? "", imagePath: nil)
             movieDetailViewModel?.castList.append(model)
         }
+    }
+}
+
+// MARK: - MovieDetailViewController: MovieDetailViewModelDelegate -
+
+extension MovieDetailViewController: MovieDetailViewModelDelegate {
+    
+    func setMovieCast(_ personDetailList: [PersonDetailModel]) {
+        movieDetailViewModel?.personDetailList = personDetailList
+        setImageUrl(personDetailList)
+        castCollectionView.reloadData()
+    }
+    
+    func getMovieDetailError(_ error: Error) {
+        showError(title: AlertContents.errorTitle, message: error.localizedDescription)
     }
 }
 

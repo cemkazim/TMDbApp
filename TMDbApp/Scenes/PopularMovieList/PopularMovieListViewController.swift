@@ -113,6 +113,10 @@ class PopularMovieListViewController: UIViewController {
 
 extension PopularMovieListViewController: PopularMovieListViewModelDelegate {
     
+    func getPopularMovieListError(_ error: Error) {
+        showError(title: AlertContents.errorTitle, message: error.localizedDescription)
+    }
+    
     func setMovieList(_ movieList: [MovieModel]) {
         popularMovieListViewModel.movieList = movieList
         movieTableView.reloadData()

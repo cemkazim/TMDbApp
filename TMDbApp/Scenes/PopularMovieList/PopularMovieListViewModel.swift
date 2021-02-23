@@ -9,6 +9,7 @@ import Foundation
 
 protocol PopularMovieListViewModelDelegate: class {
     func setMovieList(_ movieList: [MovieModel])
+    func getPopularMovieListError(_ error: Error)
 }
 
 class PopularMovieListViewModel {
@@ -34,6 +35,9 @@ class PopularMovieListViewModel {
             guard let self = self else { return }
             self.movieResults = results
             self.setMovieList(results)
+        }, errorHandler: { [weak self] (error) in
+            guard let self = self else { return }
+            self.delegate?.getPopularMovieListError(error)
         })
     }
     

@@ -15,7 +15,7 @@ class PopularMovieListServiceLayer {
     
     private init() {}
     
-    func getMovieList(completionHandler: @escaping ([MovieResults]) -> ()) {
+    func getMovieList(completionHandler: @escaping ([MovieResults]) -> Void, errorHandler: @escaping (Error) -> Void) {
         BaseNetworkLayer
             .shared
             .request(requestUrl: APIUrl.shared.getPopularMovieListUrl(),
@@ -23,7 +23,7 @@ class PopularMovieListServiceLayer {
             .subscribe(onNext: { (data: PopularMovies) in
             completionHandler(data.results)
         }, onError: { (error: Error) in
-            print(error)
+            errorHandler(error)
         }).disposed(by: disposeBag)
     }
 }
