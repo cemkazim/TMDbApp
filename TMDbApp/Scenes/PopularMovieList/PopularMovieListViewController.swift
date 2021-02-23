@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class PopularMovieListViewController: UIViewController, PopularMovieListViewModelDelegate {
+class PopularMovieListViewController: UIViewController {
     
     // MARK: - Properties -
     
@@ -102,16 +102,21 @@ class PopularMovieListViewController: UIViewController, PopularMovieListViewMode
         }
     }
     
-    func setMovieList(_ movieList: [MovieModel]) {
-        popularMovieListViewModel.movieList = movieList
-        movieTableView.reloadData()
-        loaderActivityIndicatorView.stopAnimating()
-    }
-    
     func getCellData(with movieList: MovieModel, cell: PopularMovieListTableViewCell) {
         cell.movieNameLabel.text = movieList.title
         cell.movieImageView.sd_setImage(with: URL(string: movieList.imageUrl ?? ""))
         cell.movieReleaseDateLabel.text = "\(ConstantTexts.releaseDateText)\(movieList.releaseDate ?? "")"
+    }
+}
+
+// MARK: - MovieListViewController: PopularMovieListViewModelDelegate -
+
+extension PopularMovieListViewController: PopularMovieListViewModelDelegate {
+    
+    func setMovieList(_ movieList: [MovieModel]) {
+        popularMovieListViewModel.movieList = movieList
+        movieTableView.reloadData()
+        loaderActivityIndicatorView.stopAnimating()
     }
 }
 

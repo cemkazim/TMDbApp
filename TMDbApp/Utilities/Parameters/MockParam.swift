@@ -8,7 +8,6 @@
 import Foundation
 
 enum MockParam: String {
-    
     case movieId = "movie_id"
     case id = "123456"
 }

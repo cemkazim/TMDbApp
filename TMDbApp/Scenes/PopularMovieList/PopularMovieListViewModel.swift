@@ -38,7 +38,6 @@ class PopularMovieListViewModel {
     }
     
     func setMovieList(_ results: [MovieResults]) {
-        movieResults = results
         for movie in results {
             if let imagePath = movie.posterPath, let title = movie.title, let releaseDate = movie.releaseDate {
                 movieModel = MovieModel(title: title, imageUrl: APIParam.movieImageUrl.rawValue + imagePath, releaseDate: releaseDate)

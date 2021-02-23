@@ -8,7 +8,6 @@
 import Foundation
 
 protocol MovieDetailViewModelDelegate: class {
-    
     func setMovieCast(_ personDetailList: [PersonDetailModel])
 }
 
