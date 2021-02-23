@@ -19,6 +19,7 @@ class MovieDetailServiceLayer {
         BaseNetworkLayer
             .shared
             .request(requestUrl: APIUrl.shared.getMovieDetailUrl(with: movieId),
+                     requestMethod: .get,
                      requestParameters: [MockParam.movieId.rawValue: MockParam.id.rawValue])
             .subscribe(onNext: { (data: MovieCredits) in
                 completionHandler(data.cast)
