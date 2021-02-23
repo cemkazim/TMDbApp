@@ -18,7 +18,7 @@ class PopularMovieListServiceLayer {
     func getMovieList(completionHandler: @escaping ([MovieResults]) -> ()) {
         BaseNetworkLayer
             .shared
-            .request(requestUrl: APIParam.movieBaseUrl.rawValue + APIParam.movieResultUrl.rawValue)
+            .request(requestUrl: APIUrl.shared.getPopularMovieListUrl())
             .subscribe(onNext: { (data: PopularMovies) in
                 completionHandler(data.results)
             }, onError: { (error: Error) in

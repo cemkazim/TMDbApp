@@ -16,10 +16,9 @@ class MovieDetailServiceLayer {
     private init() {}
     
     func getMovieCast(movieId: Int, completionHandler: @escaping ([PersonDetailModel]) -> ()) {
-        let requestUrl = "\(APIParam.movieBaseUrl.rawValue)\(movieId)\(APIParam.movieCreditsUrl.rawValue)"
         BaseNetworkLayer
             .shared
-            .request(requestUrl: requestUrl,
+            .request(requestUrl: APIUrl.shared.getMovieDetailUrl(with: movieId),
                      requestParameters: [MockParam.movieId.rawValue: MockParam.id.rawValue])
             .subscribe(onNext: { (data: MovieCredits) in
                 completionHandler(data.cast)
